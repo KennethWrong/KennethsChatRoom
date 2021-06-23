@@ -2,7 +2,7 @@ body{
     background:linear-gradient(217deg,pink,orange);
     display:flex;
     flex-direction: column;
-    align-content: space-around;
+    align-content: center;
     justify-content: flex-start;
     align-items: center;
     border :rgb(94, 141, 155) 3px;
@@ -112,6 +112,7 @@ body{
     height:60vh;
     border-radius: 16px;
     border: 2px red;
+    border-style:double;
 }
 
 .login
@@ -202,6 +203,15 @@ body{
     border-radius: 16px;
     margin-bottom: 20px;
 
+}
+
+.sections{
+    width:100vw;
+    display:flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
 }
 
 

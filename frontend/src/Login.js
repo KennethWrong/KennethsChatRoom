@@ -8,21 +8,27 @@ const socket = io("http://localhost:3080")
 
 function Login() {
     const [userName,setUserName] = useState('')
+    const [tempun,setun] = useState('')
     const [password,setPassword] = useState('')
+    const [tempp,setp] = useState('')
     const [loggedIn, setLoggedIn] = useState(false)
     const [color,setColor] = useState('white')
     const [notification,setNotification] = useState('')
 
     const handleUserChange = (text) => {
+        setun(text.target.value)
         setUserName(text.target.value)
     }
 
     const handlePWChange = (text) => {
+        setp(text.target.value)
         setPassword(text.target.value)
     }
 
     const handleLogin = async () => {
-        if(userName){
+        if(tempun){
+            setun('')
+            setp('')
             setLoggedIn(true)
             socket.emit('user enter',userName)
             const account = {
@@ -41,6 +47,8 @@ function Login() {
         }
             else
             {
+                setun('')
+                setp('')
                 setNotification(`Wrong Username or Password`)
             setColor('red')
             setTimeout(() => {
@@ -64,9 +72,9 @@ function Login() {
         <section className="align-left">
             <div className="login">
             <h3>Login</h3>
-            <input type="text" onChange={handleUserChange} value={userName}
+            <input type="text" onChange={handleUserChange} value={tempun}
             autoComplete = "off" placeholder="Username"></input>
-            <input type="password" onChange={handlePWChange} value={password}
+            <input type="password" onChange={handlePWChange} value={tempp}
             autoComplete = "off" placeholder="Password"></input>
             <button type="button" className="loginButton" onClick={handleLogin}>Login</button>
     </div>

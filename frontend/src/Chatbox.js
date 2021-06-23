@@ -35,7 +35,7 @@ function Chatbox(props) {
 
 
     return (
-        <section>
+        <section class="section1">
       <div id="chatArea">{messages.map((indi,index) => <p id="messages" key={index}>{indi} </p>)}</div>
         <div>
             <form id="form" action="">
@@ -49,6 +49,7 @@ function Chatbox(props) {
             </form>
         </div>
         </section>
+
     )
 
 }
