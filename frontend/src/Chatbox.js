@@ -1,13 +1,14 @@
 import './styles/app.css';
-import react from 'react'
+import React from 'react'
 import {useState,useEffect} from 'react'
-import axios from 'axios'
 const io = require("socket.io-client");
 const socket = io("http://localhost:3080")
 
-function Chatbox() {
+function Chatbox(props) {
     const [messages, setMessages] = useState([])
     const [tempmsg, setTempMsg] = useState('')
+    const username = props.username;
+    let actualMessage;
 
     const userTextChange = (text) => {
         setTempMsg(text.target.value);
@@ -15,10 +16,10 @@ function Chatbox() {
 
     const textSend = (event) => {
         event.preventDefault()
-        socket.emit('chat message',tempmsg)
-        setMessages(messages.concat(tempmsg))
+        actualMessage = `${username}: ${tempmsg}`
+        socket.emit('chat message',actualMessage)
+        setMessages(messages.concat(actualMessage))
         setTempMsg('')
-        console.log('this only meant for me')
     }
 
     socket.on('chat message',(msg) => {
@@ -26,10 +27,16 @@ function Chatbox() {
         window.scrollTo(0,document.body.scrollHeight);
     })
 
+    socket.on('user enter', (username) => {
+        const enterText = `${username} has entered the chat`
+        setMessages(messages.concat(enterText))
+        window.scrollTo(0,document.body.scrollHeight);
+    })
+
 
     return (
         <section>
-      <div id="chatArea">{messages.map(indi => <p id="messages">{indi}</p>)}</div>
+      <div id="chatArea">{messages.map((indi,index) => <p id="messages" key={index}>{indi} </p>)}</div>
         <div>
             <form id="form" action="">
             <input onChange={userTextChange} type="text" id="inputbox" autoComplete="off" 

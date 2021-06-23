@@ -5,6 +5,9 @@ body{
     align-content: center;
     justify-content: center;
     align-items: center;
+    border :rgb(94, 141, 155) 3px;
+    border-style:solid;
+    margin:0;
   }
 
 #intro{
@@ -104,7 +107,7 @@ body{
 #chatArea{
     background-color:white;
     width: 90vw;
-    height:100vh;
+    height:60vh;
     border-radius: 16px;
     border: 2px red;
 }
@@ -135,7 +138,7 @@ body{
     button
     {
         font-family: Georgia, 'Times New Roman', Times, serif;
-        font-size: 1.7vw;
+        font-size: 1.4vw;
         width:7vw;
         border-radius: 16px;
     }
@@ -159,7 +162,6 @@ body{
 }
 
 .text-on-right{
-    color:rgb(194, 186, 186);
     background-color: #222;
     width: 40vw;
     font-size: 18px;
@@ -172,6 +174,31 @@ body{
       red, 
       rgba(0, 0, 0, 0)
     ) 1 100%;
+
+    p{
+        color:rgb(194, 186, 186);
+        font-size: 1.5vw;
+
+    }
+}
+
+.align-center{
+    text-align: center;
+    color: green;
+}
+
+.notifications{
+    width:97vw;
+    height: 6vh;
+    background-color: white;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 16px;
+
 }
 
 
