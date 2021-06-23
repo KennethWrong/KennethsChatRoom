@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import './styles/app.css'
 import Chatbox from './Chatbox'
 import axios from 'axios'
+import Notifications from './Notifications'
 const io = require('socket.io-client')
 const socket = io("http://localhost:3080")
 
@@ -9,7 +10,8 @@ function Login() {
     const [userName,setUserName] = useState('')
     const [password,setPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(false)
-    const [error,setError] = useState(false)
+    const [color,setColor] = useState('white')
+    const [notification,setNotification] = useState('')
 
     const handleUserChange = (text) => {
         setUserName(text.target.value)
@@ -27,8 +29,25 @@ function Login() {
                 username: userName,
                 password: password,
             }
+            setNotification(`Welcome ${userName}`)
+            setColor('green')
+            setTimeout(() => {
+                setNotification('')
+                setColor('white')
+            },2000)
             axios.post('http://localhost:3080/users',account)
-            .catch(error => console.log(error))}
+            .catch(error => console.log(error))
+            
+        }
+            else
+            {
+                setNotification(`Wrong Username or Password`)
+            setColor('red')
+            setTimeout(() => {
+                setNotification('')
+                setColor('white')
+            },2000)
+            }
     }
 
     const handleLogOut = () => {
@@ -39,7 +58,7 @@ function Login() {
 
     return(
         <div>
-            
+            <Notifications color={color} notification={notification}/>
         
         {!loggedIn?
         <section className="align-left">
@@ -47,7 +66,7 @@ function Login() {
             <h3>Login</h3>
             <input type="text" onChange={handleUserChange} value={userName}
             autoComplete = "off" placeholder="Username"></input>
-            <input type="text" onChange={handlePWChange} value={password}
+            <input type="password" onChange={handlePWChange} value={password}
             autoComplete = "off" placeholder="Password"></input>
             <button type="button" className="loginButton" onClick={handleLogin}>Login</button>
     </div>
@@ -59,7 +78,7 @@ function Login() {
         </div>
         </section>:
         <div>
-        <h3 className="align-center">Welcome {userName}</h3>
+        <h3 className="logged-in-as">Currently Logged in as: {userName}</h3>
         <button type="button" className="loginButton" onClick={handleLogOut}>Logout</button>
         <Chatbox username={userName}/>
         </div>

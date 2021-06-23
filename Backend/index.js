@@ -31,7 +31,6 @@ app.post('/users',async (request,response) => {
     const account = new UserModel(request.body)
     account.save()
     .catch(err => console.log(err))
-    console.log('Personal data was successfully saved')
     response.sendStatus(200)
 
 })

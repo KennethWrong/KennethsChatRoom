@@ -2,16 +2,18 @@ body{
     background:linear-gradient(217deg,pink,orange);
     display:flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
+    align-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     border :rgb(94, 141, 155) 3px;
     border-style:solid;
+    height: 100vh;
     margin:0;
   }
 
 #intro{
     display:flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items:center;
@@ -198,6 +200,7 @@ body{
     align-items: center;
     justify-content: space-evenly;
     border-radius: 16px;
+    margin-bottom: 20px;
 
 }
 

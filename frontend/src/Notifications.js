@@ -4,9 +4,9 @@ const Notifications = (props) => {
 
 
     return(
-        <div className="notifications">
-        <h1 style={{backgroundColor:`${props.color}`}}>
-            {props.msg}
+        <div className="notifications" style={{backgroundColor:`${props.color}`}}>
+        <h1>
+            {props.notification}
         </h1>
         </div>
     )
