@@ -1,10 +1,12 @@
 import './styles/app.css';
 import React from 'react'
 import {useState,useEffect} from 'react'
-const io = require("socket.io-client");
+import io from 'socket.io-client'
 const socket = io("http://localhost:3080")
+socket.emit('create','chatroom1')
 
 function Chatbox(props) {
+
     const [messages, setMessages] = useState([])
     const [tempmsg, setTempMsg] = useState('')
     const username = props.username;
@@ -26,7 +28,7 @@ function Chatbox(props) {
         setMessages(messages.concat(msg))
         window.scrollTo(0,document.body.scrollHeight);
     })
-
+    
     socket.on('user enter', (username) => {
         const enterText = `${username} has entered the chat`
         setMessages(messages.concat(enterText))
@@ -34,8 +36,9 @@ function Chatbox(props) {
     })
 
 
+
     return (
-        <section class="section1">
+        <section className="sections">
       <div id="chatArea">{messages.map((indi,index) => <p id="messages" key={index}>{indi} </p>)}</div>
         <div>
             <form id="form" action="">

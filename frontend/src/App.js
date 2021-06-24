@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div id="intro">
-    <h1>Welcome to Kenneth's chat App</h1>
+    <h1>Kenneth's Chat App</h1>
     <ClockComponent />
   </div>
   );

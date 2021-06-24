@@ -10,7 +10,9 @@ function ClockComponent() {
     })
 
     return(
-            <h2>{date.toLocaleString()}</h2>
+        <div className="clockComponent">
+            <h3>{date.toLocaleString()}</h3>
+        </div>
     )
 
 }

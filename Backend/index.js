@@ -18,12 +18,12 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('chat message',msg)
     })
 
-    socket.on('disconnect',() => {
-        io.emit('chat message', 'a user has disconnected');
+    socket.on('user enter',(username) => {
+        socket.broadcast.emit('user enter',username)
     })
 
-    socket.on('user enter',(username) => {
-        io.emit('user enter',username)
+    socket.on('disconnect',() => {
+        socket.broadcast.emit('chat message','a user has disconnected')
     })
 })
 

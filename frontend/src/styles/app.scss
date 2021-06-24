@@ -1,5 +1,34 @@
+
+p,h1,h2,h3{
+    font-family: sans-serif;
+}
+
+.responsive-section-row {
+    width:100vw;
+    display:flex;
+    flex-direction: row;
+}
+
+.responsive-section-col {
+    width:100vw;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.responsive-p{
+    li{
+        font-size: 1.3vw;
+    }
+}
+
+
+
+
 body{
-    background:linear-gradient(217deg,pink,orange);
+    background-color:#f9cf00;
     display:flex;
     flex-direction: column;
     align-content: center;
@@ -11,18 +40,23 @@ body{
     margin:0;
   }
 
+
 #intro{
     display:flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-content: center;
     align-items:center;
-}
+    flex-direction: row;
+    width:100vw;
+    background-color: #f19f4d;
+    margin-bottom: 2%;
 
-#intro h1{
-    color:rgb(94, 141, 155);
-    background-color: rgb(255, 255, 255);
-    border-radius: 16px;
+    h1{
+        color:white;
+        border-radius: 12px;
+        font-size: 2vw;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
 }
 
 #inputbox {
@@ -31,6 +65,7 @@ body{
     flex-grow: 1; 
     border-radius: 2rem; 
     margin: 0.25rem;
+    outline:none;
 }
 #input:focus { 
     outline: none;
@@ -56,78 +91,38 @@ body{
     height:3rem;
     box-sizing: border-box;
     backdrop-filter: blur(10px);
+    outline:none;
 }
 
-#intro{
-    display:flex;
-    justify-content: center;
-    align-content: center;
-    align-items:center;
+#messages { 
+    padding: 0.5rem 1rem;  
+    background: linear-gradient(to left, #ece9e6, #ffffff); 
 }
-
-#intro h1{
-    color:rgb(94, 141, 155);
-    background-color: rgba(255, 255, 255,0.5);
-    border-radius: 12px;
-}
-
-#inputbox {
-    border: none; 
-    padding: 0 1rem; 
-    flex-grow: 1; 
-    border-radius: 2rem; 
-    margin: 0.25rem;
-}
-#input:focus { 
-    outline: none;
- }
-
- #form > button { background: #333; 
-    border: none; 
-    padding: 0 1rem; 
-    margin: 0.25rem; 
-    border-radius: 3px; 
-    outline: none; 
-    color: #fff; 
-}
-
-#form {
-    background: rgba(0,0,0,0.15);
-    padding: 0.25rem;
-    position: fixed;
-    bottom:0;
-    left: 0;
-    right:0;
-    display: flex;
-    height:3rem;
-    box-sizing: border-box;
-    backdrop-filter: blur(10px);
-}
-
-#messages { padding: 0.5rem 1rem;  background: #efefef;}
 
 #chatArea{
-    background-color:white;
-    width: 90vw;
+    background: linear-gradient(to right, #ede574, #e1f5c4);
+    width: 50vw;
     height:60vh;
     border-radius: 16px;
-    border: 2px red;
+    border: 2px #e58560;
     border-style:double;
+    overflow:scroll;
 }
 
 .login
 {
     display:flex;
     flex-direction: column;
-    align-content: center;
+    align-content: space-around;
+    align-items: space-around;
     justify-content: center;
     justify-items: center;
     align-items: left;
-    padding: 0px 20px 10px 20px;
-    background-color: white;
+    padding: 0px 2% 1% 2%;
+    background-color: #f19f4d;
     border: 3px black;
     border-radius: 16px;
-    width: 30vw;
+    width: auto;
     margin-bottom: 20px;
 
     input
@@ -136,14 +131,7 @@ body{
         margin-bottom: 10px;
         border-radius: 16px;
         height:2.5vh;
-    }
-
-    button
-    {
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        font-size: 1.4vw;
-        width:7vw;
-        border-radius: 16px;
+        outline:none;
     }
 
     h3{
@@ -151,35 +139,35 @@ body{
     }
 }
 
+.loginButton {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 16px;
+        width:auto;
+        border-radius: 16px;
+        cursor: pointer;
+}
+
 .align-left 
 {
-    width:90vw;
+    width:auto;
     height:auto;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    justify-items: center;
-    align-content: space-around;
-    justify-content: space-around;
+    align-items: center;
+    align-content: space-evenly;
+    justify-content: space-evenly;
     background-color: transparent;
 }
 
 .text-on-right{
-    background-color: #222;
+    background-color: #f19f4d;
     width: 40vw;
     font-size: 18px;
     padding: 20px 20px 20px 20px;
-    border-width: 3px;
-    border-style: solid;
-    border-image: 
-    linear-gradient(
-      to bottom, 
-      red, 
-      rgba(0, 0, 0, 0)
-    ) 1 100%;
+    border-radius: 16px;
 
     p{
-        color:rgb(194, 186, 186);
+        color:white;
         font-size: 1.5vw;
 
     }
@@ -190,10 +178,11 @@ body{
     color: green;
 }
 
+
 .notifications{
-    width:97vw;
+    width:40vw;
     height: 6vh;
-    background-color: white;
+    background-color: #FEFFFF;
     opacity: 0.8;
     display: flex;
     flex-direction: row;
@@ -214,4 +203,103 @@ body{
     justify-items: center;
 }
 
+.logged-in-as {
+    position: absolute;
+    display:flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    top: 2%;
+    left:73%;
+    padding: 0 2% 0 2%;
+    height: auto;
+    border-radius:16px;
+    color:white;
 
+    h3{
+        font-size: 1.3vw;
+        margin-right:10px;
+    }
+
+    button {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 13px;
+        width:auto;
+        border-radius: 16px;
+        margin-top: -5px;
+        cursor: pointer;
+    }
+}
+
+.clockComponent{
+    font-size: 10px;
+    padding-left:1%;
+    padding-right:1%;
+    border-radius: 16px;
+    width:auto;
+    color:white;
+    position: absolute;
+    right:88%;
+    top:0;
+
+}
+
+.friendbar{
+    padding: 0% 1% 0% 1%;
+    background: linear-gradient(to left, #f19f4d, #f4d03f);
+    width:20vw;
+    height:82vh;
+    top:9%;
+   left:78%;
+    position: absolute;
+    border-radius: 16px 0 0 0;
+    margin:0;
+}
+
+.friendonline{
+    background-color: #f6f4e8;
+    color:#333;
+    padding-left:10px;
+    border-radius: 16px;
+    font-size: 20px;
+}
+
+.innerfriendonline{
+    background-color: #f6f4e8;
+    padding-top: 1%;
+    height: 70vh;
+    border-radius: 16px;
+    color:#333;
+    overflow:scroll;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width:31vw;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
