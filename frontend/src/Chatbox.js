@@ -1,6 +1,6 @@
 import './styles/app.css';
 import React from 'react'
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import io from 'socket.io-client'
 const socket = io("http://localhost:3080")
 socket.emit('create','chatroom1')
@@ -26,13 +26,11 @@ function Chatbox(props) {
 
     socket.on('chat message',(msg) => {
         setMessages(messages.concat(msg))
-        window.scrollTo(0,document.body.scrollHeight);
     })
     
     socket.on('user enter', (username) => {
         const enterText = `${username} has entered the chat`
         setMessages(messages.concat(enterText))
-        window.scrollTo(0,document.body.scrollHeight);
     })
 
 

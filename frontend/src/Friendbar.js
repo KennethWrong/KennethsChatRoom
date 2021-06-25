@@ -1,9 +1,6 @@
-import React, {useState} from 'react'
-import io from 'socket.io-client'
+import React from 'react'
 
 function Friendbar(props){
-    const [friends,setFriends] = useState(['two toe bill','5 toe johnny'])
-
 
     return(
         <section className='friendbar'>
@@ -11,7 +8,8 @@ function Friendbar(props){
                 <h3 className="friendonline">Friends online</h3>
                 <div className="innerfriendonline">
                     <ul className="responsive-p">
-                    {friends.map((friend,index) => <li key={index}>{friend}</li>)}
+                    <li>John</li>
+                    <li>Simon</li>
                     </ul>
                 </div>
             </div>

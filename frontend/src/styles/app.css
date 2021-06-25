@@ -141,7 +141,7 @@ body {
   overflow: scroll;
 }
 
-.login {
+.login, .register {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -169,7 +169,7 @@ body {
   margin-bottom: 20px;
 }
 
-.login input {
+.login input, .register input {
   width: auto;
   margin-bottom: 10px;
   border-radius: 16px;
@@ -177,7 +177,7 @@ body {
   outline: none;
 }
 
-.login h3 {
+.login h3, .register h3 {
   text-align: left;
 }
 
@@ -229,7 +229,7 @@ body {
 }
 
 .notifications {
-  width: 40vw;
+  width: auto;
   height: 6vh;
   background-color: #FEFFFF;
   opacity: 0.8;
