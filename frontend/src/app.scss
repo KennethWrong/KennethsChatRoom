@@ -1,3 +1,4 @@
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
 
 p,h1,h2,h3{
     font-family: sans-serif;
@@ -34,9 +35,7 @@ body{
     align-content: center;
     justify-content: flex-start;
     align-items: center;
-    border :rgb(94, 141, 155) 3px;
-    border-style:solid;
-    height: 100vh;
+    height: auto;
     margin:0;
   }
 
@@ -113,29 +112,29 @@ body{
 {
     display:flex;
     flex-direction: column;
-    align-content: space-around;
+    align-content: center;
     align-items: space-around;
-    justify-content: center;
+    justify-content: space-between;
     justify-items: center;
-    align-items: left;
+    align-items: center;
     padding: 0px 2% 1% 2%;
     background-color: #f19f4d;
     border: 3px black;
     border-radius: 16px;
-    width: auto;
+    width: 30vw;
+    height: 50vh;
     margin-bottom: 20px;
 
     input
     {
-        width:auto;
-        margin-bottom: 10px;
+        width:70%;
+        height:7%;
         border-radius: 16px;
-        height:2.5vh;
         outline:none;
     }
 
     h3{
-        text-align: left;
+        text-align: center;
     }
 }
 
@@ -161,7 +160,8 @@ body{
 
 .text-on-right{
     background-color: #f19f4d;
-    width: 40vw;
+    width: 25vw;
+    height: 40vh;
     font-size: 18px;
     padding: 20px 20px 20px 20px;
     border-radius: 16px;
@@ -169,6 +169,7 @@ body{
     p{
         color:white;
         font-size: 1.5vw;
+        text-align: center;
 
     }
 }
@@ -305,4 +306,8 @@ body{
 
   .register{
       @extend .login;
+  }
+
+  .register-button{
+     justify-self:flex-end;
   }

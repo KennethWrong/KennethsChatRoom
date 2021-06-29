@@ -1,8 +1,8 @@
-import './styles/app.css';
+import './app.css';
 import React from 'react'
-import ClockComponent from './ClockComponent';
+import ClockComponent from './Components/ClockComponent';
 
-function App() {
+function Navigation() {
 
   return (
     <div id="intro">
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default Navigation;

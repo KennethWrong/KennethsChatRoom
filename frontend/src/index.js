@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/app.css';
-import App from './App';
+import './app.css';
+import Navigation from './Navigation';
 import Login from './Login'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-ReactDOM.render(<App />,document.getElementById('header'));
+ReactDOM.render(<Navigation />,document.getElementById('header'));
 ReactDOM.render(<Login/>,document.getElementById('login'));
 
 

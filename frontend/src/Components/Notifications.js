@@ -1,3 +1,4 @@
+import '../app.css'
 const Notifications = (props) => {
 //userName,loggedIn
 

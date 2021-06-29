@@ -1,4 +1,4 @@
-import './styles/app.css';
+import '../app.css';
 import React from 'react'
 import {useState} from 'react'
 import io from 'socket.io-client'
