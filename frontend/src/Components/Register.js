@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 import '../app.css'
+import Button from 'react-bootstrap/Button';
 
 function Register (props) {
     const[regun,setregun] = useState('')
@@ -33,11 +34,11 @@ function Register (props) {
 
             props.setUserName(props.regun)
             props.setLoggedIn(true)
-            props.RegistersetNotification(`${props.regun} has successfully registered`)
-            props.setColor('#57bc90')
+            props.setNotification(`${props.regun} has successfully registered`)
+            props.setColor('success')
             setTimeout(() => {
                 props.setNotification('')
-                props.setColor('#f9cf00')
+                props.setColor('#f0f0f0')
             },2000)
 
             
@@ -45,10 +46,10 @@ function Register (props) {
             else
             {
                 props.setNotification(`Username or password must be present`)
-                props.setColor('#cd5360')
+                props.setColor('danger')
                 setTimeout(() => {
                 props.setNotification('')
-                 props.setColor('#f9cf00')
+                 props.setColor('#f0f0f0')
                 },2000)
             }
     }
@@ -56,13 +57,17 @@ function Register (props) {
 
     return(
         <div className="register">
+            <div className="flex-div-column">
             <h3>Register</h3>
+
             <input type="text" onChange={handleunregChange} value={regun}
             autoComplete = "off" placeholder="Username"></input>
             <input type="password" onChange={handlepwregChange} value={regpw}
             autoComplete = "off" placeholder="Password"></input>
-            <button type="button" className="loginButton"  onClick={handleRegister}>Register</button>
-            <button type="button" onClick={handleOther}>Already have an account?</button>
+            <Button  variant="success" onClick={handleRegister} size='md' type='button'>Register</Button>
+            </div>
+            <Button variant="light" onClick={handleOther} type='button' size='sm'>
+        Have an account?</Button>
             </div>
     )
 }

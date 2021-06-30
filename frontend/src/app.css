@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -10837,12 +10838,8 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-p, h1, h2, h3 {
-  font-family: sans-serif;
-}
-
 .responsive-section-row {
-  width: 100vw;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10850,6 +10847,14 @@ p, h1, h2, h3 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .responsive-section-col {
@@ -10871,7 +10876,6 @@ p, h1, h2, h3 {
 }
 
 body {
-  background-color: #f9cf00;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10889,14 +10893,17 @@ body {
           align-items: center;
   height: auto;
   margin: 0;
+  overflow-x: hidden;
+  background-color: #f0f0f0;
 }
 
 #intro {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-line-pack: center;
       align-content: center;
   -webkit-box-align: center;
@@ -10968,8 +10975,7 @@ body {
 }
 
 #chatArea {
-  background: -webkit-gradient(linear, left top, right top, from(#ede574), to(#e1f5c4));
-  background: linear-gradient(to right, #ede574, #e1f5c4);
+  background: linear-gradient(107deg, white 0%, #f3e4fa 100%, #00d4ff 100%);
   width: 50vw;
   height: 60vh;
   border-radius: 16px;
@@ -10998,32 +11004,49 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0px 2% 1% 2%;
-  background-color: #f19f4d;
+  padding: 0px 2% 2% 2%;
+  background: -webkit-gradient(linear, left top, right top, from(#D6A4A4), to(#DAE2F8));
+  background: linear-gradient(to right, #D6A4A4, #DAE2F8);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border: 3px black;
   border-radius: 16px;
-  width: 30vw;
-  height: 50vh;
+  width: 35vw;
+  height: 55vh;
+  min-width: 300px;
   margin-bottom: 20px;
-}
-
-.login input, .register input {
-  width: 70%;
-  height: 7%;
-  border-radius: 16px;
-  outline: none;
 }
 
 .login h3, .register h3 {
   text-align: center;
 }
 
-.loginButton {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 16px;
-  width: auto;
-  border-radius: 16px;
-  cursor: pointer;
+.flex-div-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
+.flex-div-column input {
+  margin-top: 20px;
+  width: 90%;
+  height: 9%;
+  border-radius: 4px;
+  outline: none;
+}
+
+.flex-div-column button {
+  margin-top: 20px;
 }
 
 .align-left {
@@ -11070,7 +11093,7 @@ body {
 .notifications {
   width: auto;
   height: 6vh;
-  background-color: #FEFFFF;
+  background-color: #f0f0f0;
   opacity: 0.8;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11087,12 +11110,13 @@ body {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  margin-top: 30px;
   border-radius: 16px;
   margin-bottom: 20px;
 }
 
 .sections {
-  width: 100vw;
+  width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11108,7 +11132,7 @@ body {
 }
 
 .logged-in-as {
-  position: absolute;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11116,26 +11140,18 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  justify-items: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  top: 2%;
-  left: 73%;
   padding: 0 2% 0 2%;
   height: auto;
   border-radius: 16px;
-  color: white;
+  position: absolute;
+  top: 10%;
+  left: 0%;
 }
 
 .logged-in-as h3 {
-  font-size: 1.3vw;
+  font-size: 14px;
   margin-right: 10px;
+  color: black;
 }
 
 .logged-in-as button {
@@ -11148,45 +11164,50 @@ body {
 }
 
 .clockComponent {
-  font-size: 10px;
   padding-left: 1%;
   padding-right: 1%;
   border-radius: 16px;
   width: auto;
+}
+
+.clockComponent h3 {
+  font-size: 14px;
   color: white;
-  position: absolute;
-  right: 88%;
-  top: 0;
 }
 
 .friendbar {
   padding: 0% 1% 0% 1%;
-  background: -webkit-gradient(linear, right top, left top, from(#f19f4d), to(#f4d03f));
-  background: linear-gradient(to left, #f19f4d, #f4d03f);
+  background: linear-gradient(107deg, white 0%, #f3e4fa 100%, #00d4ff 100%);
   width: 20vw;
-  height: 82vh;
-  top: 9%;
-  left: 78%;
-  position: absolute;
+  height: auto;
   border-radius: 16px 0 0 0;
-  margin: 0;
+  margin: 0px 0px 0px 15px;
+  height: 40vh;
+  max-width: 200px;
+}
+
+.friendbar-div {
+  height: 100%;
 }
 
 .friendonline {
-  background-color: #f6f4e8;
+  background-color: white;
   color: #333;
   padding-left: 10px;
   border-radius: 16px;
-  font-size: 20px;
+  font-size: 100%;
 }
 
 .innerfriendonline {
-  background-color: #f6f4e8;
+  background-color: white;
   padding-top: 1%;
-  height: 70vh;
+  height: 60%;
   border-radius: 16px;
   color: #333;
-  overflow: scroll;
+}
+
+.innerfriendonline li {
+  font-size: 80%;
 }
 
 .tab {

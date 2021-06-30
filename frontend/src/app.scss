@@ -1,13 +1,19 @@
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
+//Override
+//$body-bg: #f0f0f0;
+$font-family: "Lato";
 
-p,h1,h2,h3{
-    font-family: sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 
 .responsive-section-row {
-    width:100vw;
+    width:100%;
     display:flex;
     flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content:center;
+
 }
 
 .responsive-section-col {
@@ -29,7 +35,6 @@ p,h1,h2,h3{
 
 
 body{
-    background-color:#f9cf00;
     display:flex;
     flex-direction: column;
     align-content: center;
@@ -37,12 +42,15 @@ body{
     align-items: center;
     height: auto;
     margin:0;
+    overflow-x:hidden;
+    background-color:#f0f0f0 ;
+
   }
 
 
 #intro{
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-content: center;
     align-items:center;
     flex-direction: row;
@@ -99,7 +107,7 @@ body{
 }
 
 #chatArea{
-    background: linear-gradient(to right, #ede574, #e1f5c4);
+    background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
     width: 50vw;
     height:60vh;
     border-radius: 16px;
@@ -117,34 +125,44 @@ body{
     justify-content: space-between;
     justify-items: center;
     align-items: center;
-    padding: 0px 2% 1% 2%;
-    background-color: #f19f4d;
+    padding: 0px 2% 2% 2%;
+    background: linear-gradient(to right, #D6A4A4, #DAE2F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
     border: 3px black;
     border-radius: 16px;
-    width: 30vw;
-    height: 50vh;
-    margin-bottom: 20px;
+    width: 35vw;
+    height: 55vh;
+    min-width: 300px;
 
-    input
-    {
-        width:70%;
-        height:7%;
-        border-radius: 16px;
-        outline:none;
-    }
+    margin-bottom: 20px;
 
     h3{
         text-align: center;
     }
 }
 
-.loginButton {
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        font-size: 16px;
-        width:auto;
-        border-radius: 16px;
-        cursor: pointer;
+.flex-div-column{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center ;
+    height: 100%;
+
+    
+
+    input{
+        margin-top:20px;
+        width:90%;
+        height:9%;
+        border-radius: 4px;
+        outline:none;
+    }
+
+    button{
+        margin-top:20px;
+    }
 }
+
 
 .align-left 
 {
@@ -183,20 +201,21 @@ body{
 .notifications{
     width:auto;
     height: 6vh;
-    background-color: #FEFFFF;
+    background-color: #f0f0f0;
     opacity: 0.8;
     display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
+    margin-top:30px;
     border-radius: 16px;
     margin-bottom: 20px;
 
 }
 
 .sections{
-    width:100vw;
+    width:auto;
     display:flex;
     align-items: center;
     align-content: center;
@@ -205,23 +224,20 @@ body{
 }
 
 .logged-in-as {
-    position: absolute;
+    width: 100%;
     display:flex;
     flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    top: 2%;
-    left:73%;
     padding: 0 2% 0 2%;
     height: auto;
     border-radius:16px;
-    color:white;
+    position: absolute;
+    top:10%;
+    left:0%;
 
     h3{
-        font-size: 1.3vw;
+        font-size: 14px;
         margin-right:10px;
+        color:black;
     }
 
     button {
@@ -235,45 +251,51 @@ body{
 }
 
 .clockComponent{
-    font-size: 10px;
     padding-left:1%;
     padding-right:1%;
     border-radius: 16px;
     width:auto;
-    color:white;
-    position: absolute;
-    right:88%;
-    top:0;
+
+    h3{
+        font-size: 14px;
+        color:white;
+    }
 
 }
 
 .friendbar{
     padding: 0% 1% 0% 1%;
-    background: linear-gradient(to left, #f19f4d, #f4d03f);
+    background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
     width:20vw;
-    height:82vh;
-    top:9%;
-   left:78%;
-    position: absolute;
+    height:auto;
     border-radius: 16px 0 0 0;
-    margin:0;
+    margin:0px 0px 0px 15px;
+    height:40vh;
+    max-width:200px;
+}
+
+.friendbar-div{
+    height:100%;
 }
 
 .friendonline{
-    background-color: #f6f4e8;
+    background-color: white;
     color:#333;
     padding-left:10px;
     border-radius: 16px;
-    font-size: 20px;
+    font-size: 100%;
 }
 
 .innerfriendonline{
-    background-color: #f6f4e8;
+    background-color: white;
     padding-top: 1%;
-    height: 70vh;
+    height:60%;
     border-radius: 16px;
     color:#333;
-    overflow:scroll;
+    
+    li{
+        font-size: 80%;
+    }
 }
 
 .tab {
@@ -311,3 +333,4 @@ body{
   .register-button{
      justify-self:flex-end;
   }
+

@@ -3,7 +3,6 @@ import React from 'react'
 import {useState} from 'react'
 import io from 'socket.io-client'
 const socket = io("http://localhost:3080")
-socket.emit('create','chatroom1')
 
 function Chatbox(props) {
 
@@ -31,6 +30,10 @@ function Chatbox(props) {
     socket.on('user enter', (username) => {
         const enterText = `${username} has entered the chat`
         setMessages(messages.concat(enterText))
+    })
+
+    socket.on('connection',() =>{
+        socket.emit('chat message',`${username} has entered the chat`)
     })
 
 

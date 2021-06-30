@@ -5,10 +5,11 @@ import '../app.css'
 import Button from 'react-bootstrap/Button';
 
 
-function Loggingin (props) {
+function Login (props) {
     const [un,setun] = useState('')
     const [pw, setpw] = useState('')
-    const [noAccount,setNoAccount] = useState(true)
+    const [noAccount,setNoAccount] = useState(false)
+    const [rm,setRm] = useState('')
 
     const handleUserChange = (text) => {
         setun(text.target.value)
@@ -18,51 +19,69 @@ function Loggingin (props) {
         setpw(text.target.value)
     }
 
+    const handleRoomChange = (text) => {
+        setRm(text.target.value)
+    }
+
     const handleOther = () => {
         setNoAccount(true)
     }
 
+
     const handleLogin = () => {
         let validation = false;
+
+        if(!(un&&pw)){
+            setpw('')
+            setun('')
+            props.setNotification(`Wrong Username or Password`)
+                    props.setColor('danger')
+                    setTimeout(() => {
+                        props.setNotification('')
+                        props.setColor('')
+                    },2000)
+        }else if(!rm){
+            props.setNotification(`Specify a valid room number`)
+            props.setColor('warning')
+            setTimeout(() => {
+                props.setNotification('')
+                props.setColor('')
+            },2000)
+        }
         
-    if(un && pw){
+        else if(un && pw){
+        
+        
         axios.get(`http://localhost:3080/users/${un}`)
         .then(checkUser => {
             if(checkUser.data.length > 0){
             validation = checkUser.data[0].password === pw ? true : false
             }
 
+
             if(validation){
                 props.setUserName(un)
                 props.setLoggedIn(true)
                 props.setNotification(`Welcome ${un}`)
-                props.setColor('#57bc90')
+                props.setColor('success')
                 setTimeout(() => {
                     props.setNotification('')
-                    props.setColor('#f9cf00')
+                    props.setColor('')
                 },2000)
                 
             }else
                 {
                     props.setNotification(`Wrong Username or Password`)
-                    props.setColor('#cd5360')
+                    props.setColor('danger')
                     setTimeout(() => {
                         props.setNotification('')
-                        props.setColor('#f9cf00')
+                        props.setColor('')
                     },2000)
                 }
 
              })
         .catch((err) => console.log(err))
             }
-            else{
-                    props.setNotification(`Wrong Username or Password`)
-                    props.setColor('#cd5360')
-                    setTimeout(() => {
-                    props.setNotification('')
-                     props.setColor('#f9cf00')
-                    },2000)
-                }
     }
 
     return(
@@ -74,26 +93,24 @@ function Loggingin (props) {
         setNoAccount={setNoAccount}/>
         </div>
     :<div className="login">
-    
+    <div className="flex-div-column">
     <h3>Login</h3>
     <input type="text" onChange={handleUserChange} value={un}
     autoComplete = "off" placeholder="Username"></input>
-    <input type="passworlotd" onChange={handlePWChange} value={pw}
-    autoComplete = "off" placeholder="Password"></input>
-    <button type="button" className="loginButton"  onClick={handleLogin}>Login</button>
 
-    <Button variant="outline-primary" onClick={handleOther} type='button' size='sm'>
+    <input type="password" onChange={handlePWChange} value={pw}
+    autoComplete = "off" placeholder="Password"></input>
+
+    <input type="text" onChange={handleRoomChange} value={rm}
+    autoComplete = "off" placeholder="Room Number"></input>
+
+    <Button type="button" variant="success" size='md'  onClick={handleLogin}>Login</Button>
+    </div>
+    <Button variant="light" onClick={handleOther} type='button' size='sm'>
         Register</Button>
 </div>}
-
-    {/* <div className="text-on-right">
-            <p>Hey guys I am kenneth nice to meet you, I am new to CSS so I am trying
-                to use web development, SCSS, React and Node to create a webapp to improve and train my skills
-                as a web-developer, I am going to add more things into this!
-            </p>
-        </div> */}
     </section>
     )
 } 
 
-export default Loggingin;
+export default Login;
