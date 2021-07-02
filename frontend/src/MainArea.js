@@ -5,6 +5,8 @@ import Notifications from './Components/Notifications'
 import Friendbar from './Components/Friendbar'
 import Login from './Components/Login'
 import Logout from './Components/Logout'
+import io from 'socket.io-client'
+const socket = io("http://localhost:3080")
 
 
 function MainArea() {
@@ -13,7 +15,6 @@ function MainArea() {
     const [loggedIn, setLoggedIn] = useState(false)
     const [color,setColor] = useState('')
     const [notification,setNotification] = useState('')
-    const [roomNumber,setRoomNumber] = useState('')
     
     return(
         <div>
@@ -23,15 +24,14 @@ function MainArea() {
         
         {!loggedIn?
 
-        <Login setUserName={setUserName} setLoggedIn={setLoggedIn} 
-        setColor={setColor} setNotification={setNotification} setRoomNumber={setRoomNumber}/>:
+        <Login  setLoggedIn={setLoggedIn} 
+        setColor={setColor} setNotification={setNotification}  socket={socket}/>:
         <section>
-        <Logout setLoggedIn={setLoggedIn} setUserName={setUserName} 
-         userName={userName} setPassword={setPassword}></Logout>
+        <Logout setLoggedIn={setLoggedIn} setPassword={setPassword} socket={socket}></Logout>
         
 
         <section className="responsive-section-row">
-            <Chatbox username={userName}/>
+            <Chatbox socket={socket}/>
             <Friendbar />
          </section>
          </section>

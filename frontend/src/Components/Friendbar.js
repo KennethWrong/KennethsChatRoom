@@ -1,17 +1,18 @@
-import React from 'react'
+import axios from 'axios'
+import friendFunction from '../utils/friendFunction'
 
+const Friendbar =  () => {
 
-function Friendbar(props){
+  const friend = friendFunction.getAllFriends()
+  friend.then(res => console.log(res))
 
+    
     return(
         <section className='friendbar'>
             <div className='friendbar-div'>
                 <h3 className="friendonline">Friends online</h3>
                 <div className="innerfriendonline">
-                    <ul className="responsive-p">
-                    <li>John</li>
-                    <li>Simon</li>
-                    </ul>
+                    
                 </div>
             </div>
         </section>

@@ -1,15 +1,16 @@
 import '../app.css';
 import React from 'react'
 import {useState} from 'react'
-import io from 'socket.io-client'
-const socket = io("http://localhost:3080")
+import {useSelector} from 'react-redux'
 
 function Chatbox(props) {
 
     const [messages, setMessages] = useState([])
     const [tempmsg, setTempMsg] = useState('')
-    const username = props.username;
+    const username = useSelector((state) => state.username.value)
+    const roomnumber = useSelector((state) => state.roomnumber.value)
     let actualMessage;
+    const socket = props.socket
 
     const userTextChange = (text) => {
         setTempMsg(text.target.value);
@@ -27,13 +28,13 @@ function Chatbox(props) {
         setMessages(messages.concat(msg))
     })
     
-    socket.on('user enter', (username) => {
-        const enterText = `${username} has entered the chat`
+    socket.on('join room', (username) => {
+        const enterText = `${username} has entered the room`
         setMessages(messages.concat(enterText))
     })
 
-    socket.on('connection',() =>{
-        socket.emit('chat message',`${username} has entered the chat`)
+    socket.on('disconnect', () => {
+        socket.emit('leave', {username,roomnumber})
     })
 
 

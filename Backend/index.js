@@ -3,6 +3,7 @@ const cors = require('cors')
 require('dotenv').config()
 const app = express()
 const UserModel = require('./utils/userModel')
+const userFunction = require('./utils/userFunction')
 app.use(cors())
 app.use(express.json())
 const http = require('http')
@@ -19,19 +20,37 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('chat message',msg)
     })
 
-    socket.on('user enter',(username) => {
-        socket.broadcast.emit('user enter',username)
+    socket.on('leave',(user) => {
+ 
+        userFunction.userExit(socket.id)
+        socket.broadcast.emit('chat message',`${user.un} has left the chat`)
     })
 
-    socket.on('disconnect',() => {
-        socket.broadcast.emit('chat message','a user has disconnected')
+    socket.on('join room', (sentUser) => {
+        const user = {
+            username:sentUser.un,
+            room:sentUser.rm,
+            id:socket.id
+        }
+        userFunction.userEnter(user)
+        socket.join(sentUser.rm)
+        io.emit('join room',sentUser.un)
+        const users = userFunction.getAllUsers();
+    })
+
+    socket.on('logout',({username,rm}) => {
+        const user = {
+            username:username,
+            room:rm,
+            id:socket.id
+        }
+        userFunction.userExit(user)
     })
 })
 
 app.post('/users',async (request,response) => {
     const newUser = request.body
     const account = new UserModel(newUser)
-    console.log(account)
     account.save()
     .catch(err => console.log(err))
     response.sendStatus(200)
@@ -45,6 +64,11 @@ app.get('/users/:username', (request,response) => {
         }
         response.status(200).json(user)
     })
+})
+
+app.get('/friends',(request,response) => {
+    const friendsOnline = userFunction.getAllUsers()
+    response.status(200).send(friendsOnline)
 })
 
 

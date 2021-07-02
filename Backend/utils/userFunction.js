@@ -14,7 +14,7 @@ const userEnter = (user) => {
 }
 
 const userExit = (id) => {
-    const index = user.find(tuser => tuser.id === id)
+    const index = users.find(tuser => tuser.id === id)
 
     if(index !== -1){
         return users.splice(index,1)[0];
@@ -25,5 +25,5 @@ module.exports ={
     getAllUsers,
     getUserById,
     userEnter,
-    userEnter
+    userExit
 }

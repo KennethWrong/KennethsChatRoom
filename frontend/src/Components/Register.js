@@ -2,10 +2,19 @@ import React,{useState} from 'react'
 import axios from 'axios'
 import '../app.css'
 import Button from 'react-bootstrap/Button';
+import {useDispatch} from 'react-redux'
+import {setUN} from '../app/unSlice'
+import {setRN} from '../app/roomSlice'
 
 function Register (props) {
     const[regun,setregun] = useState('')
     const [regpw,setregpw] = useState('')
+    const [rm,setRm] = useState('')
+    const dispatch = useDispatch()
+
+    const handleRoomChange = (text) => {
+        setRm(text.target.value)
+    }
 
     const handleunregChange = (text) => {
         setregun(text.target.value)
@@ -25,21 +34,24 @@ function Register (props) {
         if(regun && regpw){
 
             let account = {
-                username: props.regun,
-                password: props.regpw,
+                username: regun,
+                password: regpw,
             }
 
             axios.post('http://localhost:3080/users',account)
             .catch(error => console.log(error))
 
-            props.setUserName(props.regun)
+            dispatch(setUN(regun))
+            dispatch(setRN(rm))
             props.setLoggedIn(true)
-            props.setNotification(`${props.regun} has successfully registered`)
+            props.setNotification(`${regun} has successfully registered`)
             props.setColor('success')
             setTimeout(() => {
                 props.setNotification('')
                 props.setColor('#f0f0f0')
             },2000)
+            setregun('')
+            setregpw('')
 
             
         }
@@ -64,6 +76,8 @@ function Register (props) {
             autoComplete = "off" placeholder="Username"></input>
             <input type="password" onChange={handlepwregChange} value={regpw}
             autoComplete = "off" placeholder="Password"></input>
+            <input type="text" onChange={handleRoomChange} value={rm}
+            autoComplete = "off" placeholder="Room Number"></input>
             <Button  variant="success" onClick={handleRegister} size='md' type='button'>Register</Button>
             </div>
             <Button variant="light" onClick={handleOther} type='button' size='sm'>

@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './app.css';
 import Navigation from './Components/Navigation';
 import MainArea from './MainArea'
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import store from './app/store'
+import {Provider} from 'react-redux'
 
 
 ReactDOM.render(<Navigation />,document.getElementById('header'));
-ReactDOM.render(<MainArea/>,document.getElementById('login'));
+ReactDOM.render(
+<Provider store={store}>
+<MainArea/>
+</Provider>,
+document.getElementById('login')
+);
 
 

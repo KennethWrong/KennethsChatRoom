@@ -3,6 +3,10 @@ import axios from 'axios'
 import Register from './Register'
 import '../app.css'
 import Button from 'react-bootstrap/Button';
+import {useDispatch} from 'react-redux'
+import {setUN} from '../app/unSlice'
+import {setRN} from '../app/roomSlice'
+
 
 
 function Login (props) {
@@ -10,6 +14,9 @@ function Login (props) {
     const [pw, setpw] = useState('')
     const [noAccount,setNoAccount] = useState(false)
     const [rm,setRm] = useState('')
+    const dispatch = useDispatch()
+
+    const socket = props.socket;
 
     const handleUserChange = (text) => {
         setun(text.target.value)
@@ -49,7 +56,7 @@ function Login (props) {
             },2000)
         }
         
-        else if(un && pw){
+        else if(un && pw && rm){
         
         
         axios.get(`http://localhost:3080/users/${un}`)
@@ -60,9 +67,11 @@ function Login (props) {
 
 
             if(validation){
-                props.setUserName(un)
+                dispatch(setUN(un))
+                dispatch(setRN(rm))
                 props.setLoggedIn(true)
-                props.setNotification(`Welcome ${un}`)
+                socket.emit('join room',{un,rm})
+                props.setNotification(`${un} joined room ${rm}`)
                 props.setColor('success')
                 setTimeout(() => {
                     props.setNotification('')
@@ -88,7 +97,7 @@ function Login (props) {
         <section className="align-left">
             {noAccount ?
             <div>
-            <Register setUserName={props.setUserName} setLoggedIn={props.setLoggedIn} 
+            <Register  setLoggedIn={props.setLoggedIn} 
         setColor={props.setColor} setNotification={props.setNotification}
         setNoAccount={setNoAccount}/>
         </div>
