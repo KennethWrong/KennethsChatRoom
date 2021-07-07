@@ -223,16 +223,22 @@ body{
     justify-items: center;
 }
 
+.logged-in-as-wrapper{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    position: absolute;
+    top:10%;
+    left:0%;
+    padding: 0 2% 0 2%;
+
+}
+
 .logged-in-as {
     width: 100%;
     display:flex;
     flex-direction: row;
-    padding: 0 2% 0 2%;
     height: auto;
-    border-radius:16px;
-    position: absolute;
-    top:10%;
-    left:0%;
 
     h3{
         font-size: 14px;
@@ -264,14 +270,14 @@ body{
 }
 
 .friendbar{
-    padding: 0% 1% 0% 1%;
+    padding: 2% 1.5% 0% 1.5%;
     background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
     width:20vw;
     height:auto;
     border-radius: 16px 0 0 0;
     margin:0px 0px 0px 15px;
-    height:40vh;
-    max-width:200px;
+    height:50vh;
+    min-width:175px;
 }
 
 .friendbar-div{
@@ -289,8 +295,8 @@ body{
 .innerfriendonline{
     background-color: white;
     padding-top: 1%;
-    height:60%;
     border-radius: 16px;
+    margin-top: 7px;
     color:#333;
     
     li{
@@ -332,5 +338,30 @@ body{
 
   .register-button{
      justify-self:flex-end;
+  }
+
+  .friendonline-wrapper{
+      display:flex;
+      width:100%;
+      height:10%;
+      background-color: white;
+      justify-content: space-between;
+      align-content: flex-start;
+      border-radius:10px;
+
+      button{
+          background-color: transparent;
+          border: transparent;
+      }
+  }
+
+  .refresh{
+      height:40%;
+  }
+
+  .in-room{
+    font-size: 14px;
+    margin-right:10px;
+    color:black;
   }
 

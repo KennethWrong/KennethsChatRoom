@@ -1,29 +1,28 @@
 const express = require('express')
 const cors = require('cors')
+const userRouter = require('./controllers/userRouter')
 require('dotenv').config()
 const app = express()
-const UserModel = require('./utils/userModel')
 const userFunction = require('./utils/userFunction')
 app.use(cors())
 app.use(express.json())
 const http = require('http')
-const User = require('./utils/userModel')
-const path = require('path')
 const server = http.createServer(app)
-const {Server} = require('socket.io')
-const io = new Server(server, {cors:{origin: 'http://localhost:3000'}})
-
+const io = require('socket.io')(server, {cors:{origin: 'http://localhost:3000'}},{ wsEngine: 'ws' })
 
 io.on('connection', (socket) => {
 
-    socket.on('chat message', (msg) => {
-        socket.broadcast.emit('chat message',msg)
+    socket.on('disconnect',() => {
+        userFunction.userExit(socket.id)
+    })
+
+    socket.on('chat message', (msg,rm) => {
+        socket.to(rm).emit('chat message',msg)
     })
 
     socket.on('leave',(user) => {
- 
         userFunction.userExit(socket.id)
-        socket.broadcast.emit('chat message',`${user.un} has left the chat`)
+        socket.to(user.roomnumber).emit('chat message',`${user.username} has left the chat`)
     })
 
     socket.on('join room', (sentUser) => {
@@ -34,44 +33,24 @@ io.on('connection', (socket) => {
         }
         userFunction.userEnter(user)
         socket.join(sentUser.rm)
-        io.emit('join room',sentUser.un)
-        const users = userFunction.getAllUsers();
+        io.in(sentUser.rm).emit('join room',sentUser.un)
     })
 
-    socket.on('logout',({username,rm}) => {
-        const user = {
-            username:username,
-            room:rm,
-            id:socket.id
-        }
-        userFunction.userExit(user)
+    socket.on('logout',(user) => {
+        socket.to(user.room).emit('chat message',`${user.userName} has left the chat`)
+        userFunction.userExit(socket.id)
     })
-})
 
-app.post('/users',async (request,response) => {
-    const newUser = request.body
-    const account = new UserModel(newUser)
-    account.save()
-    .catch(err => console.log(err))
-    response.sendStatus(200)
-})
-
-app.get('/users/:username', (request,response) => {
-    let username = request.params.username
-    User.find({username:username}, (err,user) => {
-        if(err){
-            response.status(400).json(err)
-        }
-        response.status(200).json(user)
+    socket.on('change room',(room,username) => {
+        socket.join(room)
+        userFunction.findUserandUpdate(socket.id,room)
+        
+        socket.emit("change room");
+        io.in(room).emit('join room',username)
     })
 })
 
-app.get('/friends',(request,response) => {
-    const friendsOnline = userFunction.getAllUsers()
-    response.status(200).send(friendsOnline)
-})
-
-
+app.use('/',userRouter)
 
 server.listen(process.env.PORT, () => {
     console.log('Running at Port 3080')

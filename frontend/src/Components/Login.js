@@ -35,7 +35,8 @@ function Login (props) {
     }
 
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault()
         let validation = false;
 
         if(!(un&&pw)){
@@ -99,7 +100,7 @@ function Login (props) {
             <div>
             <Register  setLoggedIn={props.setLoggedIn} 
         setColor={props.setColor} setNotification={props.setNotification}
-        setNoAccount={setNoAccount}/>
+        setNoAccount={setNoAccount} socket={socket}/>
         </div>
     :<div className="login">
     <div className="flex-div-column">

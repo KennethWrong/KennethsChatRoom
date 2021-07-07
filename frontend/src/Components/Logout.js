@@ -14,15 +14,19 @@ const Logout = (props) => {
         dispatch(setUN(''))
         dispatch(setRN(''))
         props.setLoggedIn(false)
+        console.log(room)
         socket.emit('logout',{userName,room})
     }
 
 
     return(
+    <div className="logged-in-as-wrapper">
     <div className="logged-in-as">
     <h3>Logged in as: {userName}</h3>
     <Button type="button" variant="outline-secondary "onClick={handleLogOut} size="sm">
         Logout</Button>
+    </div>
+    <h3 className="in-room">Currently in room: {room}</h3>
     </div>
     )
 }

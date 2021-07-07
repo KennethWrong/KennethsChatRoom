@@ -1,7 +1,8 @@
 import '../app.css';
 import React from 'react'
-import {useState} from 'react'
+import {useState,useEffect,useRef} from 'react'
 import {useSelector} from 'react-redux'
+import Messages from './Messages'
 
 function Chatbox(props) {
 
@@ -19,7 +20,7 @@ function Chatbox(props) {
     const textSend = (event) => {
         event.preventDefault()
         actualMessage = `${username}: ${tempmsg}`
-        socket.emit('chat message',actualMessage)
+        socket.emit('chat message',actualMessage,roomnumber)
         setMessages(messages.concat(actualMessage))
         setTempMsg('')
     }
@@ -37,11 +38,17 @@ function Chatbox(props) {
         socket.emit('leave', {username,roomnumber})
     })
 
+    socket.on('change room', () => {
+        setMessages([])
+    })
 
 
     return (
         <section className="sections">
-      <div id="chatArea">{messages.map((indi,index) => <p id="messages" key={index}>{indi} </p>)}</div>
+      <div id="chatArea">
+          {/* {messages.map((indi,index) => <p id="messages" key={index}>{indi} </p>)} */}
+          <Messages messages={messages}></Messages>
+          </div>
         <div>
             <form id="form" action="">
             <input onChange={userTextChange} type="text" id="inputbox" autoComplete="off" 

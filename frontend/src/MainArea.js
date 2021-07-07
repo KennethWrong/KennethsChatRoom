@@ -10,8 +10,6 @@ const socket = io("http://localhost:3080")
 
 
 function MainArea() {
-    const [userName,setUserName] = useState('')
-    const [password,setPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(false)
     const [color,setColor] = useState('')
     const [notification,setNotification] = useState('')
@@ -27,12 +25,12 @@ function MainArea() {
         <Login  setLoggedIn={setLoggedIn} 
         setColor={setColor} setNotification={setNotification}  socket={socket}/>:
         <section>
-        <Logout setLoggedIn={setLoggedIn} setPassword={setPassword} socket={socket}></Logout>
+        <Logout setLoggedIn={setLoggedIn} socket={socket}></Logout>
         
 
         <section className="responsive-section-row">
-            <Chatbox socket={socket}/>
-            <Friendbar />
+            <Chatbox socket={socket} />
+            <Friendbar socket={socket}/>
          </section>
          </section>
     
