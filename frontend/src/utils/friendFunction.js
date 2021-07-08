@@ -1,10 +1,15 @@
 import axios from 'axios'
-import react from 'react'
 
 const getAllFriends = async () => {
    const res = await axios.get('http://localhost:3080/friends')
     .catch(err => console.log(err))
-    console.log(res.data)
+    return await res.data
 }
 
-export default {getAllFriends}
+const getActualFriends = async () => {
+    const res = await axios.get('http://localhost:3080/friends/all')
+    .catch(err => console.log(err))
+    return await res.data
+}
+
+export default {getAllFriends,getActualFriends}

@@ -35,7 +35,8 @@ function Login (props) {
     }
 
 
-    const handleLogin = () => {
+    const handleLogin = async (e) => {
+        e.preventDefault()
         let validation = false;
 
         if(!(un&&pw)){
@@ -59,14 +60,15 @@ function Login (props) {
         else if(un && pw && rm){
         
         
-        axios.get(`http://localhost:3080/users/${un}`)
-        .then(checkUser => {
+        const checkUser = await axios.get(`http://localhost:3080/users/login/${un}`)
+
             if(checkUser.data.length > 0){
             validation = checkUser.data[0].password === pw ? true : false
             }
 
-
             if(validation){
+                let state = {state:true,room: rm,}
+                await axios.put(`http://localhost:3080/users/online/${un}`,state)
                 dispatch(setUN(un))
                 dispatch(setRN(rm))
                 props.setLoggedIn(true)
@@ -88,10 +90,8 @@ function Login (props) {
                     },2000)
                 }
 
-             })
-        .catch((err) => console.log(err))
+             }
             }
-    }
 
     return(
         <section className="align-left">
@@ -99,7 +99,7 @@ function Login (props) {
             <div>
             <Register  setLoggedIn={props.setLoggedIn} 
         setColor={props.setColor} setNotification={props.setNotification}
-        setNoAccount={setNoAccount}/>
+        setNoAccount={setNoAccount} socket={socket}/>
         </div>
     :<div className="login">
     <div className="flex-div-column">

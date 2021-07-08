@@ -12,6 +12,8 @@ function Register (props) {
     const [rm,setRm] = useState('')
     const dispatch = useDispatch()
 
+    const socket = props.socket
+
     const handleRoomChange = (text) => {
         setRm(text.target.value)
     }
@@ -28,7 +30,8 @@ function Register (props) {
         props.setNoAccount(false)
     }
 
-    const handleRegister = async () => {
+    const handleRegister = async (e) => {
+        e.preventDefault()
 
 
         if(regun && regpw){
@@ -36,6 +39,7 @@ function Register (props) {
             let account = {
                 username: regun,
                 password: regpw,
+                room:rm
             }
 
             axios.post('http://localhost:3080/users',account)
@@ -44,6 +48,8 @@ function Register (props) {
             dispatch(setUN(regun))
             dispatch(setRN(rm))
             props.setLoggedIn(true)
+            let un = regun
+            socket.emit('join room',{un,rm})
             props.setNotification(`${regun} has successfully registered`)
             props.setColor('success')
             setTimeout(() => {

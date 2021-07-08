@@ -14,16 +14,26 @@ const userEnter = (user) => {
 }
 
 const userExit = (id) => {
-    const index = users.find(tuser => tuser.id === id)
+    const index = users.findIndex(tuser => tuser.id === id)
 
     if(index !== -1){
         return users.splice(index,1)[0];
     }
 }
 
+const findUserandUpdate = (id,rm) => {
+    const index = users.findIndex(tuser => tuser.id === id)
+
+    if(index !== -1){
+        users[index].room = rm
+    }
+
+}
+
 module.exports ={
     getAllUsers,
     getUserById,
     userEnter,
-    userExit
+    userExit,
+    findUserandUpdate
 }

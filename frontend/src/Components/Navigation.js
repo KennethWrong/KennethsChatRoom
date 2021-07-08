@@ -11,7 +11,7 @@ function Navigation() {
     <Popover.Title as="h3">About Me </Popover.Title>
     <Popover.Content>
       Hey guys I am kenneth nice to meet you, I am new to CSS so I am trying
-      to use web development, SCSS, React and Node to create a webapp to improve and train my skills
+      to use SCSS, React and Node to create a webapp to improve and train my skills
       as a web-developer, I am going to add more things into this!
 
     </Popover.Content>

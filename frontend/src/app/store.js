@@ -6,6 +6,6 @@ import roomReducer from './roomSlice'
 export default configureStore({
   reducer: {
     username : unReducer,
-    roomnumber :  roomReducer
+    roomnumber :  roomReducer,
   },
 })

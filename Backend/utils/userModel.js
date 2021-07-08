@@ -1,5 +1,6 @@
 let mongoose = require('mongoose')
 require('dotenv').config()
+const uniqueValidator = require('mongoose-unique-validator');
 
 mongoose.connect(process.env.MONGODB_URL,{useNewUrlParser: true,useUnifiedTopology:true})
 .then(console.log('connection was successful'))
@@ -13,6 +14,16 @@ let userSchema = new mongoose.Schema({
     password: {
         type:String,
         require:true,
+    },
+    friends:{
+      type: Array,
+    },
+    online:{
+      type:Boolean,
+      default: true,
+    },
+    room:{
+      type:String
     }
 })
 
@@ -24,4 +35,5 @@ userSchema.set('toJSON', {
     }
   })
 
+userSchema.plugin(uniqueValidator, { message: 'Username already in use.' });
 module.exports = mongoose.model('User',userSchema)

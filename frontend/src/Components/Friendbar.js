@@ -1,19 +1,41 @@
-import axios from 'axios'
+import React,{useEffect, useState} from 'react'
 import friendFunction from '../utils/friendFunction'
+import CheckOnline from './CheckOnline'
+import '../app.css'
+import refresh from '../assets/refresh2.png'
+import Image from 'react-bootstrap/Image'
 
-const Friendbar =  () => {
+const Friendbar = (props) => {
+    const [friends,setFriends] = useState([])
+    const [refreshs,setRefreshs] = useState(true)
 
-  const friend = friendFunction.getAllFriends()
-  friend.then(res => console.log(res))
+    useEffect(() => {
+        friendFunction.getActualFriends()
+        .then(res => {
+            setFriends(res)
+        })
+     }, [refreshs])
+
+
+     const refreshFriend = (e) => {
+         e.preventDefault()
+         setRefreshs(!refreshs)
+     }
+
 
     
     return(
         <section className='friendbar'>
             <div className='friendbar-div'>
+                <div className="friendonline-wrapper">
                 <h3 className="friendonline">Friends online</h3>
-                <div className="innerfriendonline">
-                    
+                <button onClick={refreshFriend} className='refresh1'>
+                    <Image className="refresh" fluid src={refresh}/>
+                    </button>
                 </div>
+                <CheckOnline socket={props.socket} friends={friends}>
+
+                </CheckOnline>
             </div>
         </section>
     )

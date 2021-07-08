@@ -10977,6 +10977,7 @@ body {
 #chatArea {
   background: linear-gradient(107deg, white 0%, #f3e4fa 100%, #00d4ff 100%);
   width: 50vw;
+  max-width: 600px;
   height: 60vh;
   border-radius: 16px;
   border: 2px #e58560;
@@ -11131,6 +11132,21 @@ body {
   justify-items: center;
 }
 
+.logged-in-as-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  padding: 0 2% 0 2%;
+}
+
 .logged-in-as {
   width: 100%;
   display: -webkit-box;
@@ -11140,16 +11156,11 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 0 2% 0 2%;
   height: auto;
-  border-radius: 16px;
-  position: absolute;
-  top: 10%;
-  left: 0%;
 }
 
 .logged-in-as h3 {
-  font-size: 14px;
+  font-size: 12px;
   margin-right: 10px;
   color: black;
 }
@@ -11176,14 +11187,15 @@ body {
 }
 
 .friendbar {
-  padding: 0% 1% 0% 1%;
+  padding: 2% 1.5% 0% 1.5%;
   background: linear-gradient(107deg, white 0%, #f3e4fa 100%, #00d4ff 100%);
   width: 20vw;
   height: auto;
   border-radius: 16px 0 0 0;
   margin: 0px 0px 0px 15px;
-  height: 40vh;
-  max-width: 200px;
+  height: 50vh;
+  min-width: 175px;
+  max-width: 300px;
 }
 
 .friendbar-div {
@@ -11195,14 +11207,15 @@ body {
   color: #333;
   padding-left: 10px;
   border-radius: 16px;
-  font-size: 100%;
+  font-size: 80%;
+  margin: 0;
 }
 
 .innerfriendonline {
   background-color: white;
   padding-top: 1%;
-  height: 60%;
   border-radius: 16px;
+  margin-top: 7px;
   color: #333;
 }
 
@@ -11210,36 +11223,206 @@ body {
   font-size: 80%;
 }
 
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  width: 31vw;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
 .register-button {
   justify-self: flex-end;
+}
+
+.friendonline-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 10%;
+  background-color: white;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+}
+
+.friendonline-wrapper button {
+  background-color: transparent;
+  border: transparent;
+}
+
+.indifriendwrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 15%;
+}
+
+.indifriendwrapper:hover {
+  cursor: pointer;
+}
+
+.indifriendwrapper p {
+  font-size: 10px;
+  margin: 0px;
+}
+
+.dots1 {
+  max-width: 17%;
+}
+
+.refresh1 {
+  height: 100%;
+}
+
+.refresh {
+  max-height: 40%;
+}
+
+.in-room {
+  font-size: 12px;
+  margin-right: 10px;
+  color: black;
+}
+
+.roomNumber input {
+  height: 20px;
+  width: 110px;
+  font-size: 13px;
+}
+
+.xtra-small-button, .xtra-small-button2 {
+  height: 20px;
+  width: 60px;
+  font-size: 13px;
+  padding: 0;
+  margin: 0px;
+}
+
+.messageStyle, .ownStyle p {
+  max-width: 50%;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.systemStyle {
+  font-size: 12px;
+  color: grey;
+  background: -webkit-gradient(linear, right top, left top, from(#ece9e6), to(#ffffff));
+  background: linear-gradient(to left, #ece9e6, #ffffff);
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.ownStyle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+.ownStyle p {
+  background-color: #ddf5ac;
+  padding: 0.5rem 1rem;
+  color: black;
+  margin: 0px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+
+.userStyle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.nameplustext {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: -webkit-gradient(linear, right top, left top, from(#ece9e6), to(#ffffff));
+  background: linear-gradient(to left, #ece9e6, #ffffff);
+  border-radius: 12px;
+  max-width: 50%;
+  padding: 0 0.5rem;
+  margin-bottom: 5px;
+}
+
+.nameplustext h6 {
+  font-size: 12px;
+  line-height: 4px;
+  padding-top: 0.5rem;
+  text-align: left;
+  color: #e67a8c;
+}
+
+.nameplustext p {
+  padding: 0rem 0.9rem 0.6rem 0.5rem;
+  color: black;
+  font-size: 12px;
+  margin: 0;
+  max-width: 100%;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  text-align: left;
+  background: transparent;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+
+.xtra-small-button2 {
+  width: 45px;
+}
+
+.onlineStatus, .online, .offline, .friend-username {
+  font-size: 12px;
+}
+
+.online {
+  color: green;
+}
+
+.offline {
+  color: red;
+}
+
+.joinRoom {
+  font-size: 12px;
+  padding: 0;
+}
+
+.in-room-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.in-room-wrapper p {
+  font-size: 12px;
+  margin: 0;
 }
 /*# sourceMappingURL=app.css.map */
