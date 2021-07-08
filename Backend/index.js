@@ -8,21 +8,23 @@ app.use(cors())
 app.use(express.json())
 const http = require('http')
 const server = http.createServer(app)
+const User = require('./utils/userModel')
 const io = require('socket.io')(server, {cors:{origin: 'http://localhost:3000'}},{ wsEngine: 'ws' })
 
 io.on('connection', (socket) => {
 
-    socket.on('disconnect',() => {
+    socket.on('disconnect',async () => {
+        const user = userFunction.getUserById(socket.id)
+        await User.findOneAndUpdate({username:user.username}
+            ,{online:false,room:''},{new:true})
+        .catch(err => console.log(err))
+        io.in(user.room)
+        .emit('leave',`User ${user.username} has left the chat`)
         userFunction.userExit(socket.id)
     })
 
-    socket.on('chat message', (msg,rm) => {
-        socket.to(rm).emit('chat message',msg)
-    })
-
-    socket.on('leave',(user) => {
-        userFunction.userExit(socket.id)
-        socket.to(user.roomnumber).emit('chat message',`${user.username} has left the chat`)
+    socket.on('chat message', (msg,rm,username) => {
+        socket.to(rm).emit('chat message',msg,username)
     })
 
     socket.on('join room', (sentUser) => {
@@ -36,17 +38,24 @@ io.on('connection', (socket) => {
         io.in(sentUser.rm).emit('join room',sentUser.un)
     })
 
-    socket.on('logout',(user) => {
-        socket.to(user.room).emit('chat message',`${user.userName} has left the chat`)
-        userFunction.userExit(socket.id)
+    socket.on('logout',async () => {
+        const user = userFunction.getUserById(socket.id)
+        socket.to(user.room).emit('leave',`User ${user.username} has left the chat`)
+        await User.findOneAndUpdate({username:user.username},
+            {online:false,room:''},{new:true})
+        userFunction.userExit(user.id)
     })
 
-    socket.on('change room',(room,username) => {
-        socket.join(room)
+    socket.on('change room',async (room) => {
+        const userOriginal = userFunction.getUserById(socket.id)
+        socket.to(userOriginal.room).emit('leave',`User ${userOriginal.username} has switched to room ${room}`)
         userFunction.findUserandUpdate(socket.id,room)
+        socket.join(room)
+        await User.findOneAndUpdate({username:userOriginal.username},
+            {room:room},{new:true})
         
         socket.emit("change room");
-        io.in(room).emit('join room',username)
+        io.in(room).emit('join room',userOriginal.username)
     })
 })
 

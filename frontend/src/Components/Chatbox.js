@@ -19,23 +19,49 @@ function Chatbox(props) {
 
     const textSend = (event) => {
         event.preventDefault()
-        actualMessage = `${username}: ${tempmsg}`
-        socket.emit('chat message',actualMessage,roomnumber)
-        setMessages(messages.concat(actualMessage))
+        actualMessage = `${tempmsg}`
+        socket.emit('chat message',actualMessage,roomnumber,username)
+
+        const msg = {
+            message: actualMessage,
+            style: 'ownStyle',
+            name:'',
+        }
+
+        setMessages(messages.concat(msg))
         setTempMsg('')
     }
 
-    socket.on('chat message',(msg) => {
+    socket.on('chat message',(incomeMsg,otherName) => {
+
+        const msg = {
+            message : incomeMsg,
+            style: 'userStyle',
+            name:otherName,
+        }
+
         setMessages(messages.concat(msg))
     })
     
     socket.on('join room', (username) => {
-        const enterText = `${username} has entered the room`
-        setMessages(messages.concat(enterText))
+        const enterText = `User ${username} has entered the room`
+
+
+        const msg = {
+            message : enterText,
+            style: 'systemStyle',
+            name:'',
+        }
+        setMessages(messages.concat(msg))
     })
 
-    socket.on('disconnect', () => {
-        socket.emit('leave', {username,roomnumber})
+    socket.on('leave', (sentMessage) => {
+        const msg = {
+            message : sentMessage,
+            style: 'systemStyle',
+            name:'',
+        }
+        setMessages(messages.concat(msg))
     })
 
     socket.on('change room', () => {
@@ -46,7 +72,6 @@ function Chatbox(props) {
     return (
         <section className="sections">
       <div id="chatArea">
-          {/* {messages.map((indi,index) => <p id="messages" key={index}>{indi} </p>)} */}
           <Messages messages={messages}></Messages>
           </div>
         <div>

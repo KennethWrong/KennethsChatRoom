@@ -14,6 +14,16 @@ let userSchema = new mongoose.Schema({
     password: {
         type:String,
         require:true,
+    },
+    friends:{
+      type: Array,
+    },
+    online:{
+      type:Boolean,
+      default: true,
+    },
+    room:{
+      type:String
     }
 })
 

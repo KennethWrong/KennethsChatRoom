@@ -39,6 +39,7 @@ function Register (props) {
             let account = {
                 username: regun,
                 password: regpw,
+                room:rm
             }
 
             axios.post('http://localhost:3080/users',account)

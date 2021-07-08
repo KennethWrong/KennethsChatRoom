@@ -6,4 +6,10 @@ const getAllFriends = async () => {
     return await res.data
 }
 
-export default {getAllFriends}
+const getActualFriends = async () => {
+    const res = await axios.get('http://localhost:3080/friends/all')
+    .catch(err => console.log(err))
+    return await res.data
+}
+
+export default {getAllFriends,getActualFriends}
