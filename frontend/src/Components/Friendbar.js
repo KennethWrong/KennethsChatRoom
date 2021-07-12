@@ -4,13 +4,16 @@ import CheckOnline from './CheckOnline'
 import '../app.css'
 import refresh from '../assets/refresh2.png'
 import Image from 'react-bootstrap/Image'
+import AddFriend from './AddFriend'
+import {useSelector} from 'react-redux'
 
 const Friendbar = (props) => {
+    const username = useSelector(state => state.username.value)
     const [friends,setFriends] = useState([])
     const [refreshs,setRefreshs] = useState(true)
 
     useEffect(() => {
-        friendFunction.getActualFriends()
+        friendFunction.getActualFriends(username)
         .then(res => {
             setFriends(res)
         })
@@ -27,6 +30,7 @@ const Friendbar = (props) => {
     return(
         <section className='friendbar'>
             <div className='friendbar-div'>
+                <AddFriend></AddFriend>
                 <div className="friendonline-wrapper">
                 <h3 className="friendonline">Friends online</h3>
                 <button onClick={refreshFriend} className='refresh1'>

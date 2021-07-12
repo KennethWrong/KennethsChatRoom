@@ -11,7 +11,6 @@ import Button from 'react-bootstrap/Button'
 const CheckOnline = (props) => {
 
 const dispatch = useDispatch()
-const username = useSelector(state => state.username.value)
 const socket = props.socket;
 const friends = props.friends;
 
@@ -50,16 +49,27 @@ const joinRoom = (e) => {
     e.preventDefault()
     if(window.confirm(`You want to switch to room: ${e.target.value}?`)){
         dispatch(setRN(e.target.value))
-        socket.emit('change room',e.target.value,username)
+        socket.emit('change room',e.target.value)
     }
+ }
+
+ const unfriendFunction = (e) => {
+     e.preventDefault()
+     
+
  }
 
 
  const popover = (friend) => (
     <Popover style={{position:'relative',}}>
-      <Popover.Title as="h3"
-      className="friend-username">
-          {friend.username}</Popover.Title>
+      <Popover.Title as="h3">
+          <div className="friend-username">
+          {friend.username}
+          <button className="unfriend-button" value ={friend} onClick={unfriendFunction}>
+                unfriend
+          </button>
+          </div>
+          </Popover.Title>
       <Popover.Content>
         {checkOnline(friend)}
       </Popover.Content>

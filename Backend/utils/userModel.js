@@ -24,6 +24,9 @@ let userSchema = new mongoose.Schema({
     },
     room:{
       type:String
+    },
+    friendrequest:{
+      type:Array
     }
 })
 

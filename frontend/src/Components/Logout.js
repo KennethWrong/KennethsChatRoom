@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import {useDispatch,useSelector} from 'react-redux'
 import {setUN} from '../app/unSlice'
 import {setRN} from '../app/roomSlice'
+import {clearRequest} from '../app/requestSlice'
 import ChangeRoom from './ChangeRoom'
 
 const Logout = (props) => {
@@ -15,6 +16,7 @@ const Logout = (props) => {
         socket.emit('logout')
         dispatch(setUN(''))
         dispatch(setRN(''))
+        dispatch(clearRequest())
         props.setLoggedIn(false)
     }
 
