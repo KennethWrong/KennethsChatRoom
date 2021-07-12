@@ -1,13 +1,19 @@
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
+//Override
+//$body-bg: #f0f0f0;
+$font-family: "Lato";
 
-p,h1,h2,h3{
-    font-family: sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 
 .responsive-section-row {
-    width:100vw;
+    width:100%;
     display:flex;
     flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content:center;
+
 }
 
 .responsive-section-col {
@@ -29,7 +35,6 @@ p,h1,h2,h3{
 
 
 body{
-    background-color:#f9cf00;
     display:flex;
     flex-direction: column;
     align-content: center;
@@ -37,12 +42,15 @@ body{
     align-items: center;
     height: auto;
     margin:0;
+    overflow-x:hidden;
+    background-color:#f0f0f0 ;
+
   }
 
 
 #intro{
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-content: center;
     align-items:center;
     flex-direction: row;
@@ -99,8 +107,9 @@ body{
 }
 
 #chatArea{
-    background: linear-gradient(to right, #ede574, #e1f5c4);
+    background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
     width: 50vw;
+    max-width: 600px;
     height:60vh;
     border-radius: 16px;
     border: 2px #e58560;
@@ -117,34 +126,44 @@ body{
     justify-content: space-between;
     justify-items: center;
     align-items: center;
-    padding: 0px 2% 1% 2%;
-    background-color: #f19f4d;
+    padding: 0px 2% 2% 2%;
+    background: linear-gradient(to right, #D6A4A4, #DAE2F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
     border: 3px black;
     border-radius: 16px;
-    width: 30vw;
-    height: 50vh;
-    margin-bottom: 20px;
+    width: 35vw;
+    height: 55vh;
+    min-width: 300px;
 
-    input
-    {
-        width:70%;
-        height:7%;
-        border-radius: 16px;
-        outline:none;
-    }
+    margin-bottom: 20px;
 
     h3{
         text-align: center;
     }
 }
 
-.loginButton {
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        font-size: 16px;
-        width:auto;
-        border-radius: 16px;
-        cursor: pointer;
+.flex-div-column{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center ;
+    height: 100%;
+
+    
+
+    input{
+        margin-top:20px;
+        width:90%;
+        height:9%;
+        border-radius: 4px;
+        outline:none;
+    }
+
+    button{
+        margin-top:20px;
+    }
 }
+
 
 .align-left 
 {
@@ -183,20 +202,21 @@ body{
 .notifications{
     width:auto;
     height: 6vh;
-    background-color: #FEFFFF;
+    background-color: #f0f0f0;
     opacity: 0.8;
     display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
+    margin-top:30px;
     border-radius: 16px;
     margin-bottom: 20px;
 
 }
 
 .sections{
-    width:100vw;
+    width:auto;
     display:flex;
     align-items: center;
     align-content: center;
@@ -204,24 +224,26 @@ body{
     justify-items: center;
 }
 
-.logged-in-as {
+.logged-in-as-wrapper{
+    width:100%;
+    display:flex;
+    flex-direction: column;
     position: absolute;
+    top:10%;
+    left:0%;
+    padding: 0 2% 0 2%;
+}
+
+.logged-in-as {
+    width: 100%;
     display:flex;
     flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    top: 2%;
-    left:73%;
-    padding: 0 2% 0 2%;
     height: auto;
-    border-radius:16px;
-    color:white;
 
     h3{
-        font-size: 1.3vw;
+        font-size: 12px;
         margin-right:10px;
+        color:black;
     }
 
     button {
@@ -235,74 +257,55 @@ body{
 }
 
 .clockComponent{
-    font-size: 10px;
     padding-left:1%;
     padding-right:1%;
     border-radius: 16px;
     width:auto;
-    color:white;
-    position: absolute;
-    right:88%;
-    top:0;
+
+    h3{
+        font-size: 14px;
+        color:white;
+    }
 
 }
 
 .friendbar{
-    padding: 0% 1% 0% 1%;
-    background: linear-gradient(to left, #f19f4d, #f4d03f);
+    padding: 0 1.5% 0% 1.5%;
+    background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
     width:20vw;
-    height:82vh;
-    top:9%;
-   left:78%;
-    position: absolute;
+    height:auto;
     border-radius: 16px 0 0 0;
-    margin:0;
+    margin:0px 0px 0px 15px;
+    height:50vh;
+    min-width:175px;
+    max-width:300px;
+}
+
+.friendbar-div{
+    height:100%;
 }
 
 .friendonline{
-    background-color: #f6f4e8;
+    background-color: white;
     color:#333;
     padding-left:10px;
     border-radius: 16px;
-    font-size: 20px;
+    font-size: 80%;
+    margin:0;
 }
 
 .innerfriendonline{
-    background-color: #f6f4e8;
+    background-color: white;
     padding-top: 1%;
-    height: 70vh;
     border-radius: 16px;
+    margin-top: 7px;
     color:#333;
-    overflow:scroll;
+    
+    li{
+        font-size: 80%;
+    }
 }
 
-.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    width:31vw;
-  }
-  
-  /* Style the buttons that are used to open the tab content */
-  .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-  }
-  
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-    background-color: #ddd;
-  }
-  
-  /* Create an active/current tablink class */
-  .tab button.active {
-    background-color: #ccc;
-  }
 
   .register{
       @extend .login;
@@ -311,3 +314,226 @@ body{
   .register-button{
      justify-self:flex-end;
   }
+
+  .friendonline-wrapper{
+      display:flex;
+      width:100%;
+      height:10%;
+      background-color: white;
+      justify-content: space-between;
+      align-content: center;
+      align-items: center;
+      border-radius:10px;
+
+      button{
+          background-color: transparent;
+          border: transparent;
+      }
+  }
+
+  .indifriendwrapper{
+    display:flex;
+    width:100%;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    height:15%;
+
+    &:hover{
+        cursor:pointer;
+    }
+
+    p{
+        font-size: 10px;
+        margin:0px;
+    }
+  }
+
+  .dots1{
+    max-width:17%;
+}
+
+  .refresh1{
+      height: 100%;
+  }
+
+  .refresh{
+      max-height:40%;
+  }
+
+
+  .in-room{
+    font-size: 12px;
+    margin-right:10px;
+    color:black;
+  }
+
+  .roomNumber{
+      input{
+          height:20px;
+          width: 110px;
+          font-size:13px;
+      }
+  }
+
+  .xtra-small-button{
+      height:20px;
+      width:60px;
+      font-size:13px;
+      padding:0;
+      margin:0px;
+  }
+
+  .messageStyle{
+      max-width:50%;
+      border-radius: 12px;
+      font-size:12px;
+  }
+
+
+  .systemStyle{
+    font-size:12px;
+    color:grey;
+    background: linear-gradient(to left, #ece9e6, #ffffff);
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+
+  .ownStyle{
+      display:flex;
+      justify-content:flex-end;
+      margin-bottom:5px;
+
+   p{
+    @extend .messageStyle;
+    background-color: rgb(221, 245, 172);
+    padding: 0.5rem 1rem;
+    color:black;
+    margin:0px;
+    overflow-wrap:break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+   }
+  }
+
+  .userStyle{
+    display:flex;
+    justify-content:flex-start;
+
+  }
+
+  .nameplustext{
+      display:flex;
+      flex-direction: column;
+      background: linear-gradient(to left, #ece9e6, #ffffff);
+      border-radius: 12px;
+      max-width: 50%;
+      padding:0 0.5rem;
+      margin-bottom: 5px;
+
+      h6{
+          font-size:12px;
+          line-height: 4px;
+          padding-top: 0.5rem;
+          text-align: left;
+          color:rgb(230, 122, 140)
+      }
+
+      p{
+        padding: 0rem 0.9rem 0.6rem 0.5rem;
+        color:black;
+        font-size:12px;
+        margin: 0;
+        max-width:100%;
+        align-self:flex-start;
+        text-align:left;
+        background: transparent;
+        overflow-wrap:break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+  }
+
+  .xtra-small-button2{
+      @extend .xtra-small-button;
+      width:45px;
+  }
+
+  .onlineStatus{
+      font-size:12px;
+  }
+
+  .online{
+      @extend .onlineStatus;
+      color:green;
+  }
+
+  .offline{
+      @extend .onlineStatus;
+      color: red;
+  }
+
+  .friend-username{
+      @extend .onlineStatus;
+      display:flex;
+      justify-content: space-between;
+
+
+  }
+
+  .joinRoom{
+      font-size:12px;
+      padding:0;
+  }
+
+
+  .in-room-wrapper{
+      display:flex;
+
+      p{
+        font-size:12px;
+        margin:0;
+      }
+  }
+
+  .addfriend{
+      color:grey;
+      font-size:9px;
+      top:180px;
+      left:750px;
+      border:0;
+      background-color: transparent;
+  }
+
+  .sendRequest{
+      width:60%;
+      margin:5px 0 0 0;
+      font-size: 10px;
+  }
+
+  .sendrequest-wrapper{
+      display: flex;
+      flex-direction: column;
+
+      form{
+          input{
+              width:100%;
+              font-size: 12px;
+          }
+      }
+  }
+
+  .navlink-style{
+      font-size:12px;
+  }
+
+  .unfriend-button{
+      font-size:10px;
+      border: 0;
+      background-color: transparent;
+      color:rgb(238, 59, 59);
+      margin:0;
+  }
+
+
+

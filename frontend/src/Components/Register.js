@@ -1,10 +1,22 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 import '../app.css'
+import Button from 'react-bootstrap/Button';
+import {useDispatch} from 'react-redux'
+import {setUN} from '../app/unSlice'
+import {setRN} from '../app/roomSlice'
 
 function Register (props) {
     const[regun,setregun] = useState('')
     const [regpw,setregpw] = useState('')
+    const [rm,setRm] = useState('')
+    const dispatch = useDispatch()
+
+    const socket = props.socket
+
+    const handleRoomChange = (text) => {
+        setRm(text.target.value)
+    }
 
     const handleunregChange = (text) => {
         setregun(text.target.value)
@@ -18,37 +30,44 @@ function Register (props) {
         props.setNoAccount(false)
     }
 
-    const handleRegister = async () => {
+    const handleRegister = async (e) => {
+        e.preventDefault()
 
 
         if(regun && regpw){
 
             let account = {
-                username: props.regun,
-                password: props.regpw,
+                username: regun,
+                password: regpw,
+                room:rm
             }
 
             axios.post('http://localhost:3080/users',account)
             .catch(error => console.log(error))
 
-            props.setUserName(props.regun)
+            dispatch(setUN(regun))
+            dispatch(setRN(rm))
             props.setLoggedIn(true)
-            props.RegistersetNotification(`${props.regun} has successfully registered`)
-            props.setColor('#57bc90')
+            let un = regun
+            socket.emit('join room',{un,rm})
+            props.setNotification(`${regun} has successfully registered`)
+            props.setColor('success')
             setTimeout(() => {
                 props.setNotification('')
-                props.setColor('#f9cf00')
+                props.setColor('#f0f0f0')
             },2000)
+            setregun('')
+            setregpw('')
 
             
         }
             else
             {
                 props.setNotification(`Username or password must be present`)
-                props.setColor('#cd5360')
+                props.setColor('danger')
                 setTimeout(() => {
                 props.setNotification('')
-                 props.setColor('#f9cf00')
+                 props.setColor('#f0f0f0')
                 },2000)
             }
     }
@@ -56,13 +75,19 @@ function Register (props) {
 
     return(
         <div className="register">
+            <div className="flex-div-column">
             <h3>Register</h3>
+
             <input type="text" onChange={handleunregChange} value={regun}
             autoComplete = "off" placeholder="Username"></input>
             <input type="password" onChange={handlepwregChange} value={regpw}
             autoComplete = "off" placeholder="Password"></input>
-            <button type="button" className="loginButton"  onClick={handleRegister}>Register</button>
-            <button type="button" onClick={handleOther}>Already have an account?</button>
+            <input type="text" onChange={handleRoomChange} value={rm}
+            autoComplete = "off" placeholder="Room Number"></input>
+            <Button  variant="success" onClick={handleRegister} size='md' type='button'>Register</Button>
+            </div>
+            <Button variant="light" onClick={handleOther} type='button' size='sm'>
+        Have an account?</Button>
             </div>
     )
 }

@@ -1,16 +1,17 @@
 import '../app.css';
 import React from 'react'
 import {useState} from 'react'
-import io from 'socket.io-client'
-const socket = io("http://localhost:3080")
-socket.emit('create','chatroom1')
+import {useSelector} from 'react-redux'
+import Messages from './Messages'
 
 function Chatbox(props) {
 
     const [messages, setMessages] = useState([])
     const [tempmsg, setTempMsg] = useState('')
-    const username = props.username;
+    const username = useSelector((state) => state.username.value)
+    const roomnumber = useSelector((state) => state.roomnumber.value)
     let actualMessage;
+    const socket = props.socket
 
     const userTextChange = (text) => {
         setTempMsg(text.target.value);
@@ -18,26 +19,61 @@ function Chatbox(props) {
 
     const textSend = (event) => {
         event.preventDefault()
-        actualMessage = `${username}: ${tempmsg}`
-        socket.emit('chat message',actualMessage)
-        setMessages(messages.concat(actualMessage))
+        actualMessage = `${tempmsg}`
+        socket.emit('chat message',actualMessage,roomnumber,username)
+
+        const msg = {
+            message: actualMessage,
+            style: 'ownStyle',
+            name:'',
+        }
+
+        setMessages(messages.concat(msg))
         setTempMsg('')
     }
 
-    socket.on('chat message',(msg) => {
+    socket.on('chat message',(incomeMsg,otherName) => {
+
+        const msg = {
+            message : incomeMsg,
+            style: 'userStyle',
+            name:otherName,
+        }
+
         setMessages(messages.concat(msg))
     })
     
-    socket.on('user enter', (username) => {
-        const enterText = `${username} has entered the chat`
-        setMessages(messages.concat(enterText))
+    socket.on('join room', (username) => {
+        const enterText = `User ${username} has entered the room`
+
+
+        const msg = {
+            message : enterText,
+            style: 'systemStyle',
+            name:'',
+        }
+        setMessages(messages.concat(msg))
     })
 
+    socket.on('leave', (sentMessage) => {
+        const msg = {
+            message : sentMessage,
+            style: 'systemStyle',
+            name:'',
+        }
+        setMessages(messages.concat(msg))
+    })
+
+    socket.on('change room', () => {
+        setMessages([])
+    })
 
 
     return (
         <section className="sections">
-      <div id="chatArea">{messages.map((indi,index) => <p id="messages" key={index}>{indi} </p>)}</div>
+      <div id="chatArea">
+          <Messages messages={messages}></Messages>
+          </div>
         <div>
             <form id="form" action="">
             <input onChange={userTextChange} type="text" id="inputbox" autoComplete="off" 
