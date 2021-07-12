@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import {useDispatch} from 'react-redux'
 import {setUN} from '../app/unSlice'
 import {setRN} from '../app/roomSlice'
+import {setRequest} from '../app/requestSlice'
+import friendFunction from '../utils/friendFunction';
 
 
 
@@ -75,6 +77,8 @@ function Login (props) {
                 socket.emit('join room',{un,rm})
                 props.setNotification(`${un} joined room ${rm}`)
                 props.setColor('success')
+                let requests = await friendFunction.getFriendRequests(un)
+                dispatch(setRequest(requests))
                 setTimeout(() => {
                     props.setNotification('')
                     props.setColor('')

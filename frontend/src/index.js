@@ -7,7 +7,11 @@ import store from './app/store'
 import {Provider} from 'react-redux'
 
 
-ReactDOM.render(<Navigation />,document.getElementById('header'));
+ReactDOM.render(
+<Provider store={store}>
+<Navigation />
+</Provider>,
+document.getElementById('header'));
 ReactDOM.render(
 <Provider store={store}>
 <MainArea/>

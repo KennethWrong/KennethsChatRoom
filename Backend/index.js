@@ -15,12 +15,14 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect',async () => {
         const user = userFunction.getUserById(socket.id)
-        await User.findOneAndUpdate({username:user.username}
-            ,{online:false,room:''},{new:true})
-        .catch(err => console.log(err))
-        io.in(user.room)
-        .emit('leave',`User ${user.username} has left the chat`)
-        userFunction.userExit(socket.id)
+        if(user){
+            await User.findOneAndUpdate({username:user.username}
+                ,{online:false,room:''},{new:true})
+            .catch(err => console.log(err))
+            io.in(user.room)
+            .emit('leave',`User ${user.username} has left the chat`)
+            userFunction.userExit(socket.id)
+        }
     })
 
     socket.on('chat message', (msg,rm,username) => {
