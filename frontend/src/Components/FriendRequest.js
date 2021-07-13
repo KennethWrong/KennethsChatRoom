@@ -56,9 +56,11 @@ const FriendRequest = (props) => {
          </p>
          <Button 
          variant="success" value={request}
+         className="accept-decline-button"
          onClick={requestHandlerTrue}>
              Accept</Button>
          <Button variant = "danger" value={request}
+         className="accept-decline-button"
          onClick={requestHandlerFalse}>
              Decline</Button>
          </div>)

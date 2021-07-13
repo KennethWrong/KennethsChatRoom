@@ -11,19 +11,16 @@ const socket = io("http://localhost:3080")
 
 function MainArea() {
     const [loggedIn, setLoggedIn] = useState(false)
-    const [color,setColor] = useState('')
-    const [notification,setNotification] = useState('')
     
     return(
         <div>
             <section className='sections'>
-            <Notifications color={color} notification={notification}/>
+            <Notifications />
             </section>
         
         {!loggedIn?
 
-        <Login  setLoggedIn={setLoggedIn} 
-        setColor={setColor} setNotification={setNotification}  socket={socket}/>:
+        <Login  setLoggedIn={setLoggedIn} socket={socket}/>:
         <section>
         <Logout setLoggedIn={setLoggedIn} socket={socket}></Logout>
         

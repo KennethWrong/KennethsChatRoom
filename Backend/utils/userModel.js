@@ -17,16 +17,19 @@ let userSchema = new mongoose.Schema({
     },
     friends:{
       type: Array,
+      default: [],
     },
     online:{
       type:Boolean,
       default: true,
     },
     room:{
-      type:String
+      type:String,
+      default: '',
     },
     friendrequest:{
-      type:Array
+      type:Array,
+      default: [],
     }
 })
 

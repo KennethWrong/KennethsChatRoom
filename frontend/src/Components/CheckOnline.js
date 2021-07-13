@@ -7,10 +7,12 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
+import friendFunction from '../utils/friendFunction'
 
 const CheckOnline = (props) => {
 
 const dispatch = useDispatch()
+const username = useSelector(state => state.username.value)
 const socket = props.socket;
 const friends = props.friends;
 
@@ -53,9 +55,18 @@ const joinRoom = (e) => {
     }
  }
 
- const unfriendFunction = (e) => {
+ const unfriendFunction = async (e) => {
      e.preventDefault()
-     
+     const targetUser = e.target.value
+     if(window.confirm(`You sure you want to unfriend ${targetUser}?`)){
+         const body = {
+             user: username,
+             toDelete: e.target.value
+         }
+        const res = friendFunction.deleteFriend(body)
+    }
+
+
 
  }
 
@@ -65,7 +76,7 @@ const joinRoom = (e) => {
       <Popover.Title as="h3">
           <div className="friend-username">
           {friend.username}
-          <button className="unfriend-button" value ={friend} onClick={unfriendFunction}>
+          <button className="unfriend-button" value ={friend.username} onClick={unfriendFunction}>
                 unfriend
           </button>
           </div>

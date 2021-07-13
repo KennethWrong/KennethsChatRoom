@@ -20,7 +20,7 @@ const Navigation = () => {
     <Popover.Content>
       {requests?
       <FriendRequest requests={requests} username={username}></FriendRequest>
-      :''}
+      :<p style={{color:'grey',fontSize:'10px',textAlign:'center'}}>Login to Check</p>}
     </Popover.Content>
     </Popover>
   )

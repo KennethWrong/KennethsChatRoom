@@ -32,6 +32,7 @@ function Register (props) {
 
     const handleRegister = async (e) => {
         e.preventDefault()
+        let status;
 
 
         if(regun && regpw){
@@ -42,33 +43,45 @@ function Register (props) {
                 room:rm
             }
 
-            axios.post('http://localhost:3080/users',account)
-            .catch(error => console.log(error))
-
-            dispatch(setUN(regun))
-            dispatch(setRN(rm))
-            props.setLoggedIn(true)
-            let un = regun
-            socket.emit('join room',{un,rm})
-            props.setNotification(`${regun} has successfully registered`)
-            props.setColor('success')
-            setTimeout(() => {
-                props.setNotification('')
-                props.setColor('#f0f0f0')
-            },2000)
+            const res = await axios.post('http://localhost:3080/users',account)
+            .catch(error => 
+                {
+                    status = error.response.status
+            // props.setNotification(error.response.data.message)
+            // props.setColor('danger')
+            // setTimeout(() => {
+            //     props.setNotification('')
+            //     props.setColor('#f0f0f0')
+            // },2000)
+                })
+            
+            if(status !== 500){
+                dispatch(setUN(regun))
+                dispatch(setRN(rm))
+                props.setLoggedIn(true)
+                let un = regun
+                socket.emit('join room',{un,rm})
+                // props.setNotification(`${regun} has successfully registered`)
+                // props.setColor('success')
+                // setTimeout(() => {
+                //     props.setNotification('')
+                //     props.setColor('#f0f0f0')
+                // },2000)
+        }
             setregun('')
             setregpw('')
+            setRm('')
 
             
         }
             else
             {
-                props.setNotification(`Username or password must be present`)
-                props.setColor('danger')
-                setTimeout(() => {
-                props.setNotification('')
-                 props.setColor('#f0f0f0')
-                },2000)
+                // props.setNotification(`Username or password must be present`)
+                // props.setColor('danger')
+                // setTimeout(() => {
+                // props.setNotification('')
+                //  props.setColor('#f0f0f0')
+                // },2000)
             }
     }
 

@@ -1,12 +1,14 @@
 import '../app.css'
 import Alert from 'react-bootstrap/Alert'
-const Notifications = (props) => {
+import { useSelector } from 'react-redux'
+const Notifications = () => {
 //userName,loggedIn
+const notification = useSelector(state => state.notification.value)
 
     return(
         <div className="notifications">
-            <Alert variant={props.color}>
-                <Alert.Heading>{props.notification}</Alert.Heading>
+            <Alert variant={notification.color}>
+                <Alert.Heading>{notification.message}</Alert.Heading>
             </Alert>
         </div>
     )

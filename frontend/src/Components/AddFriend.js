@@ -1,4 +1,4 @@
-import react,{useState} from 'react'
+import {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
@@ -14,7 +14,9 @@ const AddFriend = () => {
         setAddFriend(e.target.value)
     }
 
-    const sendFriendRequest = async () => {
+    const sendFriendRequest = async (e) => {
+        e.preventDefault()
+        setAddFriend('')
        const sendBody = {
            sender: username,
            to: addFriend

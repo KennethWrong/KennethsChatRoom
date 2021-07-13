@@ -28,7 +28,7 @@ const Logout = (props) => {
     <Button type="button" 
     variant="outline-secondary "
     onClick={handleLogOut}
-    className="xtra-small-button2">
+    >
         Logout</Button>
     </div>
     <h3 className="in-room">Currently in room: {room}</h3>

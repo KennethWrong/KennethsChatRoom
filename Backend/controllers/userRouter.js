@@ -14,9 +14,15 @@ router.post('/users',async (request,response) => {
         room:room
     }
     const account = new UserModel(newUser)
-    account.save()
-    .catch(err => response.status(500).send('could not create new User'))
-    response.sendStatus(200)
+
+    try{
+        const newu = await account.save()
+        console.log(newu)
+        response.sendStatus(200)
+
+    }catch(err){
+        response.status(500).send({message:"User already exists"})
+    }
 })
 
 router.get('/users/:username',(request,response) => {
@@ -41,9 +47,9 @@ router.get('/users/login/:username', (request,response) => {
 })
 
 router.get('/friends/all/:username', async (request,response) => {
+    try{
     const username = request.params.username
     let res = await User.find({username:username})
-    .catch(err => response.status(404).send('User not found'))
     let friendsOnline = res[0].friends
     let send = []
     for(let i=0; i<friendsOnline.length;i++){
@@ -56,6 +62,11 @@ router.get('/friends/all/:username', async (request,response) => {
         send = send.concat(body)
     }
     response.json(send)
+}
+catch{
+    console.log(err)
+    response.status(404).send({message:'User not found'})
+}
 })
 
 router.put('/users/request', async(request,response) => {
@@ -71,7 +82,7 @@ router.put('/users/request', async(request,response) => {
 
     if(state){
         const index = toRequests.indexOf(sender)
-        toRequests = toRequests.splice(index+1,1)
+        toRequests.splice(index,1)
 
 
 
@@ -86,7 +97,7 @@ router.put('/users/request', async(request,response) => {
 
     }else{
         const index = toRequests.indexOf(sender)
-        toRequests = toRequests.splice(index+1,1)
+        toRequests = toRequests.splice(index,1)
 
         const res2 = await User.findOneAndUpdate({username:to},
             {friendrequest:toRequests},
@@ -97,15 +108,21 @@ router.put('/users/request', async(request,response) => {
     response.status(200).end()
 })
 
-
+//setting a user online and setting them a room
 router.put('/users/online/:username',async (request,response) => {
-    let username = request.params.username
-    let state = request.body.state
-    const result = await User.findOneAndUpdate({username:username},
-        {online:state, room:request.body.room},{new:true})
-    response.sendStatus(200).end()
+    try{
+        let username = request.params.username
+        let state = request.body.state
+        const result = await User.findOneAndUpdate({username:username},
+            {online:state, room:request.body.room},{new:true})
+        response.sendStatus(200).end()
+    }catch(err){
+        console.log(err)
+        response.sendStatus(500).send({message:'Internal Server Error'})
+    }
 })
 
+//handling friend requests
 router.put(`/friends/friendrequest`, async (request,response) => {
     let sender = request.body.sender
     let to = request.body.to
@@ -134,9 +151,42 @@ router.put(`/friends/friendrequest`, async (request,response) => {
         requests = requests.concat(sender)
         const result = await User.findOneAndUpdate({username:to},
             {friendrequest:requests},{new:true})
-        .catch(err => response.status(500).send('unable to process request'))
+        .catch(err => {
+            console.log(SyntaxError)
+            response.status(500).send('unable to process request')
+        })
     }
 
+})
+
+//unfriending a friend
+router.delete('/friends', async (request,response) => {
+    try{
+        const toDelete = await User.findOne({username:request.body.toDelete})
+        const user = await User.findOne({username:request.body.user})
+
+        let toDeleteFriends = toDelete.friends
+        const toDeleteid = toDelete._id
+        let userFriends = user.friends
+        const userid = user._id
+
+        let indexOfDelete = userFriends.indexOf(toDeleteid)
+        let indexOfUser = toDeleteFriends.indexOf(userid)
+
+        if(indexOfDelete > -1){
+            userFriends.splice(indexOfDelete,1)
+        }
+        if(indexOfUser > -1){
+            toDeleteFriends.splice(indexOfUser,1)
+        }
+        
+        const res1 = await User.findByIdAndUpdate(userid,{friends:userFriends},{new:true})
+        const res2 = await User.findByIdAndUpdate(toDeleteid,{friends:toDeleteFriends},{new:true})
+        response.sendStatus(200)
+}catch(error){
+        console.log(error)
+        response.status(500).send({message:'Internal Server Error 500'})
+}
 })
 
 module.exports = router;

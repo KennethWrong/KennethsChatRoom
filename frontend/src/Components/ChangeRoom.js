@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button'
 import '../app.css'
 
 const ChangeRoom = (props) => {
-    let rm;
     const [newRM,setNewRM] = useState('')
     let socket = props.socket
     const dispatch = useDispatch()
@@ -18,6 +17,7 @@ const ChangeRoom = (props) => {
 
     const changeRoom = (e) => {
         e.preventDefault()
+        setNewRM('')
         dispatch(setRN(newRM))
         socket.emit('change room',newRM,username)
     }
@@ -28,7 +28,8 @@ const ChangeRoom = (props) => {
             <form className="roomNumber">
                 <input placeholder="Enter Room No."  
                 onChange={handleRoomChange}
-                value={rm}
+                value={newRM}
+                className="changeroom"
                 >
                 </input>
             </form>
