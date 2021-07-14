@@ -111,7 +111,7 @@ function Login (props) {
         </div>
     :<div className="login">
     <div className="flex-div-column">
-    <h3>Login</h3>
+    <h3 style={{fontWeight:'bolder'}}>Login</h3>
     <input type="text" onChange={handleUserChange} value={un}
     autoComplete = "off" placeholder="Username"></input>
 

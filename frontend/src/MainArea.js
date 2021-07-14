@@ -16,11 +16,16 @@ function MainArea() {
         <div>
             <section className='sections'>
             <Notifications />
-            </section>
+            </section>  
         
         {!loggedIn?
-
-        <Login  setLoggedIn={setLoggedIn} socket={socket}/>:
+        <section className="hero1">
+            <div className="wrapping-header">
+            <h1 className="kchatapphead">Kenneth's Chat App</h1>
+            <h1 className="tryyoutext">Try it! You might start liking it!</h1>
+            </div>
+            <Login  setLoggedIn={setLoggedIn} socket={socket}/>
+        </section>:
         <section>
         <Logout setLoggedIn={setLoggedIn} socket={socket}></Logout>
         

@@ -1,10 +1,25 @@
 //Override
 //$body-bg: #f0f0f0;
-$font-family: "Lato";
+$font-family: "poppins";
 
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+body{
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    margin:0;
+    overflow-x:hidden;
+    background-color:#f0f0f0 ;
+    font-family: 'poppins';
+    font-weight: 400;
+
+  }
 
 .responsive-section-row {
     width:100%;
@@ -31,21 +46,6 @@ $font-family: "Lato";
     }
 }
 
-
-
-
-body{
-    display:flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: flex-start;
-    align-items: center;
-    height: auto;
-    margin:0;
-    overflow-x:hidden;
-    background-color:#f0f0f0 ;
-
-  }
 
 
 #intro{
@@ -118,6 +118,54 @@ body{
     overflow:scroll;
 }
 
+.hero1{
+    display:flex;
+    width:100%;
+    justify-content: space-around;
+    align-items: center;
+    padding:0 2% 0 2%;
+
+    div{
+        width:50%;
+    }
+}
+
+.wrapping-header{
+    width:50%;
+    h1{
+        font-size:5vh;
+    }
+
+    .kchatapphead{
+        font-size:14vh;
+        font-weight: bolder;
+        animation: enter-hero1 1.5s ease-in-out forwards;
+        opacity:0%;
+    }
+
+    .tryyoutext{
+        animation:enter-hero1 1.5s ease-in-out forwards;
+        opacity:0%;
+    }
+
+    @keyframes enter-hero1 {
+        0%{
+            transform: translateX(-10%);
+        }
+
+        100%{
+            opacity: 100%;
+            transform: translateX(0%);
+        }
+        
+    }
+
+}
+
+
+
+
+
 .login
 {
     display:flex;
@@ -132,8 +180,8 @@ body{
     background: linear-gradient(to right, #D6A4A4, #DAE2F8); 
     border: 3px black;
     border-radius: 16px;
-    width: 35vw;
-    height: 55vh;
+    width: 40vw;
+    height:55vh;
     min-width: 300px;
     margin-bottom: 20px;
 
@@ -162,8 +210,6 @@ body{
     justify-content:center ;
     height: 100%;
 
-    
-
     input{
         margin-top:20px;
         width:90%;
@@ -180,13 +226,11 @@ body{
 
 .align-left 
 {
-    width:auto;
+    width:40vw;
     height:auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-content: space-evenly;
-    justify-content: space-evenly;
     background-color: transparent;
 }
 
@@ -242,7 +286,7 @@ body{
     display:flex;
     flex-direction: column;
     position: absolute;
-    top:10%;
+    top:15%;
     left:0%;
     padding: 0 2% 0 2%;
 }
@@ -402,6 +446,7 @@ body{
       max-width:50%;
       border-radius: 12px;
       font-size:12px;
+      font-family: 'roboto';
   }
 
 
@@ -444,13 +489,19 @@ body{
       max-width: 50%;
       padding:0 0.5rem;
       margin-bottom: 5px;
+      font-family: 'sans-serif';
+    
+      &:hover{
+      //doing effect
+      animation: recievemsg 0.8s ease-in-out forwards;
+      }
 
       h6{
           font-size:12px;
           line-height: 4px;
           padding-top: 0.5rem;
           text-align: left;
-          color:rgb(230, 122, 140)
+          color:rgb(230, 122, 140);
       }
 
       p{
@@ -466,6 +517,18 @@ body{
         word-wrap: break-word;
         hyphens: auto;
       }
+  }
+
+  @keyframes recievemsg {
+
+      50%{
+          transform:translateX(4%);
+      }
+
+      100%{
+          transform:translateX(0);
+      }
+      
   }
 
   .xtra-small-button2{
@@ -545,19 +608,41 @@ body{
   }
 
   .navbar{
-      animation: navbar-opacity 2s ease-in-out forwards;
+      animation: navbar-opacity 2s ease-in forwards;
       opacity:0%;
   }
 
   @keyframes navbar-opacity {
-    0%{
-        transform: translateY(-1000%);
-    }
-
-
       100%{
-          transform: translateY(0%);
           opacity: 100%;
+      }
+      
+  }
+
+  .github{
+      text-decoration: none;
+      color:black;
+      animation: github-ani 3s infinite forwards;
+      &:hover{
+          text-decoration:none;
+      }
+  }
+
+  @keyframes github-ani {
+      20%{
+          color:red;
+      }
+      40%{
+          color:yellowgreen;
+      }
+      60%{
+          color:green;
+      }
+      80%{
+          color:rgb(16, 223, 178);
+      }
+      100%{
+          color:blueviolet;
       }
       
   }
@@ -581,6 +666,66 @@ body{
       border-radius: 8px;
       border-color: orange;
   }
+
+  #K{
+      fill:black;
+  }
+  #Chat{
+      fill:black;
+  }
+
+  #triangle{
+     fill: #CF7BD7;
+     fill-opacity: 0.66;
+  }
+
+
+  #theLogo:hover{
+      #Chat{
+        animation: shift-words  ease-in-out 1.5s forwards;
+      }
+      
+
+      #triangle{
+        animation: shift-triangle   1.5s 0.2s forwards;
+      }
+      
+  }
+
+  @keyframes shift-words {
+      25%{
+        fill:rgb(185, 183, 183);
+      }
+
+      50%{
+          transform: translateX(7%);
+          fill:rgb(95, 137, 177);
+      }
+
+      100%{
+          transform: translateX(0%);
+          fill:black;
+      }
+      
+  }
+
+  @keyframes shift-triangle {
+
+    50%{
+        transform: translateX(7%);
+        fill:rgb(185, 183, 183);
+    }
+
+    75%{
+        fill:rgb(95, 137, 177);
+    }
+
+    100%{
+        transform: translateX(0%);
+        fill: #CF7BD7;
+    }
+    
+}
 
 
 

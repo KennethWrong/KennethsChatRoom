@@ -7,6 +7,7 @@ import Badge from 'react-bootstrap/Badge'
 import {useSelector} from 'react-redux'
 import FriendRequest from '../Components/FriendRequest'
 import friendFunction from '../utils/friendFunction'
+import Logo from '../svg/Logo'
 
 const Navigation = () => {
   const requests = useSelector(state => state.request.value)
@@ -41,8 +42,11 @@ const Navigation = () => {
     </Popover>
   )
   return (
-    <Navbar bg="light" variant="light" sticky="top">
-      <Navbar.Brand href='#'>KCHAT</Navbar.Brand>
+    <Navbar bg="light" variant="light" sticky="top"
+    className="navbar">
+      <Navbar.Brand href='#'>
+       <a href='http://localhost:3000'><Logo></Logo></a> 
+      </Navbar.Brand>
       <Nav className="ml-auto">
         <Nav.Item>
           <OverlayTrigger trigger="focus" placement="bottom" overlay={popover}>
@@ -55,7 +59,8 @@ const Navigation = () => {
           Friend Requests <Badge variant="dark">{requests.length}</Badge>
           </Nav.Link>
           </OverlayTrigger>
-        <Nav.Link className="navlink-style" href="#">What's next?</Nav.Link>
+        <Nav.Link className="navlink-style" href="https://github.com/KennethWrong">
+          <a className="github">GitHub</a></Nav.Link>
       </Nav>
     </Navbar>
   );
