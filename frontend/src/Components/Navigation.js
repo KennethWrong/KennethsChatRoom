@@ -33,9 +33,9 @@ const Navigation = () => {
       About Me </Popover.Title>
     <Popover.Content>
       <p style={{fontSize:'12px'}}>
-      Hey guys I am kenneth nice to meet you, I am new to CSS so I am trying
-      to use SCSS, React and Node to create a webapp to improve and train my skills
-      as a web-developer, I am going to add more things into this!
+      Hey guys I am kenneth nice to meet you,  I created this page to practice
+      my web-dev skills. This project started in the Summer of 2021 and I hope
+      that I can continue to make cool websites like this. As for now please enjoy!
       </p>
 
     </Popover.Content>
@@ -44,8 +44,8 @@ const Navigation = () => {
   return (
     <Navbar bg="light" variant="light" sticky="top"
     className="navbar">
-      <Navbar.Brand href='#'>
-       <a href='http://localhost:3000'><Logo></Logo></a> 
+      <Navbar.Brand href='http://localhost:3000'>
+        <Logo></Logo>
       </Navbar.Brand>
       <Nav className="ml-auto">
         <Nav.Item>
@@ -59,8 +59,9 @@ const Navigation = () => {
           Friend Requests <Badge variant="dark">{requests.length}</Badge>
           </Nav.Link>
           </OverlayTrigger>
-        <Nav.Link className="navlink-style" href="https://github.com/KennethWrong">
-          <a className="github">GitHub</a></Nav.Link>
+        <Nav.Link className="navlink-style github" href="https://github.com/KennethWrong">
+          GitHub
+          </Nav.Link>
       </Nav>
     </Navbar>
   );

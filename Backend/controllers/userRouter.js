@@ -21,7 +21,7 @@ router.post('/users',async (request,response) => {
         response.sendStatus(200)
 
     }catch(err){
-        response.status(500).send({message:"User already exists"})
+        response.status(500).send({message:"Username has been taken"})
     }
 })
 
@@ -69,6 +69,7 @@ catch{
 }
 })
 
+//removing friend reqeusts and adding to friends
 router.put('/users/request', async(request,response) => {
     const body = request.body
     const sender = body.sender
@@ -76,7 +77,8 @@ router.put('/users/request', async(request,response) => {
     const state = body.state
     const senderUser = await User.find({username:sender})
     const senderFriends = senderUser[0].friends
-    const toUser = await User.find({username:to})
+    const toUser = await User.find({username:to}).catch(err => {
+        response.status(404).send({message:'Username not found'})})
     let toFriends = toUser[0].friends
     let toRequests = toUser[0].friendrequest.slice()
 
@@ -88,12 +90,12 @@ router.put('/users/request', async(request,response) => {
 
         const res1 = await User.findOneAndUpdate({username:sender},
             {friends:senderFriends.concat(toUser[0]._id)},{new:true})
-            .catch(err => response.status(500).send('Internal Error'))
+            .catch(err => response.status(500).send({message:'Internal Error'}))
 
         const res2 = await User.findOneAndUpdate({username:to},
             {friends:toFriends.concat(senderUser[0]._id),friendrequest:toRequests},
             {new:true})
-            .catch(err => response.status(500).send('Internal Error'))
+            .catch(err => response.status(500).send({message:'Internal Error'}))
 
     }else{
         const index = toRequests.indexOf(sender)
@@ -102,7 +104,7 @@ router.put('/users/request', async(request,response) => {
         const res2 = await User.findOneAndUpdate({username:to},
             {friendrequest:toRequests},
             {new:true})
-        .catch(err => response.status(500).send('Internal Error'))
+        .catch(err => response.status(500).send({message:'Internal Error'}))
 
     }
     response.status(200).end()
@@ -129,31 +131,35 @@ router.put(`/friends/friendrequest`, async (request,response) => {
 
     //if it is the same person
     if(sender === to){
-        return response.status(500).send('Cannot send message to self')
+        return response.status(500).send({message:'Cannot send friend request to self'})
     }
+
+    const senderUser = await User.findOne({username:sender})
 
     //if user doesn't exist
     const toUser = await User.findOne({username:to})
-    .catch(err => response.status(404).send('Unable to find User'))
+    .catch(err => {
+         response.status(404).send({message:'Unable to find User'})
+    })
     let requests = toUser.friendrequest
 
     //if duplicate friend request
     const valid = requests.includes(sender)
     //if sender is already in friends list
-    const valid2 = toUser.friends.includes({username:sender})
+    const valid2 = toUser.friends.includes(senderUser._id)
 
-    if(valid){
-        response.status(500).send('Duplicate Friend Request')
-    }else if(valid2){
-        response.status(500).send('You are already friends with user')
+    if(valid2){
+        response.status(500).send({message:'You are already friends with user'})
+    }else if(valid){
+        response.status(500).send({message:'Duplicate Friend Request'})
     }
     else{
         requests = requests.concat(sender)
         const result = await User.findOneAndUpdate({username:to},
             {friendrequest:requests},{new:true})
+            console.log(result)
         .catch(err => {
-            console.log(SyntaxError)
-            response.status(500).send('unable to process request')
+            response.status(500).send({message:'unable to process request'})
         })
     }
 

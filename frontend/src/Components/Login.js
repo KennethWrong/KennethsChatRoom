@@ -6,9 +6,10 @@ import Button from 'react-bootstrap/Button';
 import {useDispatch} from 'react-redux'
 import {setUN} from '../app/unSlice'
 import {setRN} from '../app/roomSlice'
+import { setNotification } from '../app/notificationSlice';
+import { clearNotification } from '../app/notificationSlice';
 import {setRequest} from '../app/requestSlice'
 import friendFunction from '../utils/friendFunction';
-import CreateNotification from '../utils/CreateNotification'
 
 
 function Login (props) {
@@ -19,6 +20,19 @@ function Login (props) {
     const dispatch = useDispatch()
 
     const socket = props.socket;
+
+    const CreateNotification = (color,message) => {
+        const body = {
+            color:color,
+            message:message
+        }
+    
+        dispatch(setNotification(body))
+        setTimeout(() => {
+            dispatch(clearNotification())
+        },2000)
+
+    }
 
     const handleUserChange = (text) => {
         setun(text.target.value)
@@ -44,20 +58,9 @@ function Login (props) {
         if(!(un&&pw)){
             setpw('')
             setun('')
-            // props.setNotification(`Wrong Username or Password`)
-            //         props.setColor('danger')
-            //         setTimeout(() => {
-            //             props.setNotification('')
-            //             props.setColor('')
-            //         },2000)
+            CreateNotification('danger','Wrong Username or Password')
         }else if(!rm){
-            // props.setNotification(`Specify a valid room number`)
-            // props.setColor('warning')
-            // setTimeout(() => {
-            //     props.setNotification('')
-            //     props.setColor('')
-            // },2000)
-            <CreateNotification message= {`Specify a valid room number`} color={'warning'} />
+            CreateNotification('warning','Specify a valid Room Number')
         }
         
         else if(un && pw && rm){
@@ -78,24 +81,15 @@ function Login (props) {
                 socket.emit('join room',{un,rm})
                 let requests = await friendFunction.getFriendRequests(un)
                 dispatch(setRequest(requests))
-                // props.setNotification(`${un} joined room ${rm}`)
-                // props.setColor('success')
-                // setTimeout(() => {
-                //     props.setNotification('')
-                //     props.setColor('')
-                // },2000)
+                //setting notification
                 let message = `${un} joined room ${rm}`;
                 let color = 'success';
-                <CreateNotification message= {message} color= {color} />
+                CreateNotification(color,message)
                 
             }else
                 {
-                    // props.setNotification(`Wrong Username or Password`)
-                    // props.setColor('danger')
-                    // setTimeout(() => {
-                    //     props.setNotification('')
-                    //     props.setColor('')
-                    // },2000)
+                    CreateNotification('danger','Wrong Username or Password')
+
                 }
 
              }

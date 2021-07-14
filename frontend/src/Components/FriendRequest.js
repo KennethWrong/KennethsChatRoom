@@ -30,6 +30,7 @@ const FriendRequest = (props) => {
         removingRequest(e.target.value)
 
         const res = await friendFunction.handleFriendRequest(body)
+        console.log(res)
     }
 
     const requestHandlerFalse = async (e) => {
@@ -42,6 +43,7 @@ const FriendRequest = (props) => {
         removingRequest(e.target.value)
 
         const res = await friendFunction.handleFriendRequest(body)
+        console.log(res)
 
     }
 

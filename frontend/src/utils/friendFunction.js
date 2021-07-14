@@ -21,8 +21,7 @@ const getFriendRequests = async (username) => {
 //to either decline or accept friend request, then deleting it
 const handleFriendRequest = async (body) => {
         const res = await axios.put('http://localhost:3080/users/request',body)
-        .catch(err =>  console.log(err))
-        return res
+        .catch(err =>  err)
 }
 //unfriending a person
 const deleteFriend = async (body) => {
