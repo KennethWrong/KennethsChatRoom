@@ -74,7 +74,7 @@ const AddFriend = () => {
     return(
         <OverlayTrigger 
         trigger="click" 
-        placement="top" 
+        placement="right" 
         overlay={popover()}
         delay={{ show: 250, hide: 150 }}>
             

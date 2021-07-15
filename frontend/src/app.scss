@@ -18,16 +18,22 @@ body{
     background-color:#f0f0f0 ;
     font-family: 'poppins';
     font-weight: 400;
+    height:100%;
+  }
 
+  html{
+      height:100%;
   }
 
 .responsive-section-row {
     width:100%;
+    height:70vh;
     display:flex;
     flex-direction: row;
     align-items: center;
     align-content: center;
-    justify-content:center;
+    justify-content:flex-start;
+    padding-left: 1rem;
 
 }
 
@@ -78,27 +84,24 @@ body{
     outline: none;
  }
 
- #form > button { background: #333; 
-    border: none; 
-    padding: 0 1rem; 
-    margin: 0.25rem; 
-    border-radius: 3px; 
-    outline: none; 
-    color: #fff; 
-}
-
 #form {
     background: rgba(0,0,0,0.15);
     padding: 0.25rem;
-    position: fixed;
-    bottom:0;
-    left: 0;
-    right:0;
     display: flex;
     height:3rem;
     box-sizing: border-box;
     backdrop-filter: blur(10px);
     outline:none;
+
+    button{
+        background: #333; 
+        border: none; 
+        padding: 0 1rem; 
+        margin: 0.25rem; 
+        border-radius: 3px; 
+        outline: none; 
+        color: #fff; 
+    }
 }
 
 #messages { 
@@ -106,16 +109,24 @@ body{
     background: linear-gradient(to left, #ece9e6, #ffffff); 
 }
 
+.sections2{
+    width:auto;
+    display:flex;
+    height:100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+}
+
 #chatArea{
     background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
     width: 50vw;
     box-shadow: 5px 10px #888888a9;
     max-width: 600px;
-    height:60vh;
-    border-radius: 16px;
-    border: 2px #e58560;
-    border-style:double;
+    height:100%;
     overflow:scroll;
+    border-top: 1px solid rgba(128, 128, 128, 0.363);
 }
 
 .hero1{
@@ -123,7 +134,7 @@ body{
     width:100%;
     justify-content: space-around;
     align-items: center;
-    padding:0 2% 0 2%;
+    padding:1% 2% 0 2%;
     background-color: rgb(179, 224, 226);
 
     div{
@@ -134,11 +145,11 @@ body{
 .wrapping-header{
     width:50%;
     h1{
-        font-size:5vh;
+        font-size:3rem;
     }
 
     .kchatapphead{
-        font-size:14vh;
+        font-size:5rem;
         font-weight: bolder;
         animation: enter-hero1 1.5s ease-in-out forwards;
         opacity:0%;
@@ -259,23 +270,26 @@ body{
 
 .notifications{
     width:auto;
-    height: 6vh;
-    background-color: #f0f0f0;
+    height: 100%;
+    background-color: transparent;
     opacity: 0.8;
     display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
-    margin-top:30px;
+    margin-top:1.5rem;
     border-radius: 16px;
-    margin-bottom: 20px;
+    position: absolute;
+    z-index: 1000;
+    bottom:14rem;
 
 }
 
 .sections{
     width:auto;
     display:flex;
+    height:0%;
     align-items: center;
     align-content: center;
     justify-content: center;
@@ -329,15 +343,14 @@ body{
 }
 
 .friendbar{
-    padding: 0 1.5% 0% 1.5%;
-    background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgb(0, 213, 255) 80%);
     width:20vw;
-    height:auto;
-    border-radius: 16px 0 0 0;
+    height:100%;
     margin:0px 0px 0px 15px;
-    height:50vh;
     min-width:175px;
     max-width:300px;
+    border-right: 1px solid rgba(128, 128, 128, 0.363);
+    border-top: 1px solid rgba(128, 128, 128, 0.363);
 }
 
 .friendbar-div{
@@ -346,7 +359,7 @@ body{
 
 .friendonline{
     background-color: white;
-    color:#333;
+    color:rgb(155, 149, 149);
     padding-left:10px;
     border-radius: 16px;
     font-size: 80%;
@@ -354,15 +367,9 @@ body{
 }
 
 .innerfriendonline{
-    background-color: white;
-    padding-top: 1%;
-    border-radius: 16px;
-    margin-top: 7px;
-    color:#333;
-    
-    li{
-        font-size: 80%;
-    }
+    width:100%;
+    color:rgb(68, 67, 67); 
+
 }
 
 
@@ -379,10 +386,9 @@ body{
       width:100%;
       height:10%;
       background-color: white;
-      justify-content: space-between;
+      justify-content: space-around;
       align-content: center;
       align-items: center;
-      border-radius:10px;
 
       button{
           background-color: transparent;
@@ -393,10 +399,15 @@ body{
   .indifriendwrapper{
     display:flex;
     width:100%;
+    padding-left: 2%;
+    height:2.4rem;
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    height:15%;
+    border-top: 1px solid rgba(128, 128, 128, 0.315);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.315);
+  
+    background-color:rgb(255, 255, 255);
 
     &:hover{
         cursor:pointer;
@@ -578,8 +589,8 @@ body{
   }
 
   .addfriend{
-      color:grey;
-      font-size:9px;
+      color:rgb(0, 139, 0);
+      font-size:0.6rem;
       top:180px;
       left:750px;
       border:0;
@@ -589,7 +600,7 @@ body{
   .sendRequest{
       width:60%;
       margin:5px 0 0 0;
-      font-size: 10px;
+      font-size: 0.6rem;
   }
 
   .sendrequest-wrapper{
@@ -658,7 +669,7 @@ body{
 
   .accept-decline-button{
       width:47%;
-      font-size:10px;
+      font-size:1rem;
       padding:0;
       margin-left:2px;
   }
@@ -725,7 +736,44 @@ body{
         transform: translateX(0%);
         fill: #CF7BD7;
     }
-    
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(238, 238, 238);
+    width:100vw;
+    padding: 1rem 0.2rem 0.2rem 1rem;
+    height:18vh;
+    position: fixed;
+    bottom:0;
+    animation: footer-load 3s forwards;
+
+    p{
+        color: grey;
+        text-align: center;
+        font-size: 0.6rem;
+        width:70%;
+    }
+}
+
+@keyframes footer-load {
+    0%{
+        opacity: 0%;
+        transform: translateY(30%);
+    }
+
+    100%{
+        opacity: 100%;
+        transform:translateY(0%);
+    }
+}
+
+.mainarea{
+    height:100%;
+    margin-top: 5%;
 }
 
 

@@ -7,8 +7,8 @@ const notification = useSelector(state => state.notification.value)
 
     return(
         <div className="notifications">
-            <Alert variant={notification.color}>
-                <Alert.Heading>{notification.message}</Alert.Heading>
+            <Alert variant={notification.color} >
+                <Alert.Heading style={{fontSize: '1rem'}}>{notification.message}</Alert.Heading>
             </Alert>
         </div>
     )

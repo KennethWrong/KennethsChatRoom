@@ -12,11 +12,11 @@ ReactDOM.render(
 <Navigation />
 </Provider>,
 document.getElementById('header'));
+
 ReactDOM.render(
 <Provider store={store}>
 <MainArea/>
 </Provider>,
 document.getElementById('login')
 );
-
 

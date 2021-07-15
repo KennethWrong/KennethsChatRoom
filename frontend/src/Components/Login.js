@@ -98,11 +98,9 @@ function Login (props) {
     return(
         <section className="align-left">
             {noAccount ?
-            <div>
             <Register  setLoggedIn={props.setLoggedIn} 
         setColor={props.setColor} setNotification={props.setNotification}
         setNoAccount={setNoAccount} socket={socket}/>
-        </div>
     :<div className="login">
     <div className="flex-div-column">
     <h3 style={{fontWeight:'bolder'}}>Login</h3>
