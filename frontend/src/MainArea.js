@@ -32,7 +32,7 @@ function MainArea() {
         <Footer />
         </section>:
         <section style={{height:'100%'}}>
-        {/* <Logout setLoggedIn={setLoggedIn} socket={socket}></Logout> */}
+        <Logout setLoggedIn={setLoggedIn} socket={socket}></Logout>
         <section className="responsive-section-row">
             <Friendbar socket={socket}/>
             <Chatbox socket={socket} />

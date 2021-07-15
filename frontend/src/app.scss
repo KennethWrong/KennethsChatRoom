@@ -34,6 +34,7 @@ body{
     align-content: center;
     justify-content:flex-start;
     padding-left: 1rem;
+    background-color:rgb(121, 214, 205);
 
 }
 
@@ -110,7 +111,7 @@ body{
 }
 
 .sections2{
-    width:auto;
+    width:100%;
     display:flex;
     height:100%;
     align-items: center;
@@ -299,23 +300,27 @@ body{
 .logged-in-as-wrapper{
     width:100%;
     display:flex;
-    flex-direction: column;
-    position: absolute;
-    top:15%;
-    left:0%;
+    flex-direction: row;
     padding: 0 2% 0 2%;
 }
 
 .logged-in-as {
     width: 100%;
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     height: auto;
+    font-size: 1rem;
 
-    h3{
-        font-size: 12px;
+    .in-room{
+        font-size: 0.8rem;
         margin-right:10px;
         color:black;
+      }
+
+    h3{
+        margin-right:10px;
+        color:black;
+        margin:0;
     }
 
     button {
@@ -326,6 +331,11 @@ body{
         padding:0 3px 0 3px;
         margin-top: -5px;
         cursor: pointer;
+    }
+
+    .gear{
+        width: 2px;
+        height:2px;
     }
 }
 
@@ -399,14 +409,14 @@ body{
   .indifriendwrapper{
     display:flex;
     width:100%;
-    padding-left: 2%;
-    height:2.4rem;
+    padding-left: 1rem;
+    height:3rem;
     justify-content: space-between;
     align-content: center;
     align-items: center;
     border-top: 1px solid rgba(128, 128, 128, 0.315);
     border-bottom: 1px solid rgba(128, 128, 128, 0.315);
-  
+    
     background-color:rgb(255, 255, 255);
 
     &:hover{
@@ -414,7 +424,7 @@ body{
     }
 
     p{
-        font-size: 10px;
+        font-size: 1rem;
         margin:0px;
     }
   }
@@ -430,28 +440,48 @@ body{
   .refresh{
       max-height:40%;
   }
-
-
-  .in-room{
-    font-size: 12px;
-    margin-right:10px;
-    color:black;
+  .changeRoomDiv{
+      width: 100%;
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      justify-content: center;
   }
 
   .roomNumber{
       input{
-          height:20px;
-          width: 110px;
           font-size:13px;
+          text-align: center;
+          border-style:none;
+          border-top: 1px solid rgba(128, 128, 128, 0.438);
+          border-bottom: 1px solid rgba(128, 128, 128, 0.438);
+          margin-bottom: 0.5rem;
+          margin-top: 0.5rem;
+          height: 2rem;
+
+          &:focus{
+            border-top: 2px solid rgba(128, 128, 128, 0.815);
+            border-bottom: 2px solid rgba(128, 128, 128, 0.815);
+          }
       }
   }
 
   .xtra-small-button{
-      height:20px;
-      width:60px;
       font-size:12px;
-      padding:0;
+      padding:0 0.3rem 0 0.3rem;
+      border-style:none;
       margin:0px;
+      background-color: transparent;
+      border: 1px;
+      border-style: solid;
+      border-color: rgba(128, 128, 128, 0.5);
+      color: rgba(128, 128, 128, 0.863);
+
+      &:hover{
+          color:white;
+          background-color: rgba(128, 128, 128, 0.5);
+      }
+      
   }
 
   .messageStyle{
@@ -674,10 +704,6 @@ body{
       margin-left:2px;
   }
 
-  .changeroom{
-      border-radius: 8px;
-      border-color: orange;
-  }
 
   #K{
       fill:black;
@@ -772,9 +798,60 @@ body{
 }
 
 .mainarea{
-    height:100%;
+    height:80%;
     margin-top: 5%;
 }
+
+.settings{
+    border-color: transparent;
+    border-style: none;
+    color:rgba(128, 128, 128, 0.808);
+    background-color: transparent;
+    border-left: 1px solid rgba(128, 128, 128, 0.226);
+    border-right: 1px solid rgba(128, 128, 128, 0.226);
+    margin:0;
+    padding: 0 0.2rem 0 0.2rem;
+}
+.settings-wrapper{
+    height:100%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+}
+
+.logout-button{
+    @extend .settings;
+    width:100%;
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+
+    &:hover{
+        background-color: grey;
+        color:white;
+    }
+}
+
+#Star{
+    fill:rgb(236, 236, 70);
+    //animation: star-rotate 3s infinite forwards;
+}
+
+@keyframes star-rotate {
+    50%{
+        transform: rotate(45deg);
+    }
+
+    100%{
+        transform: rotate(45deg);
+    }
+    
+}
+
+
 
 
 

@@ -24,19 +24,18 @@ const ChangeRoom = (props) => {
 
 
     return(
-        <div>
+        <div className="changeRoomDiv">
             <form className="roomNumber">
-                <input placeholder="Enter Room No."  
+                <input placeholder="Room Number"  
                 onChange={handleRoomChange}
                 value={newRM}
-                className="changeroom"
                 >
                 </input>
             </form>
-            <Button variant="outline-secondary" 
-            onClick={changeRoom}
+            <button onClick={changeRoom}
             className='xtra-small-button'
-            >Change</Button>
+            >Change
+            </button>
         </div>
     )
 }

@@ -51,50 +51,55 @@
     .footer{
         position: relative;
     }
-}
 
-.mainarea{
-    margin:0;
-    height:90vh;
-}
-
-.responsive-section-row{
-    height:100%;
-}
-
-.friendbar{
-    width:30%;
-    margin:0;
-}
-
-.sections2{
-    width:70%;
-
-    #chatArea{
-        max-width: none;
-        width:100%;
+    .mainarea{
+        margin:0;
+        height:80vh;
     }
-}
-
-.friendonline-wrapper{
-    .friendonline{
-        font-size:1.5rem;
-        font-weight: bolder;
+    
+    .responsive-section-row{
+        height:100%;
+        padding:0;
     }
-
-    .refresh1{
-        height:50%;
+    
+    .friendbar{
+        width:30%;
+        margin:0;
     }
-}
+    
+    .sections2{
+        width:70%;
+    
+        #chatArea{
+            max-width: none;
+            width:100%;
+        }
+    }
+    
+    .friendonline-wrapper{
+        .friendonline{
+            font-size:1.5rem;
+            font-weight: bolder;
+        }
+    
+        .refresh1{
+            height:50%;
+        }
+    }
+    
+    #form{
+        position: fixed;
+        bottom: 0;
+        width:68%;
+    }
+    
+    .notifications{
+        bottom:18.5rem;
+        z-index: 10000000;
+    }
+    
+    
 
-#form{
-    position: fixed;
-    bottom: 0;
-    width:68%;
-}
 
-.notifications{
-    bottom:18.5rem;
-    z-index: 10000000;
-}
 
+}
