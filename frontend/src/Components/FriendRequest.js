@@ -52,19 +52,18 @@ const FriendRequest = (props) => {
         requests.map((request,index) =>
       <div key={index}>
        <p
-       style={{fontSize:'12px'}}
+       style={{fontSize:'1.2rem',textAlign:'center'}}
        >
          {request}
          </p>
-         <Button 
-         variant="success" value={request}
-         className="accept-decline-button"
+         <button value={request}
+         className="accept-button"
          onClick={requestHandlerTrue}>
-             Accept</Button>
-         <Button variant = "danger" value={request}
-         className="accept-decline-button"
+             Accept</button>
+         <button value={request}
+         className="decline-button"
          onClick={requestHandlerFalse}>
-             Decline</Button>
+             Decline</button>
          </div>)
     )
 }

@@ -46,9 +46,10 @@ const AddFriend = () => {
 
     const popover = () => (
         <Popover style={{position:'relative'}}>
-          <Popover.Title as="h3"
-          className="friend-username">
-              Send Friend Request</Popover.Title>
+          <Popover.Title>
+              <h3 className="sendfriendrequest">
+                  Send Friend Request</h3>
+              </Popover.Title>
           <Popover.Content>
             <div className="sendrequest-wrapper">
                 <form>
@@ -58,10 +59,11 @@ const AddFriend = () => {
                     onChange={handleFriendChange}>
                     </input>
                 </form>
-                <Button 
-                    variant="success"
+                <button
                     className="sendRequest"
-                    onClick={sendFriendRequest}>Send Request</Button>
+                    onClick={sendFriendRequest}>
+                        Send Request
+                        </button>
 
             </div>
           </Popover.Content>

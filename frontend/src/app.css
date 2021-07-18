@@ -10866,27 +10866,24 @@ body {
 
 html {
   height: 100%;
+  font-size: 16px;
 }
 
 .responsive-section-row {
   width: 100%;
-  height: 70vh;
+  margin: 0;
+  height: 80.5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 0.3rem;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  padding-left: 1rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color: #79d6cd;
 }
 
@@ -10963,6 +10960,10 @@ html {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   outline: none;
+  font-size: 0.7rem;
+  position: absolute;
+  width: 60%;
+  bottom: 0;
 }
 
 #form button {
@@ -10982,11 +10983,12 @@ html {
 }
 
 .sections2 {
-  width: 100%;
+  width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   height: 100%;
+  margin: 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -11000,10 +11002,7 @@ html {
 
 #chatArea {
   background: linear-gradient(107deg, white 0%, #f3e4fa 100%, #00d4ff 100%);
-  width: 50vw;
-  -webkit-box-shadow: 5px 10px #888888a9;
-          box-shadow: 5px 10px #888888a9;
-  max-width: 600px;
+  width: 60vw;
   height: 100%;
   overflow: scroll;
   border-top: 1px solid rgba(128, 128, 128, 0.363);
@@ -11248,6 +11247,7 @@ html {
 
 .logged-in-as-wrapper {
   width: 100%;
+  padding-right: 0.7rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11255,7 +11255,16 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 0 2% 0 2%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: white;
+}
+
+.totalsectionstyle {
+  height: 100%;
+  background-color: #79d6cd;
+  border-top: 1px solid #b1b1b1;
 }
 
 .logged-in-as {
@@ -11269,6 +11278,8 @@ html {
           flex-direction: column;
   height: auto;
   font-size: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 0.4rem;
 }
 
 .logged-in-as .in-room {
@@ -11279,7 +11290,7 @@ html {
 
 .logged-in-as h3 {
   margin-right: 10px;
-  color: black;
+  color: #c86ac8;
   margin: 0;
 }
 
@@ -11314,11 +11325,11 @@ html {
   background: linear-gradient(107deg, white 0%, #f3e4fa 100%, #00d5ff 80%);
   width: 20vw;
   height: 100%;
-  margin: 0px 0px 0px 15px;
   min-width: 175px;
   max-width: 300px;
   border-right: 1px solid rgba(128, 128, 128, 0.363);
   border-top: 1px solid rgba(128, 128, 128, 0.363);
+  border-left: 1px solid rgba(128, 128, 128, 0.363);
 }
 
 .friendbar-div {
@@ -11330,7 +11341,7 @@ html {
   color: #9b9595;
   padding-left: 10px;
   border-radius: 16px;
-  font-size: 80%;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -11389,7 +11400,7 @@ html {
 }
 
 .indifriendwrapper p {
-  font-size: 1rem;
+  font-size: 0.7rem;
   margin: 0px;
 }
 
@@ -11398,7 +11409,7 @@ html {
 }
 
 .refresh1 {
-  height: 100%;
+  height: 50%;
 }
 
 .refresh {
@@ -11438,7 +11449,7 @@ html {
   border-bottom: 2px solid rgba(128, 128, 128, 0.815);
 }
 
-.xtra-small-button {
+.xtra-small-button, .sendRequest {
   font-size: 12px;
   padding: 0 0.3rem 0 0.3rem;
   border-style: none;
@@ -11450,7 +11461,7 @@ html {
   color: rgba(128, 128, 128, 0.863);
 }
 
-.xtra-small-button:hover {
+.xtra-small-button:hover, .sendRequest:hover {
   color: white;
   background-color: rgba(128, 128, 128, 0.5);
 }
@@ -11579,8 +11590,8 @@ html {
   font-size: 4px;
 }
 
-.onlineStatus, .online, .offline, .friend-username {
-  font-size: 12px;
+.onlineStatus, .online, .offline {
+  font-size: 0.8rem;
 }
 
 .online {
@@ -11591,13 +11602,14 @@ html {
   color: red;
 }
 
-.friend-username {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.friend-username, .sendfriendrequest {
+  font-size: 1rem;
+  text-align: center;
+  color: rgba(125, 98, 245, 0.863);
+}
+
+.sendfriendrequest {
+  color: rgba(128, 128, 128, 0.699);
 }
 
 .joinRoom {
@@ -11625,12 +11637,6 @@ html {
   background-color: transparent;
 }
 
-.sendRequest {
-  width: 60%;
-  margin: 5px 0 0 0;
-  font-size: 0.6rem;
-}
-
 .sendrequest-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11639,11 +11645,23 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .sendrequest-wrapper form input {
-  width: 100%;
-  font-size: 12px;
+  font-size: 13px;
+  text-align: center;
+  border-style: none;
+  border-top: 1px solid rgba(128, 128, 128, 0.438);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.438);
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  height: 2rem;
 }
 
 .navlink-style {
@@ -11716,18 +11734,34 @@ html {
 }
 
 .unfriend-button {
-  font-size: 10px;
+  font-size: 0.6rem;
   border: 0;
   background-color: transparent;
-  color: #ee3b3b;
+  color: rgba(163, 163, 163, 0.589);
   margin: 0;
 }
 
-.accept-decline-button {
+.unfriend-button:hover {
+  color: red;
+}
+
+.accept-button, .decline-button {
   width: 47%;
-  font-size: 1rem;
+  font-size: 0.6rem;
   padding: 0;
   margin-left: 2px;
+  border-style: none;
+  border-top: 1px solid rgba(128, 128, 128, 0.664);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.664);
+  background-color: transparent;
+}
+
+.accept-button:hover, .decline-button:hover {
+  background-color: green;
+}
+
+.decline-button:hover {
+  background-color: red;
 }
 
 #K {
@@ -11875,8 +11909,7 @@ html {
 }
 
 .mainarea {
-  height: 80%;
-  margin-top: 5%;
+  height: 100%;
 }
 
 .settings, .logout-button {
@@ -11924,27 +11957,39 @@ html {
 
 #Star {
   fill: #ecec46;
+  -webkit-animation: rotation 4s infinite linear;
+  animation: rotation 4s infinite linear;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
 }
 
-@-webkit-keyframes star-rotate {
-  50% {
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
+#Star:hover {
+  cursor: pointer;
+  fill: #e9ae50;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
   }
-  100% {
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
+  to {
+    -webkit-transform: rotate(359deg);
   }
 }
 
-@keyframes star-rotate {
-  50% {
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
-  100% {
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
   }
+}
+
+.mainname {
+  color: cadetblue;
 }
 /*# sourceMappingURL=app.css.map */

@@ -23,17 +23,17 @@ body{
 
   html{
       height:100%;
+      font-size: 16px;
   }
 
 .responsive-section-row {
     width:100%;
-    height:70vh;
+    margin:0;
+    height:80.5vh;
     display:flex;
+    margin-top: 0.3rem;
     flex-direction: row;
-    align-items: center;
-    align-content: center;
-    justify-content:flex-start;
-    padding-left: 1rem;
+    justify-content:center;
     background-color:rgb(121, 214, 205);
 
 }
@@ -93,6 +93,11 @@ body{
     box-sizing: border-box;
     backdrop-filter: blur(10px);
     outline:none;
+    font-size: 0.7rem;
+    position: absolute;
+    width:60%;
+    bottom:0;
+    
 
     button{
         background: #333; 
@@ -111,9 +116,10 @@ body{
 }
 
 .sections2{
-    width:100%;
+    width:auto;
     display:flex;
     height:100%;
+    margin:0;
     align-items: center;
     align-content: center;
     justify-content: center;
@@ -122,9 +128,7 @@ body{
 
 #chatArea{
     background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
-    width: 50vw;
-    box-shadow: 5px 10px #888888a9;
-    max-width: 600px;
+    width: 60vw;
     height:100%;
     overflow:scroll;
     border-top: 1px solid rgba(128, 128, 128, 0.363);
@@ -299,9 +303,18 @@ body{
 
 .logged-in-as-wrapper{
     width:100%;
+    padding-right: 0.7rem;
     display:flex;
     flex-direction: row;
-    padding: 0 2% 0 2%;
+    justify-content: space-between;
+    background-color:white;
+}
+
+.totalsectionstyle{
+    height:100%;
+    background-color: #79d6cd;
+    border-top: 1px solid rgb(177, 177, 177);
+
 }
 
 .logged-in-as {
@@ -310,6 +323,8 @@ body{
     flex-direction: column;
     height: auto;
     font-size: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 0.4rem;
 
     .in-room{
         font-size: 0.8rem;
@@ -319,7 +334,7 @@ body{
 
     h3{
         margin-right:10px;
-        color:black;
+        color:rgb(200, 106, 200);
         margin:0;
     }
 
@@ -356,11 +371,11 @@ body{
     background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgb(0, 213, 255) 80%);
     width:20vw;
     height:100%;
-    margin:0px 0px 0px 15px;
     min-width:175px;
     max-width:300px;
     border-right: 1px solid rgba(128, 128, 128, 0.363);
     border-top: 1px solid rgba(128, 128, 128, 0.363);
+    border-left: 1px solid rgba(128, 128, 128, 0.363);
 }
 
 .friendbar-div{
@@ -372,7 +387,7 @@ body{
     color:rgb(155, 149, 149);
     padding-left:10px;
     border-radius: 16px;
-    font-size: 80%;
+    font-size: 1rem;
     margin:0;
 }
 
@@ -424,7 +439,7 @@ body{
     }
 
     p{
-        font-size: 1rem;
+        font-size: 0.7rem;
         margin:0px;
     }
   }
@@ -434,7 +449,7 @@ body{
 }
 
   .refresh1{
-      height: 100%;
+      height: 50%;
   }
 
   .refresh{
@@ -582,7 +597,7 @@ body{
   }
 
   .onlineStatus{
-      font-size:12px;
+      font-size:0.8rem;
   }
 
   .online{
@@ -596,11 +611,14 @@ body{
   }
 
   .friend-username{
-      @extend .onlineStatus;
-      display:flex;
-      justify-content: space-between;
+      font-size: 1rem;
+      text-align: center;
+      color: rgba(125, 98, 245, 0.863);
+  }
 
-
+  .sendfriendrequest{
+      @extend .friend-username;
+      color:rgba(128, 128, 128, 0.699);
   }
 
   .joinRoom{
@@ -628,19 +646,25 @@ body{
   }
 
   .sendRequest{
-      width:60%;
-      margin:5px 0 0 0;
-      font-size: 0.6rem;
+      @extend .xtra-small-button;
   }
 
   .sendrequest-wrapper{
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       form{
           input{
-              width:100%;
-              font-size: 12px;
+            font-size:13px;
+            text-align: center;
+            border-style:none;
+            border-top: 1px solid rgba(128, 128, 128, 0.438);
+            border-bottom: 1px solid rgba(128, 128, 128, 0.438);
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            height: 2rem;
           }
       }
   }
@@ -690,18 +714,39 @@ body{
   }
 
   .unfriend-button{
-      font-size:10px;
+      font-size:0.6rem;
       border: 0;
       background-color: transparent;
-      color:rgb(238, 59, 59);
+      color:rgba(163, 163, 163, 0.589);
       margin:0;
+
+      &:hover{
+          color:red;
+      }
   }
 
-  .accept-decline-button{
+  .accept-button{
       width:47%;
-      font-size:1rem;
+      font-size:0.6rem;
       padding:0;
       margin-left:2px;
+      border-style: none;
+      border-top: 1px solid rgba(128, 128, 128, 0.664);
+      border-bottom: 1px solid rgba(128, 128, 128, 0.664);
+      background-color: transparent;
+
+      &:hover{
+          background-color: green;
+      }
+  }
+
+  .decline-button{
+      @extend .accept-button;
+
+      &:hover{
+          background-color: red;
+
+      }
   }
 
 
@@ -798,8 +843,7 @@ body{
 }
 
 .mainarea{
-    height:80%;
-    margin-top: 5%;
+    height:100%;
 }
 
 .settings{
@@ -835,22 +879,42 @@ body{
     }
 }
 
-#Star{
+
+#Star {
+    &:hover{
+        cursor: pointer;
+        fill:rgb(233, 174, 80);
+    }
     fill:rgb(236, 236, 70);
-    //animation: star-rotate 3s infinite forwards;
+    -webkit-animation: rotation 4s infinite linear;
+    -moz-animation: rotation 4s infinite linear;
+    -o-animation: rotation 4s infinite linear;
+    animation: rotation 4s infinite linear;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
 }
 
-@keyframes star-rotate {
-    50%{
-        transform: rotate(45deg);
-    }
-
-    100%{
-        transform: rotate(45deg);
-    }
-    
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to   {-webkit-transform: rotate(359deg);}
+}
+@-moz-keyframes rotation {
+    from {-moz-transform: rotate(0deg);}
+    to   {-moz-transform: rotate(359deg);}
+}
+@-o-keyframes rotation {
+    from {-o-transform: rotate(0deg);}
+    to   {-o-transform: rotate(359deg);}
+}
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to   {transform: rotate(359deg);}
 }
 
+.mainname{
+    color:cadetblue;
+}
 
 
 

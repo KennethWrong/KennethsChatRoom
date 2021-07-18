@@ -25,7 +25,7 @@ const Logout = (props) => {
 
     const popover = () => (
         <Popover style={{position:'relative',}}>
-          <Popover.Title as="h3">
+          <Popover.Title>
               <h6 style={{textAlign:'center', fontSize:'1rem',color:'grey'}}>
                   Settings
                   </h6>
@@ -51,7 +51,7 @@ const Logout = (props) => {
 
       const popover2 = () => (
         <Popover style={{position:'relative',}}>
-          <Popover.Title as="h3">
+          <Popover.Title>
               <h6 style={{textAlign:'center',color:'grey',fontSize:'1rem'}}>
                   Change Room
                   </h6>
@@ -66,7 +66,7 @@ const Logout = (props) => {
     return(
     <div className="logged-in-as-wrapper">
     <div className="logged-in-as">
-    <h3>{userName}</h3>
+    <h3 className="mainname">{userName}</h3>
     <h3 className="in-room">Room: {room}</h3>
     </div>
     <OverlayTrigger 
@@ -74,7 +74,7 @@ const Logout = (props) => {
       placement="bottom" 
       overlay={popover()}
       delay={{ show: 250, hide: 150 }}>
-          <Star />
+          <div><Star /></div>
     </OverlayTrigger>
     </div>
     )

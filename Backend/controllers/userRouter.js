@@ -149,15 +149,14 @@ router.put(`/friends/friendrequest`, async (request,response) => {
     const valid2 = toUser.friends.includes(senderUser._id)
 
     if(valid2){
-        response.status(500).send({message:'You are already friends with user'})
+        return response.status(500).send({message:'You are already friends with user'})
     }else if(valid){
-        response.status(500).send({message:'Duplicate Friend Request'})
+        return response.status(500).send({message:'Duplicate Friend Request'})
     }
     else{
         requests = requests.concat(sender)
         const result = await User.findOneAndUpdate({username:to},
             {friendrequest:requests},{new:true})
-            console.log(result)
         .catch(err => {
             response.status(500).send({message:'unable to process request'})
         })

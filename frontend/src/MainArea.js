@@ -31,7 +31,7 @@ function MainArea() {
         </section>
         <Footer />
         </section>:
-        <section style={{height:'100%'}}>
+        <section className="totalsectionstyle">
         <Logout setLoggedIn={setLoggedIn} socket={socket}></Logout>
         <section className="responsive-section-row">
             <Friendbar socket={socket}/>

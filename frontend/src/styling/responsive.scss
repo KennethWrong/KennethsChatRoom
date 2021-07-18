@@ -54,12 +54,13 @@
 
     .mainarea{
         margin:0;
-        height:80vh;
+        height:84vh;
     }
     
     .responsive-section-row{
         height:100%;
         padding:0;
+        margin:0px;
     }
     
     .friendbar{
@@ -97,9 +98,26 @@
         bottom:18.5rem;
         z-index: 10000000;
     }
-    
-    
 
+    .logged-in-as-wrapper{
+        width:100%;
+        display:flex;
+        flex-direction: row;
+        padding: 0 2% 0 2%;
+    }
+    
+    .logged-in-as {
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        height: auto;
+        font-size: 1rem;
+    }
 
+    .totalsectionstyle{
+        height:100%;
+        background-color: #79d6cd;
+        padding-left: 0;
+    }
 
 }
