@@ -64,13 +64,21 @@ function Login (props) {
         }
         
         else if(un && pw && rm){
-        
-        
-        const checkUser = await axios.get(`http://localhost:3080/users/login/${un}`)
-
-            if(checkUser.data.length > 0){
-            validation = checkUser.data[0].password === pw ? true : false
+            let body = {
+                username: un,
+                password:pw
             }
+        
+        
+        const checkUser = await axios.post(`http://localhost:3080/users/login/`,body)
+        .catch(err => CreateNotification('danger','Wrong Username or Password'))
+
+            if(checkUser){
+                if(checkUser.status === 200){
+                    validation = true;
+                }
+            }
+            console.log(checkUser)
 
             if(validation){
                 let state = {state:true,room: rm,}

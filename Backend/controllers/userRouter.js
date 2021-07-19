@@ -2,15 +2,20 @@ var express = require('express')
 var router = express.Router();
 const UserModel = require('../utils/userModel')
 const User = require('../utils/userModel')
+const bcrypt = require('bcrypt')
 
+const saltRounds = 10;
+
+//new user register
 router.post('/users',async (request,response) => {
     const username = request.body.username
     const password = request.body.password
     const room = request.body.room
+    const hashPassword = bcrypt.hashSync(password,saltRounds)
 
     const newUser = {
         username:username,
-        password:password,
+        password:hashPassword,
         room:room
     }
     const account = new UserModel(newUser)
@@ -36,14 +41,24 @@ router.get('/users/:username',(request,response) => {
 
 })
 
-router.get('/users/login/:username', (request,response) => {
-    let username = request.params.username
-    User.find({username:username}, (err,user) => {
-        if(err){
-            response.status(400).json(err)
-        }
-        response.status(200).json(user)
-    })
+//login
+router.post('/users/login/', async (request,response) => {
+    console.log(request.body)
+    let username = request.body.username
+    let password = request.body.password
+    try{
+        const user = await User.findOne({username:username})
+        let hash = user.password
+        let results = await bcrypt.compare(password,hash, (err,results) => {
+            if(results){
+                response.sendStatus(200)
+            }else{
+                response.status(404).send({msg:'username or password was incorrect'})
+            }
+        })
+    }catch(err){
+        response.status(500).send({msg:'Internal server error'})
+    }
 })
 
 router.get('/friends/all/:username', async (request,response) => {
