@@ -8,6 +8,8 @@ Brief description of what is being done:
 - MongoDB cluster to save information on users, messages
 - Using socket.io to allow real-time chat messages
 - Using redux-react for username and chat room identification
+- BCrypt for encryption of password
+- More socket.io for real-time refresh of friends status
 
 What will be implemented next:
 - Unfriend feature
