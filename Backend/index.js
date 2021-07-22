@@ -40,6 +40,28 @@ io.on('connection', (socket) => {
         io.in(sentUser.rm).emit('join room',sentUser.un)
     })
 
+    socket.on('friend request', (un) => {
+        console.log(un)
+        const user = userFunction.getUserByName(un)
+        console.log(user)
+        if(user){
+            io.to(user.id).emit('friend request')
+        }else{
+            socket.to(socket.id).emit('message','friend request has been sent')
+        }
+
+    })
+
+    socket.on('refresh friends',(to) => {
+        console.log('I am refereshing the friend')
+        const toUser = userFunction.getUserByName(to)
+        console.log(toUser)
+        if(toUser){
+            io.to(toUser.id).emit('refresh friends')
+        }
+        socket.emit('refresh friends')
+    })
+
     socket.on('logout',async () => {
         const user = userFunction.getUserById(socket.id)
         socket.to(user.room).emit('leave',`User ${user.username} has left the chat`)
@@ -62,6 +84,7 @@ io.on('connection', (socket) => {
 })
 
 app.use('/',userRouter)
+app.use(express.static('build'))
 
 server.listen(process.env.PORT, () => {
     console.log('Running at Port 3080')

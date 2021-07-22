@@ -7,8 +7,9 @@ import Badge from 'react-bootstrap/Badge'
 import {useSelector} from 'react-redux'
 import FriendRequest from '../Components/FriendRequest'
 import friendFunction from '../utils/friendFunction'
+import Logo from '../svg/Logo'
 
-const Navigation = () => {
+const Navigation = (props) => {
   const requests = useSelector(state => state.request.value)
   const username = useSelector(state => state.username.value)
 
@@ -19,8 +20,8 @@ const Navigation = () => {
       Friend Requests </Popover.Title>
     <Popover.Content>
       {requests?
-      <FriendRequest requests={requests} username={username}></FriendRequest>
-      :''}
+      <FriendRequest requests={requests} username={username} socket={props.socket}></FriendRequest>
+      :<p style={{color:'grey',fontSize:'10px',textAlign:'center'}}>Login to Check</p>}
     </Popover.Content>
     </Popover>
   )
@@ -32,17 +33,20 @@ const Navigation = () => {
       About Me </Popover.Title>
     <Popover.Content>
       <p style={{fontSize:'12px'}}>
-      Hey guys I am kenneth nice to meet you, I am new to CSS so I am trying
-      to use SCSS, React and Node to create a webapp to improve and train my skills
-      as a web-developer, I am going to add more things into this!
+      Hey guys I am kenneth nice to meet you,  I created this page to practice
+      my web-dev skills. This project started in the Summer of 2021 and I hope
+      that I can continue to make cool websites like this. As for now please enjoy!
       </p>
 
     </Popover.Content>
     </Popover>
   )
   return (
-    <Navbar bg="light" variant="light" sticky="top">
-      <Navbar.Brand href='#'>KCHAT</Navbar.Brand>
+    <Navbar bg="light" variant="light" sticky="top"
+    className="navbar">
+      <Navbar.Brand href='http://localhost:3000'>
+        <Logo></Logo>
+      </Navbar.Brand>
       <Nav className="ml-auto">
         <Nav.Item>
           <OverlayTrigger trigger="focus" placement="bottom" overlay={popover}>
@@ -52,10 +56,13 @@ const Navigation = () => {
         <OverlayTrigger trigger="focus" placement="bottom" overlay={requestPopover}>
         <Nav.Link className="navlink-style" 
         href="#">
-          Friend Requests <Badge variant="dark">{requests.length}</Badge>
+          Friend Requests <Badge variant="dark">{requests?
+          requests.length: 'NaN'}</Badge>
           </Nav.Link>
           </OverlayTrigger>
-        <Nav.Link className="navlink-style" href="#">What's next?</Nav.Link>
+        <Nav.Link className="navlink-style github" href="https://github.com/KennethWrong">
+          GitHub
+          </Nav.Link>
       </Nav>
     </Navbar>
   );

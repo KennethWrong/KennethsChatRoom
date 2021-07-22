@@ -8,6 +8,10 @@ const getUserById = (id) => {
     return users.find(user => user.id === id)
 }
 
+const getUserByName = (username) => {
+    return users.find(user => user.username === username)
+}
+
 const userEnter = (user) => {
     users.push(user)
     return user
@@ -35,5 +39,6 @@ module.exports ={
     getUserById,
     userEnter,
     userExit,
-    findUserandUpdate
+    findUserandUpdate,
+    getUserByName
 }

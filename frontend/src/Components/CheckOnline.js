@@ -7,10 +7,12 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
+import friendFunction from '../utils/friendFunction'
 
 const CheckOnline = (props) => {
 
 const dispatch = useDispatch()
+const username = useSelector(state => state.username.value)
 const socket = props.socket;
 const friends = props.friends;
 
@@ -30,10 +32,10 @@ const checkOnline = (friend) => {
                 <h6 className="onlineStatus">Currently: <span className="online">Online</span></h6>
                 <div className="in-room-wrapper">
                     <p>In Room:  </p>
-                    <Button variant="link" 
+                    <button
                     className="joinRoom"
                     onClick={joinRoom} value={friend.room}>
-                    {friend.room}</Button></div>
+                    {friend.room}</button></div>
             </div>
         )
     }else{
@@ -53,9 +55,21 @@ const joinRoom = (e) => {
     }
  }
 
- const unfriendFunction = (e) => {
+ const unfriendFunction = async (e) => {
      e.preventDefault()
-     
+     const targetUser = e.target.value
+     if(window.confirm(`You sure you want to unfriend ${targetUser}?`)){
+         const body = {
+             user: username,
+             toDelete: e.target.value
+         }
+        const res = await friendFunction.deleteFriend(body)
+        console.log('I am getting called!')
+        socket.emit('refresh friends',targetUser)
+
+    }
+
+
 
  }
 
@@ -65,7 +79,7 @@ const joinRoom = (e) => {
       <Popover.Title as="h3">
           <div className="friend-username">
           {friend.username}
-          <button className="unfriend-button" value ={friend} onClick={unfriendFunction}>
+          <button className="unfriend-button" value ={friend.username} onClick={unfriendFunction}>
                 unfriend
           </button>
           </div>

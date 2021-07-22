@@ -6,9 +6,10 @@ import Button from 'react-bootstrap/Button';
 import {useDispatch} from 'react-redux'
 import {setUN} from '../app/unSlice'
 import {setRN} from '../app/roomSlice'
+import { setNotification } from '../app/notificationSlice';
+import { clearNotification } from '../app/notificationSlice';
 import {setRequest} from '../app/requestSlice'
 import friendFunction from '../utils/friendFunction';
-
 
 
 function Login (props) {
@@ -19,6 +20,19 @@ function Login (props) {
     const dispatch = useDispatch()
 
     const socket = props.socket;
+
+    const CreateNotification = (color,message) => {
+        const body = {
+            color:color,
+            message:message
+        }
+    
+        dispatch(setNotification(body))
+        setTimeout(() => {
+            dispatch(clearNotification())
+        },2000)
+
+    }
 
     const handleUserChange = (text) => {
         setun(text.target.value)
@@ -44,28 +58,25 @@ function Login (props) {
         if(!(un&&pw)){
             setpw('')
             setun('')
-            props.setNotification(`Wrong Username or Password`)
-                    props.setColor('danger')
-                    setTimeout(() => {
-                        props.setNotification('')
-                        props.setColor('')
-                    },2000)
+            CreateNotification('danger','Wrong Username or Password')
         }else if(!rm){
-            props.setNotification(`Specify a valid room number`)
-            props.setColor('warning')
-            setTimeout(() => {
-                props.setNotification('')
-                props.setColor('')
-            },2000)
+            CreateNotification('warning','Specify a valid Room Number')
         }
         
         else if(un && pw && rm){
+            let body = {
+                username: un,
+                password:pw
+            }
         
         
-        const checkUser = await axios.get(`http://localhost:3080/users/login/${un}`)
+        const checkUser = await axios.post(`http://localhost:3080/users/login/`,body)
+        .catch(err => CreateNotification('danger','Wrong Username or Password'))
 
-            if(checkUser.data.length > 0){
-            validation = checkUser.data[0].password === pw ? true : false
+            if(checkUser){
+                if(checkUser.status === 200){
+                    validation = true;
+                }
             }
 
             if(validation){
@@ -75,23 +86,17 @@ function Login (props) {
                 dispatch(setRN(rm))
                 props.setLoggedIn(true)
                 socket.emit('join room',{un,rm})
-                props.setNotification(`${un} joined room ${rm}`)
-                props.setColor('success')
                 let requests = await friendFunction.getFriendRequests(un)
                 dispatch(setRequest(requests))
-                setTimeout(() => {
-                    props.setNotification('')
-                    props.setColor('')
-                },2000)
+                //setting notification
+                let message = `${un} joined room ${rm}`;
+                let color = 'success';
+                CreateNotification(color,message)
                 
             }else
                 {
-                    props.setNotification(`Wrong Username or Password`)
-                    props.setColor('danger')
-                    setTimeout(() => {
-                        props.setNotification('')
-                        props.setColor('')
-                    },2000)
+                    CreateNotification('danger','Wrong Username or Password')
+
                 }
 
              }
@@ -100,14 +105,12 @@ function Login (props) {
     return(
         <section className="align-left">
             {noAccount ?
-            <div>
             <Register  setLoggedIn={props.setLoggedIn} 
         setColor={props.setColor} setNotification={props.setNotification}
         setNoAccount={setNoAccount} socket={socket}/>
-        </div>
     :<div className="login">
     <div className="flex-div-column">
-    <h3>Login</h3>
+    <h3 style={{fontWeight:'bolder'}}>Login</h3>
     <input type="text" onChange={handleUserChange} value={un}
     autoComplete = "off" placeholder="Username"></input>
 

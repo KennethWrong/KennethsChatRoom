@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+@media (max-width: 802px){
+
+    html{
+        font-size:12px;
+    }
+
+
+    .hero1{
+        flex-direction: column;
+        align-items: center;
+        align-content: space-around;
+        justify-content: space-around;
+        justify-items: center;
+        
+        .wrapping-header{
+            width:90%;
+            margin-bottom: 5%;
+            text-align: center;
+
+            .kchatapphead{
+                font-size:5.3rem;
+            }
+            .tryyoutext{
+                font-size:2.8rem;
+            }
+        }
+
+        .align-left{
+            margin:auto;
+            justify-content: center;
+        }
+
+        .flex-div-column{
+            width:70%;
+
+            h3{
+                font-size:2.5rem;
+            }
+        }
+
+    }
+
+    .register{
+        margin:0;
+    }
+
+    .footer{
+        position: relative;
+    }
+
+    .mainarea{
+        margin:0;
+        height:84vh;
+    }
+    
+    .responsive-section-row{
+        height:100%;
+        padding:0;
+        margin:0px;
+    }
+    
+    .friendbar{
+        width:30%;
+        margin:0;
+    }
+    
+    .sections2{
+        width:70%;
+    
+        #chatArea{
+            max-width: none;
+            width:100%;
+        }
+    }
+    
+    .friendonline-wrapper{
+        .friendonline{
+            font-size:1.5rem;
+            font-weight: bolder;
+        }
+    
+        .refresh1{
+            height:50%;
+        }
+    }
+    
+    #form{
+        position: fixed;
+        bottom: 0;
+        width:68%;
+    }
+    
+    .notifications{
+        bottom:18.5rem;
+        z-index: 10000000;
+    }
+
+    .logged-in-as-wrapper{
+        width:100%;
+        display:flex;
+        flex-direction: row;
+        padding: 0 2% 0 2%;
+    }
+    
+    .logged-in-as {
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        height: auto;
+        font-size: 1rem;
+    }
+
+    .totalsectionstyle{
+        height:100%;
+        background-color: #79d6cd;
+        padding-left: 0;
+    }
+
+}

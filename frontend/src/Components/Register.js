@@ -5,6 +5,10 @@ import Button from 'react-bootstrap/Button';
 import {useDispatch} from 'react-redux'
 import {setUN} from '../app/unSlice'
 import {setRN} from '../app/roomSlice'
+import {setNotification} from '../app/notificationSlice'
+import {clearNotification} from '../app/notificationSlice'
+import {setRequest} from '../app/requestSlice'
+import friendFunction from '../utils/friendFunction';
 
 function Register (props) {
     const[regun,setregun] = useState('')
@@ -13,6 +17,19 @@ function Register (props) {
     const dispatch = useDispatch()
 
     const socket = props.socket
+
+    const CreateNotification = (color,message) => {
+        const body = {
+            color:color,
+            message:message
+        }
+    
+        dispatch(setNotification(body))
+        setTimeout(() => {
+            dispatch(clearNotification())
+        },2000)
+    
+    }
 
     const handleRoomChange = (text) => {
         setRm(text.target.value)
@@ -32,9 +49,9 @@ function Register (props) {
 
     const handleRegister = async (e) => {
         e.preventDefault()
+        let status;
 
-
-        if(regun && regpw){
+        if(regun && regpw &&rm){
 
             let account = {
                 username: regun,
@@ -42,41 +59,44 @@ function Register (props) {
                 room:rm
             }
 
-            axios.post('http://localhost:3080/users',account)
-            .catch(error => console.log(error))
-
-            dispatch(setUN(regun))
-            dispatch(setRN(rm))
-            props.setLoggedIn(true)
-            let un = regun
-            socket.emit('join room',{un,rm})
-            props.setNotification(`${regun} has successfully registered`)
-            props.setColor('success')
-            setTimeout(() => {
-                props.setNotification('')
-                props.setColor('#f0f0f0')
-            },2000)
+            const res = await axios.post('http://localhost:3080/users',account)
+            .catch(error => 
+                {
+                    status = error.response.status
+                    CreateNotification('danger',error.response.data.message)
+                })
+            
+            if(status !== 500){
+                dispatch(setUN(regun))
+                let requests = await friendFunction.getFriendRequests(regun)
+                dispatch(setRequest(requests))
+                dispatch(setRN(rm))
+                props.setLoggedIn(true)
+                let un = regun
+                socket.emit('join room',{un,rm})
+                CreateNotification('success',`${regun} has successfully Registered`)
+        }
             setregun('')
             setregpw('')
+            setRm('')
 
             
         }
-            else
-            {
-                props.setNotification(`Username or password must be present`)
-                props.setColor('danger')
-                setTimeout(() => {
-                props.setNotification('')
-                 props.setColor('#f0f0f0')
-                },2000)
-            }
+        else if(!rm)
+        {
+                CreateNotification('warning',`Room Number must be provided`)
+        }
+        else
+        {
+            CreateNotification('danger',`Username or Password must be present`)
+        }
     }
 
 
     return(
         <div className="register">
             <div className="flex-div-column">
-            <h3>Register</h3>
+            <h3 style={{fontWeight:'bolder'}}>Register</h3>
 
             <input type="text" onChange={handleunregChange} value={regun}
             autoComplete = "off" placeholder="Username"></input>

@@ -3,6 +3,7 @@ import React from 'react'
 import {useState} from 'react'
 import {useSelector} from 'react-redux'
 import Messages from './Messages'
+import '../styling/responsive.css'
 
 function Chatbox(props) {
 
@@ -70,11 +71,10 @@ function Chatbox(props) {
 
 
     return (
-        <section className="sections">
+        <section className="sections2">
       <div id="chatArea">
           <Messages messages={messages}></Messages>
-          </div>
-        <div>
+          <div>
             <form id="form" action="">
             <input onChange={userTextChange} type="text" id="inputbox" autoComplete="off" 
             placeholder="Type something..." value={tempmsg}>
@@ -85,6 +85,7 @@ function Chatbox(props) {
                 }
             </form>
         </div>
+          </div>
         </section>
 
     )

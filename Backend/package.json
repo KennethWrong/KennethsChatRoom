@@ -4,7 +4,8 @@
   "description": "backend for alco limited",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build:ui": "rm -rf build && cd ../frontend/ && npm run build --prod && cp -r build ../backend"
   },
   "author": "kenneth wong",
   "license": "ISC",

@@ -1,17 +1,38 @@
 //Override
 //$body-bg: #f0f0f0;
-$font-family: "Lato";
+$font-family: "poppins";
 
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+body{
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    margin:0;
+    overflow-x:hidden;
+    background-color:#f0f0f0 ;
+    font-family: 'poppins';
+    font-weight: 400;
+    height:100%;
+  }
+
+  html{
+      height:100%;
+      font-size: 16px;
+  }
 
 .responsive-section-row {
     width:100%;
+    margin:0;
+    height:80.5vh;
     display:flex;
+    margin-top: 0.3rem;
     flex-direction: row;
-    align-items: center;
-    align-content: center;
     justify-content:center;
 
 }
@@ -31,21 +52,6 @@ $font-family: "Lato";
     }
 }
 
-
-
-
-body{
-    display:flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: flex-start;
-    align-items: center;
-    height: auto;
-    margin:0;
-    overflow-x:hidden;
-    background-color:#f0f0f0 ;
-
-  }
 
 
 #intro{
@@ -78,27 +84,29 @@ body{
     outline: none;
  }
 
- #form > button { background: #333; 
-    border: none; 
-    padding: 0 1rem; 
-    margin: 0.25rem; 
-    border-radius: 3px; 
-    outline: none; 
-    color: #fff; 
-}
-
 #form {
     background: rgba(0,0,0,0.15);
     padding: 0.25rem;
-    position: fixed;
-    bottom:0;
-    left: 0;
-    right:0;
     display: flex;
     height:3rem;
     box-sizing: border-box;
     backdrop-filter: blur(10px);
     outline:none;
+    font-size: 0.7rem;
+    position: absolute;
+    width:60%;
+    bottom:0;
+    
+
+    button{
+        background: #333; 
+        border: none; 
+        padding: 0 1rem; 
+        margin: 0.25rem; 
+        border-radius: 3px; 
+        outline: none; 
+        color: #fff; 
+    }
 }
 
 #messages { 
@@ -106,16 +114,73 @@ body{
     background: linear-gradient(to left, #ece9e6, #ffffff); 
 }
 
+.sections2{
+    width:auto;
+    display:flex;
+    height:100%;
+    margin:0;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+}
+
 #chatArea{
     background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
-    width: 50vw;
-    max-width: 600px;
-    height:60vh;
-    border-radius: 16px;
-    border: 2px #e58560;
-    border-style:double;
+    width: 60vw;
+    height:100%;
     overflow:scroll;
+    border-top: 1px solid rgba(128, 128, 128, 0.363);
 }
+
+.hero1{
+    display:flex;
+    width:100%;
+    justify-content: space-around;
+    align-items: center;
+    padding:1% 2% 0 2%;
+    background-color: rgb(179, 224, 226);
+
+    div{
+        width:50%;
+    }
+}
+
+.wrapping-header{
+    width:50%;
+    h1{
+        font-size:3rem;
+    }
+
+    .kchatapphead{
+        font-size:5rem;
+        font-weight: bolder;
+        animation: enter-hero1 1.5s ease-in-out forwards;
+        opacity:0%;
+    }
+
+    .tryyoutext{
+        animation:enter-hero1 1.5s ease-in-out forwards;
+        opacity:0%;
+    }
+
+    @keyframes enter-hero1 {
+        0%{
+            transform: translateX(-10%);
+        }
+
+        100%{
+            opacity: 100%;
+            transform: translateX(0%);
+        }
+        
+    }
+
+}
+
+
+
+
 
 .login
 {
@@ -127,19 +192,31 @@ body{
     justify-items: center;
     align-items: center;
     padding: 0px 2% 2% 2%;
-    background: linear-gradient(to right, #D6A4A4, #DAE2F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    box-shadow: 5px 10px #888888a9;
+    background: linear-gradient(to right, #D6A4A4, #DAE2F8); 
     border: 3px black;
     border-radius: 16px;
-    width: 35vw;
-    height: 55vh;
+    width: 40vw;
+    height:55vh;
     min-width: 300px;
-
     margin-bottom: 20px;
 
     h3{
         text-align: center;
     }
+    opacity: 0;
+    animation: login-opacity 2s forwards;
+}
+
+@keyframes login-opacity {
+    0%{
+        transform: translateX(2%);
+    }
+    100%{
+        opacity: 100%;
+        transform: translateX(0%);
+    }
+    
 }
 
 .flex-div-column{
@@ -148,8 +225,6 @@ body{
     align-items: center;
     justify-content:center ;
     height: 100%;
-
-    
 
     input{
         margin-top:20px;
@@ -167,13 +242,11 @@ body{
 
 .align-left 
 {
-    width:auto;
+    width:40vw;
     height:auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-content: space-evenly;
-    justify-content: space-evenly;
     background-color: transparent;
 }
 
@@ -201,23 +274,26 @@ body{
 
 .notifications{
     width:auto;
-    height: 6vh;
-    background-color: #f0f0f0;
+    height: 100%;
+    background-color: transparent;
     opacity: 0.8;
     display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
-    margin-top:30px;
+    margin-top:1.5rem;
     border-radius: 16px;
-    margin-bottom: 20px;
+    position: absolute;
+    z-index: 1000;
+    bottom:14rem;
 
 }
 
 .sections{
     width:auto;
     display:flex;
+    height:0%;
     align-items: center;
     align-content: center;
     justify-content: center;
@@ -226,33 +302,53 @@ body{
 
 .logged-in-as-wrapper{
     width:100%;
+    padding-right: 0.7rem;
     display:flex;
-    flex-direction: column;
-    position: absolute;
-    top:10%;
-    left:0%;
-    padding: 0 2% 0 2%;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color:white;
+}
+
+.totalsectionstyle{
+    height:100%;
+    border-top: 1px solid rgb(177, 177, 177);
+
 }
 
 .logged-in-as {
     width: 100%;
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     height: auto;
+    font-size: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 0.4rem;
 
-    h3{
-        font-size: 12px;
+    .in-room{
+        font-size: 0.8rem;
         margin-right:10px;
         color:black;
+      }
+
+    h3{
+        margin-right:10px;
+        color:rgb(200, 106, 200);
+        margin:0;
     }
 
     button {
         font-family: Georgia, 'Times New Roman', Times, serif;
-        font-size: 13px;
-        width:auto;
-        border-radius: 16px;
+        font-size: 11px;
+        width: auto;
+        border-radius: 9px;
+        padding:0 3px 0 3px;
         margin-top: -5px;
         cursor: pointer;
+    }
+
+    .gear{
+        width: 2px;
+        height:2px;
     }
 }
 
@@ -270,15 +366,14 @@ body{
 }
 
 .friendbar{
-    padding: 0 1.5% 0% 1.5%;
-    background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(107deg, rgba(255,255,255,1) 0%, rgba(243,228,250,1) 100%, rgb(0, 213, 255) 80%);
     width:20vw;
-    height:auto;
-    border-radius: 16px 0 0 0;
-    margin:0px 0px 0px 15px;
-    height:50vh;
+    height:100%;
     min-width:175px;
     max-width:300px;
+    border-right: 1px solid rgba(128, 128, 128, 0.363);
+    border-top: 1px solid rgba(128, 128, 128, 0.363);
+    border-left: 1px solid rgba(128, 128, 128, 0.363);
 }
 
 .friendbar-div{
@@ -287,23 +382,17 @@ body{
 
 .friendonline{
     background-color: white;
-    color:#333;
+    color:rgb(155, 149, 149);
     padding-left:10px;
     border-radius: 16px;
-    font-size: 80%;
+    font-size: 1rem;
     margin:0;
 }
 
 .innerfriendonline{
-    background-color: white;
-    padding-top: 1%;
-    border-radius: 16px;
-    margin-top: 7px;
-    color:#333;
-    
-    li{
-        font-size: 80%;
-    }
+    width:100%;
+    color:rgb(68, 67, 67); 
+
 }
 
 
@@ -320,10 +409,9 @@ body{
       width:100%;
       height:10%;
       background-color: white;
-      justify-content: space-between;
+      justify-content: space-around;
       align-content: center;
       align-items: center;
-      border-radius:10px;
 
       button{
           background-color: transparent;
@@ -334,17 +422,22 @@ body{
   .indifriendwrapper{
     display:flex;
     width:100%;
+    padding-left: 1rem;
+    height:3rem;
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    height:15%;
+    border-top: 1px solid rgba(128, 128, 128, 0.315);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.315);
+    
+    background-color:rgb(255, 255, 255);
 
     &:hover{
         cursor:pointer;
     }
 
     p{
-        font-size: 10px;
+        font-size: 0.7rem;
         margin:0px;
     }
   }
@@ -354,40 +447,61 @@ body{
 }
 
   .refresh1{
-      height: 100%;
+      height: 50%;
   }
 
   .refresh{
       max-height:40%;
   }
-
-
-  .in-room{
-    font-size: 12px;
-    margin-right:10px;
-    color:black;
+  .changeRoomDiv{
+      width: 100%;
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      justify-content: center;
   }
 
   .roomNumber{
       input{
-          height:20px;
-          width: 110px;
           font-size:13px;
+          text-align: center;
+          border-style:none;
+          border-top: 1px solid rgba(128, 128, 128, 0.438);
+          border-bottom: 1px solid rgba(128, 128, 128, 0.438);
+          margin-bottom: 0.5rem;
+          margin-top: 0.5rem;
+          height: 2rem;
+
+          &:focus{
+            border-top: 2px solid rgba(128, 128, 128, 0.815);
+            border-bottom: 2px solid rgba(128, 128, 128, 0.815);
+          }
       }
   }
 
   .xtra-small-button{
-      height:20px;
-      width:60px;
-      font-size:13px;
-      padding:0;
+      font-size:12px;
+      padding:0 0.3rem 0 0.3rem;
+      border-style:none;
       margin:0px;
+      background-color: transparent;
+      border: 1px;
+      border-style: solid;
+      border-color: rgba(128, 128, 128, 0.5);
+      color: rgba(128, 128, 128, 0.863);
+
+      &:hover{
+          color:white;
+          background-color: rgba(128, 128, 128, 0.5);
+      }
+      
   }
 
   .messageStyle{
       max-width:50%;
       border-radius: 12px;
       font-size:12px;
+      font-family: 'roboto';
   }
 
 
@@ -430,13 +544,19 @@ body{
       max-width: 50%;
       padding:0 0.5rem;
       margin-bottom: 5px;
+      font-family: 'sans-serif';
+    
+      &:hover{
+      //doing effect
+      animation: recievemsg 0.8s ease-in-out forwards;
+      }
 
       h6{
           font-size:12px;
           line-height: 4px;
           padding-top: 0.5rem;
           text-align: left;
-          color:rgb(230, 122, 140)
+          color:rgb(230, 122, 140);
       }
 
       p{
@@ -454,13 +574,28 @@ body{
       }
   }
 
+  @keyframes recievemsg {
+
+      50%{
+          transform:translateX(4%);
+      }
+
+      100%{
+          transform:translateX(0);
+      }
+      
+  }
+
   .xtra-small-button2{
-      @extend .xtra-small-button;
-      width:45px;
+    height:20px;
+    width:45px;
+    padding:0%;
+    margin:0;
+    font-size: 4px;
   }
 
   .onlineStatus{
-      font-size:12px;
+      font-size:0.8rem;
   }
 
   .online{
@@ -474,15 +609,22 @@ body{
   }
 
   .friend-username{
-      @extend .onlineStatus;
-      display:flex;
-      justify-content: space-between;
+      font-size: 1rem;
+      text-align: center;
+      color: rgba(125, 98, 245, 0.863);
+  }
 
-
+  .sendfriendrequest{
+      @extend .friend-username;
+      color:rgba(128, 128, 128, 0.699);
   }
 
   .joinRoom{
-      font-size:12px;
+      font-size:1rem;
+      border-style: none;
+      background-color: transparent;
+      color:blue;
+      margin-left:0.3rem;
       padding:0;
   }
 
@@ -497,8 +639,8 @@ body{
   }
 
   .addfriend{
-      color:grey;
-      font-size:9px;
+      color:rgb(0, 139, 0);
+      font-size:0.6rem;
       top:180px;
       left:750px;
       border:0;
@@ -506,19 +648,25 @@ body{
   }
 
   .sendRequest{
-      width:60%;
-      margin:5px 0 0 0;
-      font-size: 10px;
+      @extend .xtra-small-button;
   }
 
   .sendrequest-wrapper{
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       form{
           input{
-              width:100%;
-              font-size: 12px;
+            font-size:13px;
+            text-align: center;
+            border-style:none;
+            border-top: 1px solid rgba(128, 128, 128, 0.438);
+            border-bottom: 1px solid rgba(128, 128, 128, 0.438);
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            height: 2rem;
           }
       }
   }
@@ -527,13 +675,268 @@ body{
       font-size:12px;
   }
 
+  .navbar{
+      animation: navbar-opacity 2s ease-in forwards;
+      opacity:0%;
+      margin-bottom: 1rem;
+  }
+
+  @keyframes navbar-opacity {
+      100%{
+          opacity: 100%;
+      }
+      
+  }
+
+  .github{
+      text-decoration: none;
+      color:black;
+      animation: github-ani 3s infinite forwards;
+      &:hover{
+          text-decoration:none;
+      }
+  }
+
+  @keyframes github-ani {
+      20%{
+          color:red;
+      }
+      40%{
+          color:yellowgreen;
+      }
+      60%{
+          color:green;
+      }
+      80%{
+          color:rgb(16, 223, 178);
+      }
+      100%{
+          color:blueviolet;
+      }
+      
+  }
+
   .unfriend-button{
-      font-size:10px;
+      font-size:0.6rem;
       border: 0;
       background-color: transparent;
-      color:rgb(238, 59, 59);
+      color:rgba(163, 163, 163, 0.589);
       margin:0;
+
+      &:hover{
+          color:red;
+      }
   }
+
+  .accept-button{
+      width:47%;
+      font-size:0.6rem;
+      padding:0;
+      margin-left:2px;
+      border-style: none;
+      border-top: 1px solid rgba(128, 128, 128, 0.664);
+      border-bottom: 1px solid rgba(128, 128, 128, 0.664);
+      background-color: transparent;
+
+      &:hover{
+          background-color: green;
+      }
+  }
+
+  .decline-button{
+      @extend .accept-button;
+
+      &:hover{
+          background-color: red;
+
+      }
+  }
+
+
+  #K{
+      fill:black;
+  }
+  #Chat{
+      fill:black;
+  }
+
+  #triangle{
+     fill: #CF7BD7;
+     fill-opacity: 0.66;
+  }
+
+
+  #theLogo:hover{
+      #Chat{
+        animation: shift-words  ease-in-out 1.5s forwards;
+      }
+      
+
+      #triangle{
+        animation: shift-triangle   1.5s 0.2s forwards;
+      }
+      
+  }
+
+  @keyframes shift-words {
+      25%{
+        fill:rgb(185, 183, 183);
+      }
+
+      50%{
+          transform: translateX(7%);
+          fill:rgb(95, 137, 177);
+      }
+
+      100%{
+          transform: translateX(0%);
+          fill:black;
+      }
+      
+  }
+
+  @keyframes shift-triangle {
+
+    50%{
+        transform: translateX(7%);
+        fill:rgb(185, 183, 183);
+    }
+
+    75%{
+        fill:rgb(95, 137, 177);
+    }
+
+    100%{
+        transform: translateX(0%);
+        fill: #CF7BD7;
+    }
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(238, 238, 238);
+    width:100vw;
+    padding: 1rem 0.2rem 0.2rem 1rem;
+    height:18vh;
+    position: fixed;
+    bottom:0;
+    animation: footer-load 3s forwards;
+
+    p{
+        color: grey;
+        text-align: center;
+        font-size: 0.6rem;
+        width:70%;
+    }
+}
+
+@keyframes footer-load {
+    0%{
+        opacity: 0%;
+        transform: translateY(30%);
+    }
+
+    100%{
+        opacity: 100%;
+        transform:translateY(0%);
+    }
+}
+
+.mainarea{
+    height:100%;
+}
+
+.settings{
+    border-color: transparent;
+    border-style: none;
+    color:rgba(128, 128, 128, 0.808);
+    background-color: transparent;
+    border-left: 1px solid rgba(128, 128, 128, 0.226);
+    border-right: 1px solid rgba(128, 128, 128, 0.226);
+    margin:0;
+    padding: 0 0.2rem 0 0.2rem;
+}
+.settings-wrapper{
+    height:100%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+}
+
+.logout-button{
+    @extend .settings;
+    width:100%;
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+
+    &:hover{
+        background-color: grey;
+        color:white;
+    }
+}
+
+.logout-button2{
+    @extend .logout-button;
+    &:hover{
+        background-color:#ff1515;
+        color:white;
+    }
+
+
+}
+
+
+#Star {
+    &:hover{
+        cursor: pointer;
+        fill:rgb(233, 174, 80);
+    }
+    fill:rgb(236, 236, 70);
+    -webkit-animation: rotation 4s infinite linear;
+    -moz-animation: rotation 4s infinite linear;
+    -o-animation: rotation 4s infinite linear;
+    animation: rotation 4s infinite linear;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+}
+
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to   {-webkit-transform: rotate(359deg);}
+}
+@-moz-keyframes rotation {
+    from {-moz-transform: rotate(0deg);}
+    to   {-moz-transform: rotate(359deg);}
+}
+@-o-keyframes rotation {
+    from {-o-transform: rotate(0deg);}
+    to   {-o-transform: rotate(359deg);}
+}
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to   {transform: rotate(359deg);}
+}
+
+.mainname{
+    color:cadetblue;
+}
+
+.bgVideo{
+    position: absolute;
+    width:100%;
+    height:90%;
+    z-index: -10000;
+    object-fit: cover;
+}
+
 
 
 

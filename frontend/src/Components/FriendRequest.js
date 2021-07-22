@@ -1,5 +1,4 @@
 import react from 'react'
-import Button from 'react-bootstrap/Button'
 import {useDispatch} from 'react-redux'
 import { setRequest } from '../app/requestSlice'
 import friendFunction from '../utils/friendFunction'
@@ -7,16 +6,13 @@ import friendFunction from '../utils/friendFunction'
 const FriendRequest = (props) => {
     const requests = props.requests
     const dispatch = useDispatch()
+    const socket = props.socket
 
     const removingRequest = (request) => {
         const index = requests.indexOf(request)
-        console.log(index)
         let requestClone = requests.slice()
-            console.log(requestClone)
-            requestClone = requestClone.splice(index+1,1)
-            console.log(requestClone)
+            requestClone.splice(index,1)
             dispatch(setRequest(requestClone))
-
     }
 
 
@@ -30,6 +26,8 @@ const FriendRequest = (props) => {
         removingRequest(e.target.value)
 
         const res = await friendFunction.handleFriendRequest(body)
+        socket.emit('refresh friends',e.target.value)
+        
     }
 
     const requestHandlerFalse = async (e) => {
@@ -42,7 +40,7 @@ const FriendRequest = (props) => {
         removingRequest(e.target.value)
 
         const res = await friendFunction.handleFriendRequest(body)
-
+        socket.emit('refresh friends',e.target.value)
     }
 
 
@@ -50,17 +48,18 @@ const FriendRequest = (props) => {
         requests.map((request,index) =>
       <div key={index}>
        <p
-       style={{fontSize:'12px'}}
+       style={{fontSize:'1.2rem',textAlign:'center'}}
        >
          {request}
          </p>
-         <Button 
-         variant="success" value={request}
+         <button value={request}
+         className="accept-button"
          onClick={requestHandlerTrue}>
-             Accept</Button>
-         <Button variant = "danger" value={request}
+             Accept</button>
+         <button value={request}
+         className="decline-button"
          onClick={requestHandlerFalse}>
-             Decline</Button>
+             Decline</button>
          </div>)
     )
 }
