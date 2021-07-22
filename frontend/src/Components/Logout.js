@@ -32,18 +32,18 @@ const Logout = (props) => {
               </Popover.Title>
           <Popover.Content>
             <div className='settings-wrapper'>
-                <button className="logout-button"
-                onClick={handleLogOut}
-                >
-                    Logout
-                    </button>
-                    <OverlayTrigger 
+            <OverlayTrigger 
                     trigger="click" 
                     placement="left" 
                     overlay={popover2()}
                     delay={{ show: 250, hide: 150 }}>
                         <button className="logout-button">Change Room</button>
                     </OverlayTrigger>
+                <button className="logout-button2"
+                onClick={handleLogOut}
+                >
+                    Logout
+                    </button>
             </div>
           </Popover.Content>
         </Popover>

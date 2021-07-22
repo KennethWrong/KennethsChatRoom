@@ -9,7 +9,7 @@ import FriendRequest from '../Components/FriendRequest'
 import friendFunction from '../utils/friendFunction'
 import Logo from '../svg/Logo'
 
-const Navigation = () => {
+const Navigation = (props) => {
   const requests = useSelector(state => state.request.value)
   const username = useSelector(state => state.username.value)
 
@@ -20,7 +20,7 @@ const Navigation = () => {
       Friend Requests </Popover.Title>
     <Popover.Content>
       {requests?
-      <FriendRequest requests={requests} username={username}></FriendRequest>
+      <FriendRequest requests={requests} username={username} socket={props.socket}></FriendRequest>
       :<p style={{color:'grey',fontSize:'10px',textAlign:'center'}}>Login to Check</p>}
     </Popover.Content>
     </Popover>
@@ -56,7 +56,8 @@ const Navigation = () => {
         <OverlayTrigger trigger="focus" placement="bottom" overlay={requestPopover}>
         <Nav.Link className="navlink-style" 
         href="#">
-          Friend Requests <Badge variant="dark">{requests.length}</Badge>
+          Friend Requests <Badge variant="dark">{requests?
+          requests.length: 'NaN'}</Badge>
           </Nav.Link>
           </OverlayTrigger>
         <Nav.Link className="navlink-style github" href="https://github.com/KennethWrong">

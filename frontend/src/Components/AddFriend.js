@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import Button from 'react-bootstrap/Button'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import '../app.css'
@@ -8,10 +7,11 @@ import {useSelector,useDispatch} from 'react-redux'
 import { setNotification } from '../app/notificationSlice';
 import { clearNotification } from '../app/notificationSlice';
 
-const AddFriend = () => {
+const AddFriend = (props) => {
     const [addFriend,setAddFriend] = useState('')
     const username = useSelector(state => state.username.value)
     const dispatch = useDispatch()
+    const socket = props.socket
 
     const CreateNotification = (color,message) => {
         const body = {
@@ -37,11 +37,13 @@ const AddFriend = () => {
            sender: username,
            to: addFriend
        }
+       try{
        const response = await axios.put(`http://localhost:3080/friends/friendrequest`,sendBody)
-        .catch(error =>
-            CreateNotification('danger',error.response.data.message)
-            //throw alert that user does not exist or is wrong
-            )
+        socket.emit('friend request',addFriend)
+        CreateNotification('success',response.data.message)
+       }catch(error){
+        CreateNotification('danger',error.response.data.message)
+       }
     }
 
     const popover = () => (

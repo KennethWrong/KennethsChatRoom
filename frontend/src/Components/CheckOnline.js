@@ -32,10 +32,10 @@ const checkOnline = (friend) => {
                 <h6 className="onlineStatus">Currently: <span className="online">Online</span></h6>
                 <div className="in-room-wrapper">
                     <p>In Room:  </p>
-                    <Button variant="link" 
+                    <button
                     className="joinRoom"
                     onClick={joinRoom} value={friend.room}>
-                    {friend.room}</Button></div>
+                    {friend.room}</button></div>
             </div>
         )
     }else{
@@ -63,7 +63,10 @@ const joinRoom = (e) => {
              user: username,
              toDelete: e.target.value
          }
-        const res = friendFunction.deleteFriend(body)
+        const res = await friendFunction.deleteFriend(body)
+        console.log('I am getting called!')
+        socket.emit('refresh friends',targetUser)
+
     }
 
 

@@ -78,7 +78,6 @@ function Login (props) {
                     validation = true;
                 }
             }
-            console.log(checkUser)
 
             if(validation){
                 let state = {state:true,room: rm,}

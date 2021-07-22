@@ -10884,7 +10884,6 @@ html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #79d6cd;
 }
 
 .responsive-section-col {
@@ -11263,7 +11262,6 @@ html {
 
 .totalsectionstyle {
   height: 100%;
-  background-color: #79d6cd;
   border-top: 1px solid #b1b1b1;
 }
 
@@ -11613,7 +11611,11 @@ html {
 }
 
 .joinRoom {
-  font-size: 12px;
+  font-size: 1rem;
+  border-style: none;
+  background-color: transparent;
+  color: blue;
+  margin-left: 0.3rem;
   padding: 0;
 }
 
@@ -11672,6 +11674,7 @@ html {
   -webkit-animation: navbar-opacity 2s ease-in forwards;
           animation: navbar-opacity 2s ease-in forwards;
   opacity: 0%;
+  margin-bottom: 1rem;
 }
 
 @-webkit-keyframes navbar-opacity {
@@ -11912,7 +11915,7 @@ html {
   height: 100%;
 }
 
-.settings, .logout-button {
+.settings, .logout-button, .logout-button2 {
   border-color: transparent;
   border-style: none;
   color: rgba(128, 128, 128, 0.808);
@@ -11944,14 +11947,19 @@ html {
   justify-items: center;
 }
 
-.logout-button {
+.logout-button, .logout-button2 {
   width: 100%;
   font-size: 0.8rem;
   margin-bottom: 0.6rem;
 }
 
-.logout-button:hover {
+.logout-button:hover, .logout-button2:hover {
   background-color: grey;
+  color: white;
+}
+
+.logout-button2:hover {
+  background-color: #ff1515;
   color: white;
 }
 
@@ -11991,5 +11999,14 @@ html {
 
 .mainname {
   color: cadetblue;
+}
+
+.bgVideo {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  z-index: -10000;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 /*# sourceMappingURL=app.css.map */

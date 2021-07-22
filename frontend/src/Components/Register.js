@@ -7,6 +7,8 @@ import {setUN} from '../app/unSlice'
 import {setRN} from '../app/roomSlice'
 import {setNotification} from '../app/notificationSlice'
 import {clearNotification} from '../app/notificationSlice'
+import {setRequest} from '../app/requestSlice'
+import friendFunction from '../utils/friendFunction';
 
 function Register (props) {
     const[regun,setregun] = useState('')
@@ -66,6 +68,8 @@ function Register (props) {
             
             if(status !== 500){
                 dispatch(setUN(regun))
+                let requests = await friendFunction.getFriendRequests(regun)
+                dispatch(setRequest(requests))
                 dispatch(setRN(rm))
                 props.setLoggedIn(true)
                 let un = regun
