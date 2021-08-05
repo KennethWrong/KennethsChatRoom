@@ -17,7 +17,7 @@ What will be implemented next:
 
 ## What is in the app:
 
-###Landing Page
+### Landing Page
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/landing%20page.gif)
 
 ### Chatting Method
@@ -31,3 +31,11 @@ What will be implemented next:
 
 ### Change rooms2
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/change%20room%232.gif)
+
+
+## How to run the code:
+1. Git pull or download the project.
+2. npm/yarn (_whatever package manager_) install to install libraries and dependencies
+3. navigate to /frontend and run **npm start**
+4. navigate to /backend and run **npm run dev**
+5. Enjoy :)
