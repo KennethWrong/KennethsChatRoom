@@ -19,15 +19,18 @@ What will be implemented next:
 
 ## Landing Page
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/landing%20page.gif)
+
 This is the landing page, loaded with CSS animations and a login/register page. The top of the nav bar also has a .svg icon as an experient with svg icons. Believe that it went quite successfully.
 
 ## Chatting Method
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/chatting.gif)
+
 This is the bread and butter of the project, real-time chat. Basically just used socket.io and did a bunch of io.emit() and io.on() for each scenario to send different chat messages to people.
 _viva websockets_.
 
 ## Unfriend and friend request
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/unfriend.gif)
+
 Watch this video carefully as I do an unfriend and a send of a friend request, _and of course real-time update_, what is a chat without real-time. Basically rules are that:
 a. You can't send duplicate friend requests.
 b. No sending friend request to yourself.
@@ -38,10 +41,12 @@ There are two ways to change rooms.
 
 ### Change rooms #1
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/change%20room.gif)
+<br/>
 A button is provided for you to change room, how convenient!
 
 ### Change rooms #2
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/change%20room%232.gif)
+<br/>
 By checking what room your friend is in, we can change rooms by clicking on the room that they are currently in!
 
 
