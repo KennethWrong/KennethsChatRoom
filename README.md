@@ -20,14 +20,14 @@ What will be implemented next:
 ###Landing Page
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/landing%20page.gif)
 
-###Chatting Method
+### Chatting Method
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/chatting.gif)
 
-###Unfriend and friend request
+### Unfriend and friend request
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/unfriend.gif)
 
-###Change rooms1
+### Change rooms1
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/change%20room.gif)
 
-###Change rooms2
+### Change rooms2
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/change%20room%232.gif)
