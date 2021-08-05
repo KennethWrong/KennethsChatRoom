@@ -37,7 +37,7 @@ b. No sending friend request to yourself.
 c. Can't send frien request to users that you are already friends with.
 
 <h2 align="center"> Change room </h2>
-There are two ways to change rooms.
+<p align="center">There are two ways to change rooms. </p>
 
 ### Change rooms #1
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/change%20room.gif)
