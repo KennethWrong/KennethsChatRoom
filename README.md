@@ -1,4 +1,4 @@
-# KennethsChatRoom
+<h1 align="center"> KennethsChatRoom </h1>
 An ongoing project to demonstrate my SCSS, React, html and node abilities.
 
 Brief description of what is being done:
@@ -33,7 +33,7 @@ a. You can't send duplicate friend requests.
 b. No sending friend request to yourself.
 c. Can't send frien request to users that you are already friends with.
 
-## Change room
+<h2 align="center"> Change room </h2>
 There are two ways to change rooms.
 
 ### Change rooms #1
