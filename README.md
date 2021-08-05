@@ -10,7 +10,10 @@ Brief description of what is being done:
 - Using redux-react for username and chat room identification
 - BCrypt for encryption of password
 - More socket.io for real-time refresh of friends status
+- Real time friend adding, friend request
 
 What will be implemented next:
-- Unfriend feature
 - Scaling and deploying to the web (will look into NginX, Apache Tomcat, Heroku, AWS, Azure... all that backend stuff)
+
+# What is in the app:
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
