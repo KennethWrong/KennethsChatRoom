@@ -15,7 +15,7 @@ Brief description of what is being done:
 What will be implemented next:
 - Scaling and deploying to the web (will look into NginX, Apache Tomcat, Heroku, AWS, Azure... all that backend stuff)
 
-# What is in the app:
+<h1 align="center"> What is in the app </h1>
 
 ## Landing Page
 ![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/landing%20page.gif)
