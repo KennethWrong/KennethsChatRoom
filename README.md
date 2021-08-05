@@ -16,4 +16,4 @@ What will be implemented next:
 - Scaling and deploying to the web (will look into NginX, Apache Tomcat, Heroku, AWS, Azure... all that backend stuff)
 
 # What is in the app:
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text](https://github.com/KennethWrong/KennethsChatRoom/blob/main/gifs/landing%20page.gif)
