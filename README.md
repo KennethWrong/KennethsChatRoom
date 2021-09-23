@@ -52,7 +52,7 @@ By checking what room your friend is in, we can change rooms by clicking on the 
 
 # How to run the code:
 1. Git pull or download the project.
-2. npm/yarn (_whatever package manager_) install to install libraries and dependencies
+2. npm/yarn install to install libraries and dependencies
 3. navigate to /frontend and run **npm start**
-4. navigate to /backend and run **npm run dev**
+4. Open a new terminal and navigate to /backend and run **npm run dev**
 5. Enjoy :)
